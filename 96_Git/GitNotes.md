@@ -75,7 +75,7 @@ There are two types of repositories:
  
 # Install Git on Linux
 1. From your shell, install Git using apt-get:
-```bat 
+```sh 
   $ sudo apt-get update $ sudo apt-get install git 
 ```
 2. Verify the installation was successful by typing git --version:
