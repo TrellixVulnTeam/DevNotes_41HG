@@ -1,15 +1,15 @@
 ## Table of contents 
 - [Github](#github)
-    - [What is version control ?](#what-is-version-control-)
-  - [Why version control ?](#why-version-control-)
-    - [Version control systems available](#version-control-systems-available)
-  - [Features of Git](#features-of-git)
-  - [What is a Repository ?](#what-is-a-repository-)
+		- [What is version control ?](#what-is-version-control-)
+	- [Why version control ?](#why-version-control-)
+		- [Version control systems available](#version-control-systems-available)
+	- [Features of Git](#features-of-git)
+	- [What is a Repository ?](#what-is-a-repository-)
 - [Install Git on Linux](#install-git-on-linux)
 - [GIT SSH](#git-ssh)
-  - [How to Create an SSH Key](#how-to-create-an-ssh-key)
-    - [Generate an SSH Key on Mac and Linux](#generate-an-ssh-key-on-mac-and-linux)
-  - [Reference](#reference)
+	- [How to Create an SSH Key](#how-to-create-an-ssh-key)
+		- [Generate an SSH Key on Mac and Linux](#generate-an-ssh-key-on-mac-and-linux)
+	- [Reference](#reference)
 
 # Github
 Github is a repository, Repository is a dataspace, where you store all the project files.
@@ -138,12 +138,6 @@ eval "$(ssh-agent -s)"
 ssh-add -k /Users/you/.ssh/id_rsa
 ```
 - The new SSH key is now registered and ready to use!
-
-  
-
-
-
-
 
 
 
