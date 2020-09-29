@@ -1,0 +1,409 @@
+
+<!DOCTYPE html>
+<html>
+<head>
+	<title>Form</title>
+	<style type="text/css">
+		* {
+			box-sizing: border-box;
+		}
+		.container {
+			width: 1200px;
+			margin:0 auto;
+		}
+		form {
+			width:450px;
+			margin:0 auto;
+			border:solid 1px #eee;
+			padding:30px;
+		}
+		form label,select{
+			display: block;
+		}
+
+		form label,select {
+			margin: 10px 0 10px;
+		}
+		.center {
+			text-align: center;
+		}
+
+		.error {
+			color:red;
+			display: none;
+		}
+		.show-error{
+			display: block;
+		}
+		form input, form select {
+			width: 100%;
+			display: inline-block;
+			padding:6px 8px;
+		}
+		form #submitBtn {
+			display: block;
+			border-radius: 3px;
+			padding:12px 8px;
+			outline: none;
+			border:none;
+			text-shadow: 0 1px rgba(0,0,0,0.1);
+			margin-top: 15px;
+		}
+
+		form .submit-btn-disabled {
+			background: #d5d5d5;
+			color:#999;
+			cursor: not-allowed;
+		}
+
+		form .submit-btn {
+			background: green;
+			color:#fff;
+			cursor: pointer;
+		}
+
+		.password-info {
+			border:solid 1px;
+			padding:8px 15px;
+			border-radius: 5px;
+			display: none;
+		}
+
+		.password-info p {
+			margin-right: 10px;
+		}
+
+		.invalid {
+			color:red;
+		}
+
+		.valid {
+			color:green;
+		}
+
+		.invalid::before {
+			position: relative;
+		    left: -5px;
+		    content: "✖";
+		}
+
+		.valid::before {
+			position: relative;
+		    left: -5px;
+		    content: "✔";
+		}
+
+		p {
+			margin:0;
+			padding:0;
+		}
+
+		.hide {
+			display: none;
+		}
+
+		
+
+		
+	</style>
+</head>
+<body>
+<div class="container">
+	<form id="basicForm" autocomplete="off" method="get" action= 'register.php'onsubmit="registrationform()">
+		<label for="name">Name</label>
+		<input type="text" name="name" id="userName">
+		<span class="error">name should be least 4 chracters</span>
+
+		<label for="password">Password</label>
+		<input type="password" name="password" id="userPassword">
+		<span class="error">Password must be strong</span>
+		<div class="password-info">
+			<p class='invalid' id='lowerCase'>A lower case letter</p>
+			<p class='invalid' id='upperCase'>A upper case letter</p>
+			<p class='invalid' id='numberCase'>A number</p>
+			<p class='invalid' id='specialCase'>A special character</p>
+			<p class='invalid' id='lengthCase'>Minimum 8 characters</p>
+		</div>
+
+
+		<label for="cpassword">Confirm password</label>
+		<input type="password" name="fname" id="confirmPassword">
+		<span class="error">These passwords don't match.</span>
+
+		<label for="email">Email </label>
+		<input type="email" name="email" id="userEmail">
+		<span class="error">Enter a valid email address</span>
+
+		<label for="country">Country</label>
+		<select id="country" name="country">
+			<option disabled='disabled' selected='selected'>Select country</option>
+			<option value="india">india</option>
+			<option value="australia">australia</option>
+			<option value="pakistan">pakistan</option>
+		</select>
+		<span class="error">please select a country</span>
+
+		<input type="submit" id="submitBtn" value="Submit" class="submit-btn-disabled" disabled = 'true'>
+	</form>
+
+</div>
+<script type="text/javascript">
+
+	var form, submitBtn, userName,userPassword,confirmPassword,userEmail,country,lowerCase,upperCase,numberCase,specialCase,lengthCase,password_info;
+	var userNameCheck,userPasswordCheck,confirmPasswordCheck,userEmailCheck,userNameCheck,countryCheck;
+	userNameCheck = userPasswordCheck = confirmPasswordCheck = userEmailCheck = userNameCheck = countryCheck = false;
+	console.log(userEmailCheck);
+	/*
+	1. use js to validate
+	2. fields can't be empty, 
+	3. Name field should have more than 2 chracters only strings allowed
+	4. password validation
+	5. passsword confimration, should be the same password
+	6. email validation
+	7. must select a country
+	8. only after filling all fields submit btn shuld enable
+	*/	
+	//console.log(inputList, sel);
+
+	form = document.querySelector('#basicForm');
+	submitBtn = document.querySelector('form #submitBtn');
+
+	userName = document.querySelector('#userName');
+	userPassword = document.querySelector('#userPassword');
+	confirmPassword = document.querySelector('#confirmPassword');
+	userEmail = document.querySelector('#userEmail');
+	country = document.querySelector('#country');
+	lowerCase = document.querySelector('#lowerCase');
+	upperCase = document.querySelector('#upperCase');
+	numberCase = document.querySelector('#numberCase');
+	specialCase = document.querySelector('#specialCase');
+	lengthCase = document.querySelector('#lengthCase');
+	password_info = document.querySelector('.password-info');
+
+	// function disableSubmit(){
+	// 	submitBtn.setAttribute('disabled','true');	
+	// 	submitBtn.classList.remove('submit-btn');
+	// 	submitBtn.classList.add('submit-btn-disabled');
+	// }
+
+	// disableSubmit();
+	
+
+
+	// focus out
+	form.addEventListener('focusout', function (e) {
+		// validate name
+		if(e.target.id === 'userName'){
+			validateName(e);
+		}
+		// hide password info on focus out
+		if (e.target.id === 'userPassword'){
+			togglePasswordMessage(e);
+		} 
+
+		if(e.target.id === 'confirmPassword'){
+			validateConfirmPassword(e);
+		}
+
+		if(e.target.id === 'userEmail'){
+			validateUserEmail(e);
+		}
+		registrationform(e);
+
+	})
+
+	// keyup event
+	form.addEventListener('keyup', function (e) {
+
+		// hide error message when typing for user name
+		if (e.target.id === 'userName'){
+			hideError(e)
+		} 
+		// 
+		if (e.target.id === 'userPassword'){
+			validatePassword(e);
+			hideError(e)
+		} 
+
+	})
+
+	form.addEventListener('click', function (e) {
+		// show password info box
+		if (e.target.id === 'userPassword'){
+			//validatePassword(e);
+		} 
+	})
+
+	form.addEventListener('change', function (e){
+		if(e.target.id === 'country'){
+			validateCountry(e);
+		}
+		registrationform(e);
+	})
+
+	form.addEventListener('onkeydown', function (e){
+		registrationform(e);
+	})
+
+	
+
+
+	// hide error function 
+	function hideError(e){
+		if(e.target.nextElementSibling.className === 'error'){
+			e.target.nextElementSibling.style.display = 'none';
+		}
+	}
+
+	// show error function 
+	function showError(e){
+		if(e.target.nextElementSibling.className === 'error'){
+			e.target.nextElementSibling.style.display = 'inline-block';
+		}
+	}
+
+
+	function togglePasswordMessage(e) {	
+		password_info.style.display = 'none';
+
+	}
+
+	// name validation function
+	function validateName(e){
+		if(e.target.value.length < 4){
+			showError(e);
+			userNameCheck = false;
+		} else {
+			hideError(e);
+			userNameCheck = true;
+		}
+	}
+
+	// password validation function
+	function validatePassword(e){
+		password_info.style.display = 'block';
+		var lower_Case,upper_Case,number_Case,special_Case,length_Case;
+		lower_Case = upper_Case = number_Case = special_Case = length_Case = false;
+
+		var lowerCaseLetter = /[a-z]/g;
+		if(e.target.value.match(lowerCaseLetter)) {
+			lowerCase.classList.remove('invalid');
+			lowerCase.classList.add('valid');
+			 lower_Case = true;
+		} else {
+			lowerCase.classList.remove('valid');
+			lowerCase.classList.add('invalid');
+			lower_Case = false;
+		}
+
+		var upperCaseLetter = /[A-Z]/g;
+		if(e.target.value.match(upperCaseLetter)) {
+			upperCase.classList.remove('invalid');
+			upperCase.classList.add('valid');
+			upper_Case = true
+		} else {
+			upperCase.classList.remove('valid');
+			upperCase.classList.add('invalid');
+			upper_Case = false
+		}
+
+		var numberCaseLetter = /[0-9]/g;
+		if(e.target.value.match(numberCaseLetter)) {
+			numberCase.classList.remove('invalid');
+			numberCase.classList.add('valid');
+			number_Case = true
+		} else {
+			numberCase.classList.remove('valid');
+			numberCase.classList.add('invalid');
+			number_Case = false;
+		}
+
+		var specialCaseLetter = /[!@#$%^&*)]/g;
+		if(e.target.value.match(specialCaseLetter)) {
+			specialCase.classList.remove('invalid');
+			specialCase.classList.add('valid');
+			special_Case = true;
+		} else {
+			specialCase.classList.remove('valid');
+			specialCase.classList.add('invalid');
+			special_Case = false
+		}
+
+		var lengthCaseLetter = 8;
+		if(e.target.value.length > lengthCaseLetter) {
+			lengthCase.classList.remove('invalid');
+			lengthCase.classList.add('valid');
+			length_Case = true;
+		} else {
+			lengthCase.classList.remove('valid');
+			lengthCase.classList.add('invalid');
+			length_Case = false
+		}
+
+		if(lower_Case === true && upper_Case === true && number_Case === true && special_Case === true && length_Case === true) {
+			userPasswordCheck = true;
+		} else {
+			userPasswordCheck = false;
+		}
+
+	}
+
+	function validateConfirmPassword (e) {
+		if(e.target.value !== userPassword.value) {
+			showError(e);
+			confirmPasswordCheck = false;
+		} else {
+			hideError(e);
+			confirmPasswordCheck = true;
+		}
+	}
+
+	function validateUserEmail (e) {
+		var emailPattern = /^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$/;
+		if(e.target.value.match(emailPattern)) {
+			hideError(e);
+			userEmailCheck = true;
+
+		} else {
+			showError(e);
+			userEmailCheck = false;
+		}
+	}
+
+	function validateCountry(e){
+		if(country.value !== ''){
+			hideError(e);
+			countryCheck = true;
+		} else {
+			showError(e);
+			countryCheck = false;
+		}
+	}
+
+	function registrationform (e) {
+		//
+		debugger;
+		//if(userNameCheck ,userPasswordCheck,confirmPasswordCheck,userEmailCheck,countryCheck !== true)	{
+		  if(userNameCheck === true && userPasswordCheck === true && confirmPasswordCheck === true && userEmailCheck === true && countryCheck === true)	{
+		  	submitBtn.setAttribute('disabled','false');
+			submitBtn.classList.remove('submit-btn-disabled')
+			submitBtn.classList.add('submit-btn')
+			return true;
+			
+			
+		} else {
+			submitBtn.setAttribute('disabled','true');
+			submitBtn.classList.remove('submit-btn')
+			submitBtn.classList.add('submit-btn-disabled')
+			e.preventDefault();
+			return false;
+
+		}
+	}
+
+
+
+
+</script>
+</body>
+</html>

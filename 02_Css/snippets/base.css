@@ -1,0 +1,175 @@
+/* 
+--------------------
+** BASIC SETUP **
+--------------------
+*/
+
+*,
+*::after,
+*::before {
+  box-sizing: inherit;
+  margin:0;
+  padding:0;
+}
+
+
+body {
+  font-family: sans-serif;
+  font-size: 16px;
+  font-weight: 400;
+  line-height: 1.5;
+  color: #212529;
+  -webkit-text-rendering:optimizeLegibility;
+  -moz-text-rendering:optimizeLegibility;
+  -o-text-rendering:optimizeLegibility;
+  text-rendering:optimizeLegibility;
+}
+
+.page-wrap {
+  min-width:3.2rem;
+}
+
+.clearfix::after {
+  content:'';
+  display: table;
+  clear: both;
+  height: 0;
+}
+
+.float-left {
+  float: left !important;
+}
+
+.float-right {
+  float: right !important;
+}
+
+.center {
+  text-align: center;
+}
+
+.italic,
+.italic *{
+  font-style: italic !important;
+}
+
+.strong {
+  font-weight:bold !important;
+}
+
+
+/* RESET CSS */
+
+h1, h2, h3, h4, h5, h6,
+p {
+  margin: 0; 
+  padding:0;
+}
+
+ol,
+ul,
+dl {
+  margin:0;
+  list-style: none;
+  padding:0;
+}
+
+img {
+  vertical-align: middle;
+  border-style: none; 
+}
+
+table {
+  border-collapse: collapse; 
+}
+
+
+
+/* 
+-----------
+** LINKS **
+-----------
+*/
+a:link,
+a:visited {
+    color: #e67e22;
+    text-decoration: none;
+}
+
+a:hover,
+a:active {
+    color: #555;
+}
+
+/* 
+-------------
+** BUTTONS **
+-------------
+*/
+.btn:link,
+.btn:visited,
+input[type=submit] {
+    display: inline-block;
+    padding: 10px 30px;
+    text-decoration: none;
+}
+
+.btn-full:link,
+.btn-full:visited,
+input[type=submit] {
+    background-color: #e67e22;
+    color: #fff;
+}
+
+
+.btn:hover,
+.btn:active,
+input[type=submit]:hover,
+input[type=submit]:active {
+    background-color: #cf6d17;
+}
+
+.btn-full:hover,
+.btn-full:active {
+    border: 1px solid #cf6d17;
+}
+
+
+
+/* 
+----------------
+** FORM STYLES **
+----------------
+*/
+
+textarea {
+  resize: none !important;
+}
+
+
+/* INPUT TYPE NUMBER HIDE ARROW */
+input[type=number]::-webkit-inner-spin-button, 
+input[type=number]::-webkit-outer-spin-button { 
+  -webkit-appearance: none; 
+  margin: 0; 
+}
+
+/* PLACEHOLDER COLOR */
+
+/*
+::-webkit-input-placeholder { 
+  color: pink;
+}
+::-moz-placeholder { 
+  color: pink;
+}
+:-ms-input-placeholder { 
+  color: pink;
+}
+:-moz-placeholder { 
+  color: pink;
+}
+
+*/
+
+

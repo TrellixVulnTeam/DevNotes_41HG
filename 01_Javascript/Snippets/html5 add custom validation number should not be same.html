@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta name="description" content="[Html5 Validation Mobile numbers should not be same]">
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width">
+  <title>JS Bin</title>
+  <style>
+    label, input {
+    display:block;
+  }
+  </style>
+</head>
+<body>
+<form action="#">
+  <label for="personalPhone">Personal Phone</label>
+  <input type="text" id="personalPhone">
+  <br>
+  <label for="alternatePhone">Alternate Phone</label>
+  <input type="text" id="alternatePhone">
+  <br>
+  <label for="emergencyPhone">Emergency Phone</label>
+  <input type="text" id="emergencyPhone">
+  <br>
+  <input type="submit">
+</form>
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+
+</body>
+</html> 
+
+<script>
+var personalPhoneText = "Personal phone";
+var AlternatePhoneText = "Alternate phone";
+var emergencyPhoneText = "Emergency phone";
+
+
+$(document).ready(function () {
+  var personalPhone = $('#personalPhone');
+  var alternatePhone = $('#alternatePhone');
+  var emergencyPhone = $('#emergencyPhone');
+
+ 
+  $(personalPhone).on('input', function () {
+    numShouldNotBeSame(personalPhone,alternatePhone, emergencyPhone);
+  });
+  
+  $(alternatePhone).on('input', function () {
+    ///numShouldNotBeSame(personalPhone,alternatePhone, emergencyPhone);
+    numShouldNotBeSame(alternatePhone,personalPhone,emergencyPhone);
+  });
+  
+  $(emergencyPhone).on('input', function () {
+    ///numShouldNotBeSame(personalPhone,alternatePhone, emergencyPhone);
+    numShouldNotBeSame(emergencyPhone,alternatePhone,personalPhone);
+  });
+
+  function numShouldNotBeSame(persPhone,alPhone,emPhone){
+    
+    if($(persPhone).val() === alPhone.val()) {
+      console.log('they are same');
+      $(persPhone)[0].setCustomValidity('Personal phone and  Alternate phone can\'t be the same' );
+    } else if ( $(persPhone).val() == emPhone.val()) {
+      $(persPhone)[0].setCustomValidity('Personal phone and Emergency phone can\'t be the same' );
+    } else {
+      console.log('they are not same');
+      $(persPhone)[0].setCustomValidity('');
+    }
+  }
+})
+
+/* NOTES */
+/* 
+1. setCustomValidity is a javascript method. It doesn't work with jqueryElement
+2. So in jquery use element[0]
+  $(element)[0].setCustomValidity('Personal phone and  Alternate phone can\'t be the same' );
+*/
+
+</script>

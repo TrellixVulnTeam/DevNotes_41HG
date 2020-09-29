@@ -1,0 +1,217 @@
+<html>
+<head>
+	<title>Simple Todo App</title>
+</head>
+<style type="text/css">
+	* {
+		margin:0;
+		padding:0;
+		box-sizing:border-box;
+	}
+	body {
+		font-family: sans-serif;
+	}
+	h2 {
+		padding-bottom: 10px;
+		margin-bottom: 20px;
+		font-weight: normal;
+		border-bottom: 1px dashed #ccc;
+	}
+	ul  {
+		list-style: none;
+	}
+	.container {
+		margin: 40px auto 0;
+		width:600px;
+	}
+
+	.list-wrap {
+		border:solid 1px #ccc;
+		padding:20px;
+		margin-top: 20px;
+	}
+	.list-item {
+		display:flex;
+		justify-content:space-between;
+		margin-top: 10px;
+	}
+	button, input[type="button"], input[type="text"] {
+		padding:5px;
+	}
+	input[type="text"] {
+		width: 100%;
+		padding: 18px;
+		font-weight: bold;
+		padding-right: 100px;
+	}
+
+	.listInput-wrap {
+		position: relative;
+	}
+	.add-btn {
+		position: absolute;
+    right: 21px;
+    top: 13px;
+	}
+	#removeItem {
+		margin-right: 10px;
+	}
+
+	.todo:empty:before {
+		content:'You have nothing to-do!';
+	}
+
+	.completeListContainer:empty:before {
+		content:'You have yet to complete any tasks';
+	}
+
+	.completeListContainer:empty:before,
+	.todo:empty:before {
+		color:#ccc;
+	}
+
+	.h2-Title {
+		margin-top: 30px;
+	}
+
+
+
+</style>
+<body>
+<div class="container">
+	<div class="listInput-wrap">
+		<label for="item"></label>
+		<input type="text" class="item" placeholder="Enter an activity.." value="Grocery">
+		<input type="button" class="add-btn" value="Add Item">
+	</div>
+	<div class="list-wrap">
+		<h2>Todo</h2>
+		<div class="todo"></div>
+		<!--
+			<div class="list-item"> 
+				<span>Grocery Shopping</span>
+				<span class="buttons-wrap">
+					<button id="removeItem">Remove</button>
+					<button id="addToCompleteList"> Add to Complete</button>
+				</span>
+			</div>
+			<div class="list-item"> 
+				<span>Hair Cut</span>
+				<span class="buttons-wrap">
+					<button id="removeItem">Remove</button>
+					<button id="addToCompleteList"> Add to Complete</button>
+				</span>
+			</div>
+		-->
+		<h2 class="h2-Title">Completed</h2>
+		<div class="completeListContainer"></div>
+		
+	</div>
+</div>
+
+<script type="text/javascript">
+
+	// Data
+
+	var data = {
+		todoArr : [],
+		completeArr : []
+	}
+
+	document.addEventListener('keydown', addKeyHandler);
+
+	var inputItem = document.querySelector('.item');
+	var addItemBtn = document.querySelector('.add-btn');
+	var addToCompleteListBtn = document.querySelector('.completeListContainer');
+	var todoContainer = document.querySelector('.todo');
+	var listWrap = document.querySelector('.list-wrap');
+
+
+	// Add Item Handler
+	addItemBtn.addEventListener('click', addItemHandler);
+	
+	listWrap.addEventListener('click', removeAndCompleteHandler);
+
+	function addKeyHandler (e) {
+		if(e.keyCode === 13) {
+			addItemHandler();
+		}
+	}
+
+	function addItemHandler () {
+
+		/*
+			1. Get item value, if item value is empty throw a alert message
+
+			2. Append the item to todo List 
+		*/
+
+		if(inputItem.value === null || inputItem.value === "" ) {
+			alert('Please enter a value');
+		} else {
+			var html = '<div class="list-item"><span>%item-value%</span><span class="buttons-wrap"><button id="removeItem">Remove</button><button id="addToCompleteList"> Add to Complete</button></span></div>';
+
+			var newHtml = html.replace('%item-value%', inputItem.value);
+
+			todoContainer.insertAdjacentHTML('afterbegin',newHtml);
+
+			data.todoArr.push(inputItem.value);
+
+			
+			
+		}
+
+	}
+
+	function removeAndCompleteHandler (e) {
+		// 1. When user clicks on delete button, Remove the list item
+		if(e.target.id === 'removeItem' ) {
+			removeItemHandler(e);
+		} else if (e.target.id === 'addToCompleteList') {
+			addTocompleteHandler(e);
+		} else {
+			return false;
+		}
+
+	}
+
+	function removeItemHandler(e){
+		var parent = e.target.parentElement.parentElement.parentElement
+		parent.removeChild(e.target.parentElement.parentElement);
+
+		var itemValue = e.target.parentElement.parentElement.children[0].textContent;
+		
+		if(parent.className === "todo") {
+			data.todoArr.splice(data.todoArr.indexOf(itemValue), 1);
+		} else {
+			data.completeArr.splice(data.completeArr.indexOf(itemValue), 1);
+		}
+
+
+		// console.log(e.target.parentElement.parentElement.children[0].textContent);
+	}
+
+	function addTocompleteHandler (e) {
+		var parent = e.target.parentElement.parentElement.parentElement;
+		var item = e.target.parentElement.parentElement;
+		var itemValue = e.target.parentElement.parentElement.children[0].textContent;
+		
+		if(parent.className === "todo") {
+			addToCompleteListBtn.insertBefore(item, addToCompleteListBtn.childNodes[0]);
+			e.target.textContent = "Add to Todo";
+			data.completeArr.push(itemValue);
+			data.todoArr.splice(data.todoArr.indexOf(itemValue), 1);
+
+		} else {
+			todoContainer.insertBefore(item, todoContainer.childNodes[0]);
+			e.target.textContent = "Add to complete";
+			data.todoArr.push(itemValue);
+			data.completeArr.splice(data.completeArr.indexOf(itemValue), 1);
+		}
+
+	}
+
+			
+</script>
+</body>
+</html>

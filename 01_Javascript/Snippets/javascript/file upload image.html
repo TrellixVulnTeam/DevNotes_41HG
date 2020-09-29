@@ -1,0 +1,207 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width">
+  <title>JS Bin</title>
+  <style type="text/css">
+  body {
+    font-family: sans-serif;
+    background-color: teal;
+  }
+
+  .file-upload {
+    background-color: #ffffff;
+    width: 300px;
+    margin: 0 auto;
+    padding: 8px;
+  }
+
+  .file-upload-btn {
+    margin: 0;
+    border: none;
+    background:none;
+    color:#bc94fd;
+    font-weight:600;
+  }
+
+
+  .file-upload-btn:active {
+    border: 0;
+    transition: all .2s ease;
+  }
+
+  .file-upload-content {
+    display: none;
+    text-align: center;
+    background:#f0f2f8;
+    position:relative;
+  }
+
+  .file-upload-content .content {
+    display:flex;
+    justify-content:center;
+    align-items:center;
+     flex-direction: column;
+    height:100%;
+  }
+
+  .file-upload-content, 
+  .drag-text {
+    height:200px;
+  }
+
+  .file-upload-input {
+    position: absolute;
+    margin: 0;
+    padding: 0;
+    width: 100%;
+    height: 100%;
+    outline: none;
+    opacity: 0;
+    cursor: pointer;
+  }
+
+  .image-upload-wrap {
+    background:#f0f2f8;
+    /* border: 4px solid white; */
+    position: relative;
+  }
+
+  .drag-text  {
+    font-weight: 100;
+    color: #aaa;
+    display:flex;
+    align-items:center;
+    justify-content:center;
+    text-align:center;
+    /* padding: 60px 0; */
+  }
+
+  .drag-text h3 {
+    color:#43425d;
+    margin:10px 0 0;
+  }
+
+  .drag-text p {
+    padding:0;
+    margin:10px 0;
+  }
+
+  .drag-text span {
+    color:#bc94fd;
+    font-weight:bold;
+  }
+
+  .img-wrap {
+    height:100px;
+    width:100px;
+    overflow:hidden;
+    text-align:center;
+
+    vertical-align:middle;
+  }
+
+  .file-upload-image {
+    width: 100%;
+    height:100%;
+    object-fit:contain;
+  }
+
+  .remove-close-btn {
+    margin: 0;
+    color: #a4afb7;
+    background:#fff;
+    height:20px;
+    width:20px;
+    border: none;
+    transition: all .2s ease;
+    outline: none;
+    text-transform: uppercase;
+    font-weight: 700;
+    cursor:pointer;
+    position:absolute;
+    top:0;
+    right:0;
+  }
+
+
+  .remove-image:active {
+    border: 0;
+    transition: all .2s ease;
+  }
+  </style>
+</head>
+<body>
+<div class="file-upload">
+  <!-- <button class="file-upload-btn" type="button" onclick="$('.file-upload-input').trigger( 'click' )">Add Image</button> -->
+
+  <div class="image-upload-wrap">
+    <input class="file-upload-input" type='file' onchange="readURL(this);" accept="image/*" />
+    <div class="drag-text">
+      <div class="content">
+       
+          <img src="https://pltfrm.eventjini.com/wp-content/plugins/eventjini-event-manager/images/upload_icon.png" width="80" alt="">
+        
+        <h3>Drag &amp; drop</h3>
+        <p>your files or <span>browse<span></p>
+      </div>
+    </div>
+  </div>
+  <div class="file-upload-content">
+    <div class="content">
+      <button type="button" onclick="removeUpload()" class="remove-close-btn">X</button>
+       <div class="img-wrap">
+        <img class="file-upload-image" src="#" alt="your image" />
+       </div>
+      <button class="file-upload-btn" type="button" onclick="$('.file-upload-input').trigger( 'click' )">Upload New</button>
+       
+    </div>
+  </div>
+</div>
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+<script type="text/javascript">
+  $(document).ready(function () {
+
+    $('.file-upload-input').on('change', readURL); 
+    $('.remove-close-btn').on('click', removeUpload);
+
+    function readURL() {
+      
+      if (this.files && this.files[0]) {
+
+        var reader = new FileReader();
+
+        reader.onload = function(e) {
+          $('.image-upload-wrap').hide();
+
+          $('.file-upload-image').attr('src', e.target.result);
+          $('.file-upload-content').show();
+
+        };
+
+        reader.readAsDataURL(this.files[0]);
+
+      } else {
+        removeUpload();
+      }
+    }
+
+    function removeUpload() {
+      $('.file-upload-input').val('');
+      //$('.file-upload-input').replaceWith($('.file-upload-input').clone());
+      $('.file-upload-content').hide();
+      $('.image-upload-wrap').show();
+    }
+
+    $('.image-upload-wrap').bind('dragover', function () {
+        $('.image-upload-wrap').addClass('image-dropping');
+      });
+      $('.image-upload-wrap').bind('dragleave', function () {
+        $('.image-upload-wrap').removeClass('image-dropping');
+    });
+  });
+
+</script>
+</body>
+</html>

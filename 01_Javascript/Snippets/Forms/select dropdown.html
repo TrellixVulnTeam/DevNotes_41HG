@@ -1,0 +1,153 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width">
+  <title>JS Bin</title>
+  <!--FOR GLYPG ICONS-->
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+  <!--FOR PSEUDO ICONS-->
+  <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
+  <style>
+  /* 
+===========================
+SELECT DROPDOWN WITH BG IMG 
+===========================
+*/
+
+.select-dropdown-wrap {
+  position:relative;
+  display:inline-block;
+}
+.select-dropdown-wrap select {
+  background:#fff url(http://www.stackoverflow.com/favicon.ico) 96% / 15% no-repeat;
+  padding: 5px 35px 5px 5px;
+  font-size: 14px;
+  border: 1px solid #ccc;
+  /*height: 34px; */
+  -webkit-appearance: none;
+  -moz-appearance: none;
+  appearance: none; 
+  cursor:pointer;
+}
+
+/* CAUTION: IE hackery ahead */
+
+.select-dropdown-wrap select::-ms-expand { 
+  display: none; /* remove default arrow in IE 10 and 11 */
+}
+
+/*
+===========================
+ SELECT DROPDOWN WITH ICON 
+===========================
+*/
+
+.select-dropdown-wrap-icon {
+  position:relative;
+  display:inline-block;
+}
+
+.select-dropdown-wrap-icon select {
+  background:#fff;
+  padding: 5px 35px 5px 5px;
+  font-size: 14px;
+  border: 1px solid #ccc;
+  /*height: 34px; */
+  -webkit-appearance: none;
+  -moz-appearance: none;
+  appearance: none; 
+  cursor:pointer;
+}
+
+
+.select-dropdown-wrap-icon .arrow-icon {
+  position:absolute;
+  right:10px;
+  top:50%;
+  transform:translateY(-50%);
+  font-size: 13px;
+}
+
+/*
+==================================
+ SELECT DROPDOWN WITH PSEDUO ICONS 
+==================================
+*/
+
+
+.select-dropdown-wrap-pseduo select{
+  background:#fff;
+  padding: 5px 35px 5px 5px;
+  font-size: 14px;
+  border: 1px solid #ccc;
+  /*height: 34px; */
+  -webkit-appearance: none;
+  -moz-appearance: none;
+  appearance: none; 
+  cursor:pointer;
+}
+
+.select-dropdown-wrap-pseduo {
+  position:relative;
+  display:inline-block;
+}
+
+.select-dropdown-wrap-pseduo::after {
+    content: "\f107";
+    font-family: 'FontAwesome';
+    font-size: 18px;
+    display: inline-block;
+    font-style: normal;
+    font-variant: normal;
+    text-rendering: auto;
+    -webkit-font-smoothing: antialiased;
+    position: absolute;
+    right: 9px;
+    top: 50%;
+    transform: translateY(-50%);
+    pointer-events: none;
+}
+
+/* CAUTION: IE hackery ahead */
+
+select::-ms-expand { 
+  display: none; /* remove default arrow in IE 10 and 11 */
+}
+  </style>
+  
+</head>
+<body>
+  
+<h3>Select dropdown with bg-image </h3>
+<div class="select-dropdown-wrap">
+    <select>
+      <option>Apples</option>
+      <option selected>Pineapples</option>
+      <option>Chocklate</option>
+      <option>Pancakes</option>
+    </select>
+</div>
+<h3>Select dropdown with icon </h3>
+<div class="select-dropdown-wrap-icon">
+    <span class="glyphicon glyphicon glyphicon-chevron-down arrow-icon"></span>
+    <select>
+      <option>Apples</option>
+      <option selected>Pineapples</option>
+      <option>Chocklate</option>
+      <option>Pancakes</option>
+    </select>
+</div>
+
+<h3>Select dropdown using pseduo element </h3>
+<div class="select-dropdown-wrap-pseduo">
+    <select>
+      <option>Apples</option>
+      <option selected>Pineapples</option>
+      <option>Chocklate</option>
+      <option>Pancakes</option>
+    </select>
+</div>
+  
+</body>
+</html>

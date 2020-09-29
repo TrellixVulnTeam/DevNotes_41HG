@@ -1,0 +1,665 @@
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"> </script>
+<script src="https://cdn.jsdelivr.net/npm/jquery-validation@1.17.0/dist/jquery.validate.min.js"></script>
+<script src="https://cdn.jsdelivr.net/jquery.validation/1.16.0/additional-methods.min.js"></script>
+
+
+
+
+<style type="text/css">
+  .custom-error, .error {
+    color:#ED0A0A;
+    padding: 0;
+    margin:0;
+    font-weight: normal;
+  }
+</style>
+
+
+
+<!-- jquery valdiation plugin -->
+<script type="text/javascript">
+  $(document).ready(function(){
+
+    // footer
+    var footer = document.querySelector('.gform_page_footer');
+    // Adding our custom button to forms
+    footer.insertAdjacentHTML('beforeend', '<input type="button" class="gform_next_button button custom-next-btn" value="NextCus">');
+    // Hiding the gform button
+    $('#gform_page_8_1 #gform_next_button_8_1').css('cssText', 'display: none !important');
+
+
+    // get the form inputs and store them in a variable
+    var mainCategory = $('#input_8_137_1');
+    var subCategory = $('#input_8_137_2');
+    var fname = $('#input_8_52');
+    var lname = $('#input_8_53');
+    var gender = $('input[name="input_54"]');
+    var radioInput_54 = $('input[name="input_54"]:checked');
+    var radioGenderLabel = $('#label_8_54_0');
+    var dob = $('#input_8_55');
+    var countryCodeMobile = $('#input_8_132');
+    var countryCodeAlterMobile = $('#input_8_56');
+    var mobileNo = $('#input_8_92');
+    var alterMobileNo = $('#input_8_133');
+    var address = $('#input_8_63');
+    var country = $('#input_8_139_1');
+    var state = $('#input_8_139_2');
+    var city = $('#input_8_139_3');
+    var pincode = $('#input_8_135');
+    var nationality = $('#input_8_68');
+    var email = $('#input_8_91');
+    var bib = $('#input_8_70');
+    var identityProofType = $('#input_8_121');
+    var identityProofNumber = $('#input_8_122');
+    var proofImage = $('#input_8_71');
+    var identityImage = $('#input_8_72');
+
+      
+    // init varibles to check if the conditions pass the requirment
+    var mainCategoryPassed, subCategoryPassed,fnamePassed,lnamePassed,genderPassed,dobPassed,mobileNoPassed,alterMobileNoPassed,addressPassed,countryPassed,statePassed,cityPassed,pincodePassed, nationalityPassed, emailPassed, bibPassed, identityProofTypePassed, identityProofNumberPassed, proofImagePassed, identityImagePassed
+
+    // declare them to false;
+     mainCategoryPassed = subCategoryPassed = fnamePassed = lnamePassed = genderPassed = dobPassed = mobileNoPassed = alterMobileNoPassed = addressPassed = countryPassed = statePassed = cityPassed = pincodePassed = nationalityPassed = emailPassed =  bibPassed =  identityProofTypePassed =  identityProofNumberPassed =  proofImagePassed =  identityImagePassed = false;
+
+
+    // Pincode validator plugin method 
+    $.validator.addMethod('pincodePluginValidator', function (value, element) {
+       //debugger;
+      $(pincode).off('input', pincodeMaskOther);
+      $(pincode).off('input', pincodeMaskIndia);
+      
+      if(country.val() === 'India' && country.val() !== '' ) {
+        
+        $(pincode).on('input', pincodeMaskIndia);
+        $(pincode).on('keydown',keydownHandler);
+
+        return this.optional(element) 
+       || value.length > 5
+        //$(pincode).css({'border-color':'#e2e2e2'}); 
+      }
+
+      if(country.val() !== 'India' &&  country.val() !== '') {
+
+        $(pincode).on('input', pincodeMaskOther);
+        $(pincode).on('keydown',keydownHandler);
+        
+        //$(pincode).val(""); 
+        return this.optional(element) 
+       || value.length > 9 
+      }
+
+      if(country.val() === '') {
+        console.log('PLEASE') 
+      }
+
+    }, function errorLog (error, element){
+      if(country.val() === '') {
+        return 'Please choose a country'; 
+      } else if(country.val() === 'India' && country.val() !== '' ) {
+        // $(pincode).val(""); 
+        return 'Please enter 6 characters valid pincode';
+        //$(pincode).css({'border-color':'#e2e2e2'}); 
+      } else if(country.val() !== 'India' &&  country.val() !== '') {
+        //$(pincode).val(""); 
+        return 'Please enter 10 characters valid pincode';
+      }
+    });
+
+
+    // mobile number plugin validator
+    $.validator.addMethod('mobilePluginValidator', function (value, element) {
+      //debugger;
+       $(mobileNo).off('input', indiaMobNumMask);
+       $(mobileNo).off('input', otherMobNumMask);
+       
+      
+      if(countryCodeMobile.val() === '+91' && countryCodeMobile.val() !== '' ) {
+        
+        $(mobileNo).on('input', indiaMobNumMask);
+        $(mobileNo).on('keydown',keydownHandler);
+
+        return this.optional(element) 
+       || value.length > 9
+        //$(pincode).css({'border-color':'#e2e2e2'}); 
+      }
+
+      if(countryCodeMobile.val() !== '+91' &&  countryCodeMobile.val() !== '') {
+
+        $(mobileNo).on('input', otherMobNumMask);
+        $(mobileNo).on('keydown',keydownHandler);
+        
+        //$(pincode).val(""); 
+        return this.optional(element) 
+       || value.length > 9
+      }
+
+    }, function errorLog (error, element){
+      // if(country.val() === '') {
+      //   return 'Please choose a country'; 
+      // } else 
+      if(countryCodeMobile.val() === '+91' && countryCodeMobile.val() !== '' ) {
+        // $(pincode).val(""); 
+        return 'Please enter 10 digit mobile number';
+        //$(pincode).css({'border-color':'#e2e2e2'}); 
+      } else if(countryCodeMobile.val() !== '+91' &&  countryCodeMobile.val() !== '') {
+        //$(pincode).val(""); 
+        return 'Please enter a 15 digit mobile number';
+      }
+    });
+
+
+
+    // mobile number plugin validator
+    $.validator.addMethod('alterMobilePluginValidator', function (value, element) {
+      //debugger;
+       $(alterMobileNo).off('input', indiaMobNumMask);
+       $(alterMobileNo).off('input', otherMobNumMask);
+       
+      
+      if(countryCodeAlterMobile.val() === '+91' && countryCodeAlterMobile.val() !== '' ) {
+        
+        $(alterMobileNo).on('input', indiaMobNumMask);
+        $(alterMobileNo).on('keydown',keydownHandler);
+
+        return this.optional(element) 
+       || value.length > 9
+        //$(pincode).css({'border-color':'#e2e2e2'}); 
+      }
+
+      if(countryCodeAlterMobile.val() !== '+91' &&  countryCodeAlterMobile.val() !== '') {
+
+        $(alterMobileNo).on('input', otherMobNumMask);
+        $(alterMobileNo).on('keydown',keydownHandler);
+        
+        //$(pincode).val(""); 
+        return this.optional(element) 
+       || value.length > 9
+      }
+
+    }, function errorLog (error, element){
+      // if(country.val() === '') {
+      //   return 'Please choose a country'; 
+      // } else 
+      if(countryCodeAlterMobile.val() === '+91' && countryCodeAlterMobile.val() !== '' ) {
+        // $(pincode).val(""); 
+        return 'Please enter 10 digit mobile number';
+        //$(pincode).css({'border-color':'#e2e2e2'}); 
+      } else if(countryCodeAlterMobile.val() !== '+91' &&  countryCodeAlterMobile.val() !== '') {
+        //$(pincode).val(""); 
+        return 'Please enter a 15 digit mobile number';
+      }
+    });
+
+
+$.validator.addMethod( "notEqualTo", function( value, element, param ) {
+  return this.optional( element ) || !$.validator.methods.equalTo.call( this, value, element, param );
+}, "Please enter a different mobile number." )
+
+
+    // var cname = document.getElementsByName("")[]; '[name="input_52"]'
+    var cname = $('#input_8_52').attr('name');
+
+    $('#gform_8').validate({
+      rules: {
+        // main category
+        "input_137.1" : {
+          required : true
+        },
+        // sub category
+        "input_137.2" :{
+          required : true
+        },
+        // First Name 
+        input_8_52 : {
+          required : true,
+          minlength : 3,
+          maxlength : 25
+        },
+        // Last Name
+        input_53 : {
+          required : true,
+          minlength : 3,
+          maxlength : 25
+        },
+        // Gender 
+        input_54 : {
+          required : true
+        },
+        // dob 
+        input_55 : {
+          required : true
+        },
+        // mobile 
+        input_92 : {
+          required : true,
+          //number : true
+          mobilePluginValidator : true,
+          number: true
+        },
+        // alternate mobile number
+        input_133 : {
+          required : true,
+          alterMobilePluginValidator : true,
+          notEqualTo : '#input_8_92'
+        },
+
+        //pincode
+        input_135 : {
+          pincodePluginValidator : true,
+          required : true
+        },
+
+        // country
+        "input_139.1": {
+          required : true
+        },
+        // state
+        "input_139.2": {
+          required : true
+        },
+        // city
+        "input_139.3": {
+          required : true
+        },
+        // address
+          input_63 : {
+          required : true,
+          minlength:4,
+          maxlength:6
+        },
+        // Nationality
+        input_68 : {
+          required : true,
+          minlength:3,
+          maxlength:25
+        },
+        // Email
+        input_91 : {
+          required : true,
+          email : true
+        },
+        // bib
+        input_70 : {
+          required : true,
+          minlength:3,
+          maxlength:25
+        },
+        // identity proof type 
+        input_121 : {
+          required : true
+        },
+        // identity proof no
+        input_122 : {
+          required : true,
+          number : true
+        },
+        // profile image
+        input_71 : {
+          required : true,
+          extension: 'jpg|jpeg|png'
+        },
+        // identy proof image
+        input_72 : {
+          required : true,
+          extension:'jpg|jpeg|png'
+        }
+
+      },
+      highlight: function (element) {
+        $(element).parent().removeClass('error');
+         $(element).css('borderColor','red');
+            
+      },
+      unhighlight: function (element) {
+        $(element).parent().removeClass('error');
+        $(element).css('borderColor','darkgreen');
+      },
+      errorPlacement: function (error, element) {
+        if(element.attr("name") == "input_54" ) {
+          error.insertAfter($(element).parent().next()); 
+        } else if (element.attr("name") === "input_137.1" || element.attr("name") === "input_137.2") {
+          error.insertAfter($(element));
+          console.log($(element)) 
+        }else {
+          error.insertAfter(element);
+        }
+      }
+    });
+
+    function keydownHandler (e) {
+      var el = e.target;
+      oldValue = el.value;
+    }
+
+    function unmaskPincode (value) {
+      var output = value.replace(new RegExp(/[^a-zA-Z0-9-]/, 'g'), '');
+      return output;
+    }
+
+    function pincodeMaskIndia (e) {
+      var el = e.target,
+          newValue = unmaskPincode(el.value);
+      
+      if(newValue.match(/^[a-zA-Z0-9-]{0,6}$/g)) {
+        if(newValue !== "") {
+          el.value = newValue;
+        } else {
+          el.value = "";
+        }
+      } else {
+        el.value = oldValue;
+      }
+    }
+
+    function pincodeMaskOther (e) {
+      var el = e.target,
+          newValue = unmaskPincode(el.value);
+      
+      if(newValue.match(/^[a-zA-Z0-9-]{0,10}$/g)) {
+        if(newValue !== "") {
+          el.value = newValue;
+        } else {
+          el.value = "";
+        }
+      } else {
+        el.value = oldValue;
+      }
+    }
+
+    // Only Alphabets
+    function unmaskAlphabets (value) {
+      var output = value.replace(new RegExp(/[^a-zA-Z]/, 'g'), ''); 
+      return output;
+    }
+
+    function aplhabetsMask (value) {
+      var el = value,
+          newValue = unmaskAlphabets(el.value);
+      if(newValue.match(/^[a-zA-Z]{0,5}$/g)) {
+        if(newValue !== "") {
+          el.value = newValue;
+        } else {
+          el.value = "";
+        }
+      } else {
+        el.value = oldValue;
+      }
+    }
+
+    // mobile number validator india
+    function unmaskMobileNumber (value) {
+      var output = value.replace(new RegExp(/[^0-9]/, 'g'), ''); // Remove every non-digit character
+      return output;
+    }
+
+    function indiaMobNumMask (e) {
+      var el = e.target,
+          newValue = unmaskMobileNumber(el.value);
+      if(newValue.match(/^[0-9]{0,10}$/g)) {
+        if(newValue !== "") {
+          el.value = newValue;
+        } else {
+          el.value = "";
+        }
+      } else {
+        el.value = oldValue;
+      }
+    }
+
+    // other mobile number mask
+
+    function unmaskIndiaMobileNumber (value) {
+      var output = value.replace(new RegExp(/[^0-9]/, 'g'), ''); // Remove every non-digit character
+      return output;
+    }
+
+    function otherMobNumMask (e) {
+      var el = e.target,
+          newValue = unmaskMobileNumber(el.value);
+      if(newValue.match(/^[0-9]{0,15}$/g)) {
+        if(newValue !== "") {
+          el.value = newValue;
+        } else {
+          el.value = "";
+        }
+      } else {
+        el.value = oldValue;
+      }
+    }
+
+    // Only Alphabets and space
+    function unmaskAlphabetsAndSpace (value) {
+      var output = value.replace(new RegExp(/[^a-zA-Z ]/, 'g'), '');
+      return output;
+    }
+
+    function aplhabetsAndSpaceMask (e) {
+      var el = e.target,
+          newValue = unmaskAlphabetsAndSpace(el.value);
+      if(newValue.match(/^[a-zA-Z ]{0,25}$/g)) {
+        if(newValue !== "") {
+          el.value = newValue;
+        } else {
+          el.value = "";
+        }
+      } else {
+        el.value = oldValue;
+      }
+    }
+
+
+    // mobile number validator
+    function unmaskMobileNumber (value) {
+      var output = value.replace(new RegExp(/[^0-9]/, 'g'), '');
+      return output;
+    }
+
+    function onlyNumMask (e) {
+      var el = e.target,
+          newValue = unmaskMobileNumber(el.value);
+      if(newValue.match(/^[0-9]{0,10}$/g)) {
+        if(newValue !== "") {
+          el.value = newValue;
+        } else {
+          el.value = "";
+        }
+      } else {
+        el.value = oldValue;
+      }
+    }
+
+    // main category
+    $(mainCategory).on('change focusout', function () {
+        mainCategoryPassed  = $(mainCategory).valid();
+        validateEnableGForm();
+    });
+
+    // sub category
+    $(subCategory).on('change focusout', function () {
+        subCategoryPassed  = $(subCategory).valid();
+        validateEnableGForm();
+    });
+
+
+    // First name
+    $(fname).on('input',aplhabetsAndSpaceMask);
+    $(fname).on('keydown',keydownHandler);
+    $(fname).on('focusout keyup', function(){
+        fnamePassed = $(fname).valid();
+        validateEnableGForm();
+    });
+
+    // First name
+    $(lname).on('input',aplhabetsAndSpaceMask);
+    $(lname).on('keydown',keydownHandler);
+    $(lname).on('focusout keyup', function(){
+        lnamePassed = $(lname).valid();
+        validateEnableGForm();
+    });
+
+    // Date of brith
+    $(dob).on('change focus click', function(){
+        dobPassed = $(dob).valid();
+        validateEnableGForm();
+    });
+
+
+    // Mobile number validator
+    // $(mobileNo).on('input',onlyNumMask);
+    // $(mobileNo).on('keydown',keydownHandler);
+    $(mobileNo).on('keyup focusout', function () {
+        mobileNoPassed = $(mobileNo).valid();
+        validateEnableGForm();
+    });
+
+    // countrcode mobile numb     
+    $('#input_8_132_chosen').on('change focusout focus', function () {
+      if( $('#input_8_132_chosen .chosen-single').text() !== '+91') {
+        $(mobileNo).val('');
+      }
+
+    })
+
+    // Alternate Mobile number validator
+    // $(alterMobileNo).on('input',onlyNumMask);
+    // $(alterMobileNo).on('keydown',keydownHandler);
+    $(alterMobileNo).on('keyup focusout', function () {
+        alterMobileNoPassed = $(alterMobileNo).valid();
+        validateEnableGForm();
+    })
+
+    // alternatet mobile num country code
+
+    $('#input_8_56_chosen').on('change focusout focus', function () {
+      if( $('#input_8_56_chosen .chosen-single').text() !== '+91') {
+        $(alterMobileNo).val('');
+      }
+    });
+
+
+
+    // address
+    $(address).on('focusout keyup', function(){
+        addressPassed = $(address).valid();
+        validateEnableGForm();
+    });
+  
+    // $(address).on('input',aplhabetsMask);
+    // $(address).on('keydown',keydownHandler);
+
+
+    // Pincode
+    $(pincode).on('focusout keyup', function(){
+        pincodePassed = $(pincode).valid();
+        validateEnableGForm();
+    });
+
+
+    // Select country 
+    $(country).on('change focusout', function () {
+
+      countryPassed = $(country).valid();
+
+      if(pincode.val() !== "") {
+        pincodePassed = $(pincode).valid();
+      } 
+      
+      if(country.val() === 'India' ) {
+        $(pincode).val(""); 
+        $(pincode).css({'border-color':'#e2e2e2'}); 
+      }
+
+      if(country.val() !== 'India' || country.val() === "") {
+        //$(pincode).val("");  
+      }
+
+      if(country.val() === '') {
+        $(pincode).val(""); 
+      }
+      
+      validateEnableGForm();
+    });
+
+    // Select state
+    $(state).on('change focusout', function () {
+      statePassed = $(state).valid();
+      validateEnableGForm();
+    });
+
+    // Select City
+    $(city).on('change focusout', function () {
+      cityPassed = $(city).valid();
+      validateEnableGForm();
+    });
+
+
+
+    // Nationality
+    // $(nationality).on('input',aplhabetsMask);
+    // $(nationality).on('keydown',keydownHandler);
+    $(nationality).on('keyup',function(){
+      nationalityPassed = $(nationality).valid();
+      validateEnableGForm();
+    });
+
+    // Email
+    $(email).on('keyup', function(){
+      emailPassed = $(email).valid();
+      validateEnableGForm();
+    })
+
+    // Bib
+    $(bib).on('keyup', function(){
+      bibPassed = $(bib).valid();
+      validateEnableGForm();
+    });
+
+    // identityProofType 
+    $(identityProofType).on('change focusout', function(){
+      identityProofTypePassed = $(identityProofType).valid();
+      validateEnableGForm();
+    })
+
+    // identityProofNumber
+    $(identityProofNumber).on('keyup focusout', function () {
+      identityProofNumberPassed = $(identityProofNumber).valid();
+      validateEnableGForm();
+    })
+
+    // proofImage
+    $(proofImage).on('change focusout', function (){
+      proofImagePassed = $(proofImage).valid(); 
+      validateEnableGForm();
+    });
+    
+    // identityImage
+    $(identityImage).on('change focusout', function (){
+      identityImagePassed = $(identityImage).valid();
+      validateEnableGForm();
+    });
+
+
+    function validateEnableGForm () {
+      if(addressPassed === true && pincodePassed === true && identityImagePassed === true) {
+         $('#gform_page_8_1 #gform_next_button_8_1').css('cssText', 'display: block !important');
+         $('.gform_page_footer .custom-next-btn').css('cssText', 'display: none !important');
+       } else {
+         $('#gform_page_8_1 #gform_next_button_8_1').css('cssText', 'display: none !important');
+         $('.custom-next-btn').css('cssText', 'display: block !important');
+       }
+      
+    }
+ 
+
+    $('.custom-next-btn').on('click', function (){
+        $('#gform_8').valid();
+    });
+
+
+
+  });
+  
+
+
+
+</script>

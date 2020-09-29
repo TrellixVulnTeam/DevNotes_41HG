@@ -1,0 +1,83 @@
+# CSS GRID
+CSS Grid Layout (aka "Grid"), is a two-dimensional grid-based layout system that aims to do nothing less than completely change the way we design grid-based user interfaces.
+- It can handle both columns and rows, unlike flexbox which is largely a 1-dimensional system. 
+- You work with Grid Layout by applying CSS rules both to a parent element (which becomes the Grid Container) and to that element's children (which become Grid Items).
+
+### Browser Support
+IE 11 : Partial
+Chrome : 47
+Mozilla : 52
+Safari : 10.1
+
+
+### Using Grid template Areas
+- Defines a grid template by referencing the names of the grid areas which are specified with the grid-area property. 
+- Repeating the name of a grid area causes the content to span those cells. A period signifies an empty cell. 
+
+```html
+<!DOCTYPE html>
+<html>
+<head>
+	<title>Grid</title>
+	<style type="text/css">
+		.grid-container {
+		  display:grid;
+		  grid-gap:10px;
+		  color:#fff;  
+		  grid-template-columns:1fr ;
+		  grid-template-areas : 
+		   "header"
+		   "main"
+		   "sidebar"
+		  "footer"
+		   ;
+		}
+
+		.header {
+		  grid-area: header;
+		}
+
+		.main {
+		  grid-area:main;
+		}
+
+		.sidebar {
+		  grid-area:sidebar;
+		}
+
+		.footer {
+		  grid-area:footer;
+		}
+
+		.grid-container > div {
+		  background:teal;
+		  padding:10px;
+		}
+
+		@media only screen and (min-width:768px) {
+			.grid-container {
+			  display:grid;
+			  grid-gap:10px;
+			  color:#fff;
+			  padding:5px;
+			  grid-template-columns:1fr minmax(500px, 1fr) minmax(200px, 1fr) 1fr ;
+			  grid-template-areas : 
+			   ". header header ."
+			   ". main sidebar ."
+			  ". footer footer ."
+			   ;
+			}
+		}
+	</style>
+</head>
+<body>
+<h2>Using grid-template-ares</h2>
+<div class="grid-container">
+  <div class="header">Header</div>
+  <div class="main">Main</div>
+  <div class="sidebar">Sidebar</div>
+  <div class="footer">Footer</div>
+</div>
+</body>
+</html>
+````

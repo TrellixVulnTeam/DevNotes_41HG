@@ -1,0 +1,168 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta name="description" content="[jqueryValidation Restrict Speical characerts in name field]">
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width">
+  <title>Restrict Characters</title>
+  <style>
+    p {
+      margin:0;
+      padding:0;
+    }
+
+    label {
+      margin-bottom:5px;
+    }
+    input, label {
+      display:block;
+    }
+    .custom-error-msg {
+      display:none;
+      font-size:13px;
+      color:#ff0000;
+
+    }
+
+  .show-error-msg {
+      display:block;
+  }
+
+  .hide-error-msg {
+      display:none;
+  }
+
+  .input-error-border-color {
+      border-color:#ff0000;
+  }
+
+  .input-valid-border-color {
+      border-color:#fff;
+  }
+
+
+  </style>
+</head>
+<body>
+  <form action="#">
+    <label for="fname">First name</label>
+    <input type="text" id="fname" autocomplete="off">
+  </form>
+  
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+  
+<script>
+  
+$(document).ready(function () {
+
+  var fname = $('#fname');
+
+  // Function to create error fields after input field
+  var createErrorMessagesForInputField = function (input) {
+    if(arguments.length > 1) {
+      for(var i = 0; i < arguments.length; i++) {
+        arguments[i].after('<p class="custom-error-msg">This field is required</p>');
+        $('.custom-error').addClass('hide-error-msg');
+      }
+    } else {
+      $(input).after('<p class="custom-error-msg">This field is required</p>'); 
+      $(input).next('.custom-error').addClass('hide-error-msg');
+    }
+  }
+
+  createErrorMessagesForInputField(fname);
+
+  // Genric inputValidation
+  function genricInputValidation (input, required, minLen, maxLen, msg, minMsg, maxMsg) {
+    // required = required || true;
+    minLen = minLen || 3;
+    maxLen = maxLen || 140;
+    msg = msg || 'This feild is required';
+    minMsg = minMsg || 'Please enter at least ' + minLen + ' characters'; 
+    maxMsg = maxMsg || 'Maximum of ' + maxLen + ' characters';
+
+    var errorField = $(input).next('.custom-error-msg');
+
+    if(required === true) {
+      input.addClass('input-error-border-color');
+      errorField.removeClass('hide-error-msg')
+        .addClass('show-error-msg');
+
+      if($(input).val() === '' ) {
+        errorField.text(msg);
+        return false;
+      } else if ($(input).val().length < minLen) {
+        errorField.text(minMsg);
+        return false;       
+      } else if ($(input).val().length > maxLen) {
+        errorField.text(maxMsg);
+      } else {
+        input.removeClass('input-error-border-color');
+        errorField.removeClass('show-error-msg')
+          .addClass('hide-error-msg');
+        return true;
+      }
+    } else if ($(input).val().length < minLen && $(input).val().length > 0 ) {
+      input.addClass('input-error-border-color');
+      errorField.removeClass('hide-error-msg')
+        .addClass('show-error-msg');
+
+      errorField.text('Please enter at least ' + minLen + ' characters.');
+      return false;       
+    } else if ($(input).val().length > maxLen) {
+      input.addClass('input-error-border-color');
+      errorField.removeClass('hide-error-msg')
+        .addClass('show-error-msg');
+      errorField.text('Maximum of ' + maxLen + ' characters');
+      return false;
+    } else {
+      input.removeClass('input-error-border-color');
+      errorField.removeClass('show-error-msg')
+        .addClass('hide-error-msg');
+      return true;
+    }
+  }
+
+  // keydown handler
+
+  function keydownHandler (e) {
+    var el = e.target;
+    oldValue = el.value;
+  }
+
+  // Only Alphabets and space
+  function unmaskAlphabetsAndSpace (value) {
+    var output = value.replace(new RegExp(/[^a-zA-Z ]/, 'g'), '');
+    return output;
+  }
+
+  function aplhabetsAndSpaceMask (e) {
+    var el = e.target,
+        newValue = unmaskAlphabetsAndSpace(el.value);
+    if(newValue.match(/^[a-zA-Z ]{0,25}$/g)) {
+      if(newValue !== "") {
+        el.value = newValue;
+      } else {
+        el.value = "";
+      }
+    } else {
+      el.value = oldValue;
+    }
+  }
+  
+  // fname
+  $(fname).on('input',aplhabetsAndSpaceMask);
+  $(fname).on('keydown',keydownHandler);
+
+  $(fname).on('keyup focusout', function () {
+
+    fnamePassed = genricInputValidation(fname, true, 3, 25);
+  });
+
+  
+  
+});
+  
+</script>
+</body>
+</html>

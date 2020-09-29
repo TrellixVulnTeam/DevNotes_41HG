@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width">
+  <title>Restrict Number</title>
+</head>
+<body>
+<input type="text" id="numberField">
+  
+<script>
+  
+  
+var userName = document.querySelector('#numberField');
+
+userName.addEventListener('input', restrictNumber);
+  
+function restrictNumber (e) {  
+  var newValue = this.value.replace(new RegExp(/[^\d]/,'ig'), "");
+  this.value = newValue;
+}
+  
+</script>
+</body>
+</html>

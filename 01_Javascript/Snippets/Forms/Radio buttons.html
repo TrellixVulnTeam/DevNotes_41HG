@@ -1,0 +1,134 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width">
+  <title>Radio buttons</title>
+  <style>
+    body, html{
+      font-family:sans-serif;
+      height: 100%;
+      background: #ffffff;
+    }
+
+    .radio-btns-group {
+      background:#f7f7f7;
+      display:inline-block;
+      box-shadow: 0 1px 6px 0 rgba(0, 0, 0, 0.16);
+      border: solid 1px #d7dae2;
+      border-radius: 3px;
+      list-style: none;
+      margin: 0;
+      padding: 12px 14px;
+      overflow: auto;  
+    }
+
+    .radio-btns-group  li:first-child {
+      margin-left:0;
+    }
+    .radio-btns-group  li{
+      color: #AAAAAA;
+      display: inline-block;
+      position: relative;  
+      margin-left:8px;
+    }
+
+    .radio-btns-group li input[type=radio]{
+      position: absolute;
+      visibility: hidden;
+    }
+
+    .radio-btns-group  li label{
+      position: relative;
+      font-weight: 300;
+      font-size: 14px;
+      padding: 5px;
+      padding-left: 25px;
+      margin: 10px auto;
+
+      z-index: 9;
+      color:#525252;
+      cursor: pointer;
+      -webkit-transition: all 0.25s linear;
+    }
+
+    ul li:hover label{
+      opacity:1;
+    }
+
+    ul li .check{
+      position: absolute;
+      border: 1px solid #525252;
+      border-radius: 100%;
+      height: 12px;
+      width: 12px;
+      top: 2px;
+      left: 2px;
+      z-index: 5;
+      transition: border .25s linear;
+      -webkit-transition: border .25s linear;
+    }
+
+    ul li:hover .check {
+      border: 1px solid #525252;
+    }
+
+    ul li .check::before {
+      display: block;
+      position: absolute;
+      content: '';
+      border-radius: 100%;
+      height: 5px;
+      width: 5px;
+      top: 50%;
+      left: 50%;
+      transform: translate(-50%, -50%);
+      margin: auto;
+      transition: background 0.25s linear;
+      -webkit-transition: background 0.25s linear;
+    }
+
+    input[type=radio]:checked ~ .check {
+      border: px solid #7a7a7a;
+    }
+
+    input[type=radio]:checked ~ .check::before{
+      background: #7a7a7a;
+    }
+
+    input[type=radio]:checked ~ label{
+      color: #7a7a7a;
+    }
+
+  </style>
+</head>
+<body>
+
+<div class="container">
+		
+  <ul class="radio-btns-group">
+    <li>
+      <input type="radio" id="all" name="eventBy" checked>
+      <label for="all">All</label>
+      <div class="check"></div>
+    </li>
+
+    <li>
+      <input type="radio" id="internalEvents" name="eventBy">
+      <label for="internalEvents">Internal Events</label>
+      <div class="check"></div>
+    </li>
+
+    <li>
+      <input type="radio" id="externalEvents" name="eventBy">
+      <label for="externalEvents">External events</label>
+      <div class="check"></div>
+    </li>
+  </ul>
+</div>
+
+  
+  
+  
+</body>
+</html>

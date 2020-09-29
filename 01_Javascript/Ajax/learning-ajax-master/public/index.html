@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>Learning AJAX</title>
+
+</head>
+<body>
+	<h1>Camford School</h1>
+	<button id='getAllStudents'>Get all students</button>
+	<button id="getFirstStudent">Get First Student</button>
+
+	<script src="/script/jquery.js"></script>
+	<script>
+	var students = [];
+	// # usecase: get all students
+	function getAllStudents (callback) {
+		$.ajax({
+			url : '/students',
+			method : "GET",
+			success : function (data) {
+				students = data;
+				if (typeof callback === 'function') {
+					callback();
+				}
+			},
+			error : function (){
+				console.log("ERROR");
+			}
+		});
+	}
+
+	function getStudent (id) {
+		$.ajax({
+			url : '/student/'+ id,
+			method : "GET",
+			success : function (data) {
+				console.log(data);
+			},
+			error : function (){
+				console.log("ERROR");
+			}
+		});
+	}
+
+	function getFirstStudent () {
+		studentId = students[0]._id;
+		getStudent(studentId);
+	}
+
+
+	$('#getAllStudents').on('click', function () {
+		getAllStudents();
+	});
+
+	$('#getFirstStudent').on('click', function () {
+		if(students.length > 0) {
+			getFirstStudent();		
+		} else {
+			getAllStudents(getFirstStudent);
+		}		
+	});
+
+
+	
+	</script>
+</body>
+</html>

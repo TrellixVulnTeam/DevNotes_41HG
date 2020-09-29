@@ -1,0 +1,36 @@
+<html>
+<head>
+	<title>Load Src</title>
+	<!-- <link rel="stylesheet" type="text/css" href=""> -->
+</head>
+<body>
+<script type="text/javascript">
+function loadScript(href, callback) {
+   console.log(href);
+   var link = document.createElement('link');
+   link.href = href;
+   link.rel = 'stylesheet'
+   
+   link.onload = function () {
+   	console.log(link)
+     callback(link);
+   }
+   
+   document.head.append(link);
+  
+}
+
+
+loadScript('https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css', function (link) {
+  console.log(link);
+  alert('dsa');
+  //alert($('.demo').text());
+});
+</script>
+
+
+<i class="fa fa-arrow-left"></i>
+
+<p class='demo'>This is p</p>
+</body>
+</html>

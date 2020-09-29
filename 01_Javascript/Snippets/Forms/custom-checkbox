@@ -1,0 +1,214 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width">
+  <title>JS Bin</title>
+  <style>
+    .checkbox-wrapper {
+  display: block;
+  position: relative;
+  padding-left: 20px;
+  margin-bottom: 12px;
+  cursor: pointer;
+  font-size: 12px;
+  -webkit-user-select: none;
+  -moz-user-select: none;
+  -ms-user-select: none;
+  user-select: none;
+}
+
+/* Hide the browser's default checkbox */
+.checkbox-wrapper input {
+  position: absolute;
+  opacity: 0;
+  cursor: pointer;
+  height: 0;
+  width: 0;
+}
+
+/* Create a custom checkbox */
+.checkbox-wrapper .checkmark {
+  position: absolute;
+  top: 0;
+  left: 0;
+  height: 10px;
+  width: 10px;
+  border:solid 1px #707070;
+}
+
+/* On mouse-over, add a grey background color */
+.checkbox-wrapper:hover input ~ .checkmark {
+  background-color: #ccc; 
+}
+
+/* When the checkbox is checked, add a blue background */
+.checkbox-wrapper input:checked ~ .checkmark {
+  background-color: #2196F3;
+}
+
+/* Create the checkmark/indicator (hidden when not checked) */
+.checkbox-wrapper .checkmark:after {
+  content: "";
+  position: absolute;
+  display: none;
+}
+
+/* Show the checkmark when checked */
+.checkbox-wrapper input:checked ~ .checkmark:after {
+  display: block;
+}
+
+/* Style the checkmark/indicator */
+.checkbox-wrapper .checkmark:after {
+left: 3px;
+    top: 1px;
+    width: 2px;
+    height: 5px;
+    border: solid #fff;
+    border-width: 0 2px 2px 0;
+    -webkit-transform: rotate(45deg);
+    -ms-transform: rotate(45deg);
+    transform: rotate(45deg);
+}
+  </style>
+</head>
+<body>
+  
+<div class="wrapper">
+  <label class="checkbox-wrapper">One
+    <input type="checkbox" checked="checked">
+    <span class="checkmark"></span>
+  </label>
+  <label class="checkbox-wrapper">Two
+    <input type="checkbox">
+    <span class="checkmark"></span>
+  </label>
+  <label class="checkbox-wrapper">Three
+    <input type="checkbox">
+    <span class="checkmark"></span>
+  </label>
+  <label class="checkbox-wrapper">Four
+    <input type="checkbox">
+    <span class="checkmark"></span>
+  </label>
+</div>
+</body>
+</html>
+
+## Checkbox 2 (Dropdown style)
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width">
+  <title>Dropdown checkbox</title>
+  <style>
+  .checkbox-block-wrapper {
+     display: flex;
+    align-items: center;
+    position: relative;
+    padding-left: 45px;
+    cursor: pointer;
+    font-size: 12px;
+
+     height: 16px;
+     height:50px;
+     background:#fff;
+      -webkit-user-select: none;
+    -moz-user-select: none;
+    -ms-user-select: none;
+    user-select: none;
+    border-bottom:solid 1px #dcdcdc;
+    transition:all 0.2s;
+  }
+
+  .checkbox-block-wrapper:hover {
+    background:#f8f8f8;
+  }
+
+  /* Hide the browser's default checkbox */
+  .checkbox-block-wrapper input {
+    position: absolute;
+    opacity: 0;
+    cursor: pointer;
+    height: 0;
+    width: 0;
+    transition:all 0.2s;
+  }
+
+  /* Create a custom checkbox */
+  .checkbox-block-wrapper .checkmark {
+    position: absolute;
+    top: 50%;
+    left: 15px;
+    height: 16px;
+    width: 16px;
+    border:solid 1px #a1a1a1; 
+    transform:translateY(-50%);
+    transition:all 0.2s;
+  }
+
+  /* On mouse-over, add a grey background color */
+  .checkbox-block-wrapper:hover input ~ .checkmark {
+    background-color: #db1576;   
+  }
+
+  /* When the checkbox is checked, add a blue background */
+  .checkbox-block-wrapper input:checked ~ .checkmark {
+    background-color: #db1576;
+    border:solid 1px #db1576;  
+  }
+
+  /* Create the checkmark/indicator (hidden when not checked) */
+  .checkbox-block-wrapper .checkmark:after {
+    content: "";
+    position: absolute;
+    display: none;
+  }
+
+  /* Show the checkmark when checked */
+  .checkbox-block-wrapper input:checked ~ .checkmark:after {
+    display: block;
+
+  }
+
+  /* Style the checkmark/indicator */
+  .checkbox-block-wrapper .checkmark:after {
+      content:"\2714";
+      color:white;
+      top:0px;
+      left:3px;
+      font-size:14px;
+
+  }    
+  </style>
+</head>
+<body>
+<div class="checkbox-block-group">
+  <label class="checkbox-block-wrapper">Running
+    <input type="checkbox" checked="checked" name="Running">
+    <span class="checkmark"></span>
+  </label>
+  <label class="checkbox-block-wrapper">Cycling
+    <input type="checkbox" name="cycling">
+    <span class="checkmark"></span>
+  </label>
+  <label class="checkbox-block-wrapper">Duathlon
+    <input type="checkbox" name="duathlon">
+    <span class="checkmark"></span>
+  </label>
+  <label class="checkbox-block-wrapper">Triathlon
+    <input type="checkbox" name="triathlon">
+    <span class="checkmark"></span>
+  </label>
+  <label class="checkbox-block-wrapper">Swimming
+    <input type="checkbox" name="swimming">
+    <span class="checkmark"></span>
+  </label>
+</div>
+</body>
+</html>
+
+
+
