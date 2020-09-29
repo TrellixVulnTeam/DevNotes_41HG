@@ -206,6 +206,10 @@ git config --global user.email "your_email@example.com"
 - after undoing a commit, last changes will be unstaged and uncommited
 3. undo multiple commits, ``` use git reset ```  
 
+
+Have fun!
+lets do undothis
+
   
 
 
