@@ -1,6 +1,6 @@
 ## Table of contents 
 - [Github](#github)
-		- [What is version control ?](#what-is-version-control-)
+	- [What is version control ?](#what-is-version-control-)
 	- [Why version control ?](#why-version-control-)
 		- [Version control systems available](#version-control-systems-available)
 	- [Features of Git](#features-of-git)
@@ -10,15 +10,20 @@
 	- [How to Create an SSH Key](#how-to-create-an-ssh-key)
 		- [Generate an SSH Key on Mac and Linux](#generate-an-ssh-key-on-mac-and-linux)
 	- [Reference](#reference)
+	- [Uploading existing project to git](#uploading-existing-project-to-git)
+- [Helpers](#helpers)
+	- [Setting default push](#setting-default-push)
+	- [Git config](#git-config)
+		- [git config levels and files](#git-config-levels-and-files)
+		- [Writing a value](#writing-a-value)
 
 # Github
 Github is a repository, Repository is a dataspace, where you store all the project files.
 - In Distributed version control system (git), we have (central) Repository and a local repository. 
 - we can push and pull the changes to the central repository
 - In local repository we can commit and update the working file.
-- 
 
-### What is version control ?
+## What is version control ?
 - Version control is the management of changes to a document, computer programs, large web sites, and other collections of information 
 
 ## Why version control ?
@@ -74,7 +79,7 @@ There are two types of repositories:
 - Local Repositroy 
  
 # Install Git on Linux
-1. From your shell, install Git using apt-get:
+1. From your bat, install Git using apt-get:
 ```bat 
   $ sudo apt-get update $ sudo apt-get install git 
 ```
@@ -86,7 +91,7 @@ $ git config --global user.email "eparis@atlassian.com"
 ```
 
 # GIT SSH
-An SSH key is an access credential for the SSH (secure shell) network protocol. This authenticated and encrypted secure network protocol is used for remote communication between machines on an unsecured open network.
+An SSH key is an access credential for the SSH (secure bat) network protocol. This authenticated and encrypted secure network protocol is used for remote communication between machines on an unsecured open network.
 
 - SSH is used for remote file transfer, network management, and remote operating system access. 
 - The SSH acronym is also used to describe a set of tools used to interact with the SSH protocol.
@@ -99,7 +104,7 @@ SSH keys are generated through a public key cryptographic algorithm, the most co
 
 ### Generate an SSH Key on Mac and Linux
 1. execute the following to begin the key creation
-```shell
+```bat
 ssh-keygen -t rsa -b 4096 -C "your_email@example.com"
 
 // rsa - typeEncryption
@@ -108,12 +113,12 @@ ssh-keygen -t rsa -b 4096 -C "your_email@example.com"
 - This command will create a new SSH key using the email as a label
 2. You will then be prompted to "Enter a file in which to save the key."
 - You can specify a file location or press “Enter” to accept the default file location.
-```shell
+```bat
 Enter a file in which to save the key (/Users/you/.ssh/id_rsa): [Press enter]
 ```
 3. The next prompt will ask for a secure passphrase.
 A passphrase will add an additional layer of security to the SSH and will be required anytime the SSH key is used. If someone gains access to the computer that private keys are stored on,
-```shell
+```bat
 Enter passphrase (empty for no passphrase): [Type a passphrase]
 Enter same passphrase again: [Type passphrase again]
 ```
@@ -122,31 +127,69 @@ Enter same passphrase again: [Type passphrase again]
   - id_rsa (private key)
   - id_rsa.pub (this is the public key, it will be uploaded to github )
   - To print the key in cmd, go to the .ssh folder and type 
-```shell
+```bat
 cat id_rsa.pub
 ```
 - copy the key and add it in github, SSH AND GPG KEYS under settings, click on new sshKeys, enter the name its for ur reference
 4. Add the new SSH key to the ssh-agent, to make sure your local command line interface knows about the key u just generated
 - The ssh-agent is another program that is part of the SSH toolsuite. The ssh-agent is responsible for holding private keys. Think of it like a keychain. In addition to holding private keys it also brokers requests to sign SSH requests with the private keys so that private keys are never passed around unsecurly.
 - Before adding the new SSH key to the ssh-agent first ensure the ssh-agent is running by executing:
-```shell
+```bat
 eval "$(ssh-agent -s)"
 // Agent pid 59566
 ```
 - Once the ssh-agent is running the following command will add the new SSH key to the local SSH agent. run the below command.
-```shell
+```bat
 ssh-add -k /Users/you/.ssh/id_rsa
 ```
 - The new SSH key is now registered and ready to use!
 
-
-
 ## Reference 
 [Atlassian Github Install](https://www.atlassian.com/git/tutorials/install-git#linux)
 
+## Uploading existing project to git
+1. Create a empty repo in github
+2. Copy the ssh text, it will be available once you create a repo
+```bat
+git remote add origin *sshtext*
+```
+- You are connected to remote repo now, 
+1. check it by below command, shows any remote repostiories you are connect to. 
+```bat
+git remote -v
+```
+
+# Helpers
+
+## Setting default push
+```bat
+git push -u origin master
+```
+
+## Git config 
+The most basic use case for git config is to invoke it with a configuration name, which will display the set value at that name. Configuration names are dot delimited strings composed of a 'section' and a 'key' based on their hierarchy. For example: user.email
+
+```bat
+git config user.email
+```
+
+### git config levels and files
+Before we further discuss git config usage, let's take a moment to cover configuration levels. The git config command can accept arguments to specify which configuration level to operate on. The following configuration levels are available:
+1. --local
+- By default, git config will write to a local level if no configuration option is passed. Local level configuration is applied to the context repository git config gets invoked in. Local configuration values are stored in a file that can be found in the repo's .git directory: .git/config
+2. --global
+- Global level configuration is user-specific, meaning it is applied to an operating system user. Global configuration values are stored in a file that is located in a user's home directory. ~ /.gitconfig on unix systems and C:\Users\\.gitconfig on windows
+3. --system
+- System-level configuration is applied across an entire machine. This covers all users on an operating system and all repos. The system level configuration file lives in a gitconfig file off the system root path. $(prefix)/etc/gitconfig on unix systems. On windows this file can be found at C:\Documents and Settings\All Users\Application Data\Git\config on Windows XP, and in C:\ProgramData\Git\config on Windows Vista and newer.
+
+### Writing a value
+Expanding on what we already know about git config, let's look at an example in which we write a value:
+```shell
+git config --global user.email "your_email@example.com"
+```
+- This example writes the value your_email@example.com to the configuration name user.email. It uses the --global flag so this value is set for the current operating system user.
 
 
- 
 
 
 
