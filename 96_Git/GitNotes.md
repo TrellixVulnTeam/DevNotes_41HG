@@ -16,6 +16,8 @@
 	- [Git config](#git-config)
 		- [git config levels and files](#git-config-levels-and-files)
 		- [Writing a value](#writing-a-value)
+		- [git commit helper -am, m](#git-commit-helper--am-m)
+		- [git undo](#git-undo)
 
 # Github
 Github is a repository, Repository is a dataspace, where you store all the project files.
@@ -188,6 +190,23 @@ Expanding on what we already know about git config, let's look at an example in 
 git config --global user.email "your_email@example.com"
 ```
 - This example writes the value your_email@example.com to the configuration name user.email. It uses the --global flag so this value is set for the current operating system user.
+
+
+### git commit helper -am, m 
+1. git commit -m "mesage" 
+2. git commit -am "message" 
+- add and commit all the files on one line with this command:
+
+### git undo
+1. undo staging, use ``` git reset <filename> ```
+- the changes will be reset
+2. undo a commit, use ``` git reset HEAD~1 ```
+- HEAD means pointer to the last commit
+- ~1 means instead of pointing to the last commit, go back one step further
+- after undoing a commit, last changes will be unstaged and uncommited
+3. undo multiple commits, ``` use git reset ```  
+
+  
 
 
 
