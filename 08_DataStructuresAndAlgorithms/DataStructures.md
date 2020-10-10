@@ -6,7 +6,7 @@
 - [Singly Linked List](#singly-linked-list)
     - [Define what a singly Linked List is](#define-what-a-singly-linked-list-is)
     - [Compare with Arrays](#compare-with-arrays)
-- [Doubly Linked Lists](#doubly-linked-lists)
+- [Doubly Linked List](#doubly-linked-list)
 - [Stacks](#stacks)
     - [What is a stack ?](#what-is-a-stack-)
     - [What are the use cases for a stack ?](#what-are-the-use-cases-for-a-stack-)
@@ -21,8 +21,14 @@
       - [Building Queue with Array](#building-queue-with-array)
       - [Building Queue Class](#building-queue-class)
     - [BIG O Queues](#big-o-queues)
-- [Tree](#tree)
+- [Binary Search Tree (BST)](#binary-search-tree-bst)
     - [What is a Tree ?](#what-is-a-tree-)
+    - [Compare and contract trees and lists](#compare-and-contract-trees-and-lists)
+    - [Tree terminology](#tree-terminology)
+    - [Explain the differences btw trees and binary tree and binary search trees](#explain-the-differences-btw-trees-and-binary-tree-and-binary-search-trees)
+      - [Tree](#tree)
+      - [Binary Trees](#binary-trees)
+      - [Binary Search Tree (BST)](#binary-search-tree-bst-1)
     - [Usecases for a Tree ?](#usecases-for-a-tree-)
     - [Implement on a Tree data structure ?](#implement-on-a-tree-data-structure-)
     - [BIG O of Tree](#big-o-of-tree)
@@ -31,7 +37,7 @@
     - [Usecases for a Queue ?](#usecases-for-a-queue--1)
     - [Implement on a Queue data structure ?](#implement-on-a-queue-data-structure-)
     - [BIG O of Queue](#big-o-of-queue)
-  - [HashTable](#hashtable)
+- [HashTable](#hashtable)
     - [What is a hashtable](#what-is-a-hashtable)
     - [Introductory Example](#introductory-example)
     - [HashPart](#hashpart)
@@ -367,7 +373,7 @@ class Node {
   list.remove(3);
   ```
 
-# Doubly Linked Lists 
+# Doubly Linked List
 -- NOT UPDATED 
 
 
@@ -535,9 +541,9 @@ How do we use them in programming ?
 - Uploading Resources 
 - Music Playlist 
 - Printing / Task processing 
-- 
+
 ### Implement operations on a Queue data structure
-we can use them in Array or Queue Class 
+we can impletement Queue in Array or Queue Class  
 
 #### Building Queue with Array 
 1. using push and shift
@@ -670,24 +676,96 @@ we can use them in Array or Queue Class
 - Access    O(N)
 
 
-# Tree
+# Binary Search Tree (BST)
 ### What is a Tree ?
+A data strucutre that consist of nodes in a parent/child relationship 
+
+### Compare and contract trees and lists 
+Lists are linear
+- It's one thing and then next and then next... 
+
+Trees are nonlinear 
+- They can branch, it can have more than one path 
+- Singley linked list has one path, Doubley linked list you could work backwards or forwards but stil there is one line through our data structure, In trees we can take multiple paths 
+  
+### Tree terminology 
+- Root : The top node in a tree
+- Child : A node directly connected to another node 
+- Parent : the converse notion of a child
+- Siblings : A group of nodes with the same parent
+- Leaf : A node with no children
+- Edge : The connection between one node and another (its the arrow/caret )
+  
+
+### Explain the differences btw trees and binary tree and binary search trees 
+#### Tree
+General tree is a tree in which each node can have many children or nodes.
+
+```javascript
+          5
+       /  |  \
+      /   |   \
+     9    4    2
+    / \   |   / \
+  15   17 2  19  21
+```
+#### Binary Trees
+Binary Tree is a specialized form of tree with two child (left child and right Child). It is simply representation of data in Tree structure
+
+- Every parent node has at most two children, they cannot have three childs at Root node  
+
+```javscript
+         5
+       /   \
+      /     \
+     9       2
+    / \     / \
+  15   17  19  21
+```
+
+#### Binary Search Tree (BST) 
+BST is a special type of Binary Tree that follows following condition:
+- left child node is smaller than its parent Node
+- right child node is greater than its parent Node
+
+```javascript
+         50
+       /    \
+      /      \
+     25      75
+    /  \    /  \
+  20    30 70   80
+```
+
 ### Usecases for a Tree ?
+Lots of different applications, used in 
+- HTML DOM 
+- Network Routing (Broadcast)
+- Abstract syntax tree 
+- Artificial Intelligence 
+  - Mini max tree (TIC TOC Game)
+- Folder Structures
+- JSON 
+
+
 ### Implement on a Tree data structure ?
 ### BIG O of Tree 
 
 
 # Example
 ### What is a Queue ?
+
+
 ### Usecases for a Queue ?
+
+
 ### Implement on a Queue data structure ?
+
+
 ### BIG O of Queue 
 
 
-
-
-## HashTable
-
+# HashTable
 ### What is a hashtable
 - Hash tables are used to store a key-value pairs 
 - They are like arrays, but the keys are not orderd.
