@@ -7,7 +7,7 @@
     - [Define what a singly Linked List is](#define-what-a-singly-linked-list-is)
     - [Compare with Arrays](#compare-with-arrays)
 - [Doubly Linked Lists](#doubly-linked-lists)
-  - [Stacks](#stacks)
+- [Stacks](#stacks)
     - [What is a stack ?](#what-is-a-stack-)
     - [What are the use cases for a stack ?](#what-are-the-use-cases-for-a-stack-)
     - [How to implement stack data structure ?](#how-to-implement-stack-data-structure-)
@@ -21,12 +21,12 @@
       - [Building Queue with Array](#building-queue-with-array)
       - [Building Queue Class](#building-queue-class)
     - [BIG O Queues](#big-o-queues)
-  - [Tree](#tree)
+- [Tree](#tree)
     - [What is a Tree ?](#what-is-a-tree-)
     - [Usecases for a Tree ?](#usecases-for-a-tree-)
     - [Implement on a Tree data structure ?](#implement-on-a-tree-data-structure-)
     - [BIG O of Tree](#big-o-of-tree)
-  - [Example](#example)
+- [Example](#example)
     - [What is a Queue ?](#what-is-a-queue--1)
     - [Usecases for a Queue ?](#usecases-for-a-queue--1)
     - [Implement on a Queue data structure ?](#implement-on-a-queue-data-structure-)
@@ -371,7 +371,7 @@ class Node {
 -- NOT UPDATED 
 
 
-## Stacks  
+# Stacks  
 ### What is a stack ?
 - Stacks are a LIFO data structure (LAST IN FIRST OUT Principle) where the last value in is always the first one out.
 - Think about a stack of plates or stack of.. anything. 
@@ -670,14 +670,14 @@ we can use them in Array or Queue Class
 - Access    O(N)
 
 
-## Tree
+# Tree
 ### What is a Tree ?
 ### Usecases for a Tree ?
 ### Implement on a Tree data structure ?
 ### BIG O of Tree 
 
 
-## Example
+# Example
 ### What is a Queue ?
 ### Usecases for a Queue ?
 ### Implement on a Queue data structure ?
