@@ -2,26 +2,35 @@
 - [DataStructures](#datastructures)
     - [Why so many?](#why-so-many)
     - [ES2015 Class](#es2015-class)
-      - [DataStucture class exmaple](#datastucture-class-exmaple)
-  - [Singly Linked List](#singly-linked-list)
-      - [Define what a singly Linked List is](#define-what-a-singly-linked-list-is)
-      - [Compare with Arrays](#compare-with-arrays)
-  - [Doubly Linked Lists](#doubly-linked-lists)
+    - [DataStucture class exmaple](#datastucture-class-exmaple)
+- [Singly Linked List](#singly-linked-list)
+    - [Define what a singly Linked List is](#define-what-a-singly-linked-list-is)
+    - [Compare with Arrays](#compare-with-arrays)
+- [Doubly Linked Lists](#doubly-linked-lists)
   - [Stacks](#stacks)
     - [What is a stack ?](#what-is-a-stack-)
     - [What are the use cases for a stack ?](#what-are-the-use-cases-for-a-stack-)
     - [How to implement stack data structure ?](#how-to-implement-stack-data-structure-)
     - [Array Implementation](#array-implementation)
-      - [Linked List Implementation](#linked-list-implementation)
+    - [Linked List Implementation](#linked-list-implementation)
     - [BIG O of Stacks](#big-o-of-stacks)
-  - [Queues](#queues)
+- [Queues](#queues)
     - [What is a Queue ?](#what-is-a-queue-)
     - [Usecases for a Queue ?](#usecases-for-a-queue-)
-    - [Implement operations on a Queue data structure ?](#implement-operations-on-a-queue-data-structure-)
+    - [Implement operations on a Queue data structure](#implement-operations-on-a-queue-data-structure)
       - [Building Queue with Array](#building-queue-with-array)
       - [Building Queue Class](#building-queue-class)
     - [BIG O Queues](#big-o-queues)
-  - [Trees](#trees)
+  - [Tree](#tree)
+    - [What is a Tree ?](#what-is-a-tree-)
+    - [Usecases for a Tree ?](#usecases-for-a-tree-)
+    - [Implement on a Tree data structure ?](#implement-on-a-tree-data-structure-)
+    - [BIG O of Tree](#big-o-of-tree)
+  - [Example](#example)
+    - [What is a Queue ?](#what-is-a-queue--1)
+    - [Usecases for a Queue ?](#usecases-for-a-queue--1)
+    - [Implement on a Queue data structure ?](#implement-on-a-queue-data-structure-)
+    - [BIG O of Queue](#big-o-of-queue)
   - [HashTable](#hashtable)
     - [What is a hashtable](#what-is-a-hashtable)
     - [Introductory Example](#introductory-example)
@@ -78,7 +87,7 @@ console.log(firstStudent.fullName());
 
 ```
 
-#### DataStucture class exmaple 
+### DataStucture class exmaple 
 - We will be using constructor and instance methods quite a bit
 - We will almost never be using static methods
 ```javascript
@@ -95,18 +104,18 @@ class DataStructures {
 ```
 - Inside all of our instqance methods and constructopr the keyword 'this' refers to the object created from that class (also known as an instance)
 
-## Singly Linked List
+# Singly Linked List
 Objectivies
 - Define what a singly Linked List is 
 - Compare and contrast Linked List with Arrays
 - Implement insertion, rmeoval and traversal methods on Singly Linked List
 
 
-#### Define what a singly Linked List is 
+### Define what a singly Linked List is 
 - A data structure that contains a head, tail and length property
 - Linked lists consists of nodes and each node has a value and a pointer to antoher node or null 
 
-#### Compare with Arrays 
+### Compare with Arrays 
 Lists 
 - Do not have indexes!
 - Connected via nodes with a next pointer
@@ -358,7 +367,7 @@ class Node {
   list.remove(3);
   ```
 
-## Doubly Linked Lists 
+# Doubly Linked Lists 
 -- NOT UPDATED 
 
 
@@ -405,7 +414,7 @@ stack.shift() //removes 1
 
 // if u see both approaches follow the stack concept
 ```
-#### Linked List Implementation
+### Linked List Implementation
 - Stack is supposed to be constant time 
 - Remember, Its not constant time from removing from end thats why didn't go with SingleyLinked list push and pop 
 - In stack, we need to add and remove from the beginning of our list but we are calling it push and pop because its a stack
@@ -514,7 +523,7 @@ stack.shift() //removes 1
 
 Searching and Access isn't efficent in stack-linked-list, use other Array or other strucuture.
 
-## Queues  
+# Queues  
 ### What is a Queue ?
 - It's similar to stack in the sense that you add data in and you remove data out and those are really the only two opeartions
 - How ever the order is different instead of last in first out for a stack LIFO, Queue is a FIFO (First in First Out)
@@ -527,7 +536,7 @@ How do we use them in programming ?
 - Music Playlist 
 - Printing / Task processing 
 - 
-### Implement operations on a Queue data structure ?
+### Implement operations on a Queue data structure
 we can use them in Array or Queue Class 
 
 #### Building Queue with Array 
@@ -661,8 +670,18 @@ we can use them in Array or Queue Class
 - Access    O(N)
 
 
-## Trees
+## Tree
+### What is a Tree ?
+### Usecases for a Tree ?
+### Implement on a Tree data structure ?
+### BIG O of Tree 
 
+
+## Example
+### What is a Queue ?
+### Usecases for a Queue ?
+### Implement on a Queue data structure ?
+### BIG O of Queue 
 
 
 
