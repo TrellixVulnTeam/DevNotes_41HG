@@ -1,0 +1,105 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width">
+  <title>Hash Tables</title>
+</head>
+<body>
+
+</body>
+<script>
+  class HashTable {
+    constructor(size=11) {
+      this.keyMap = new Array(size)
+    }
+
+    _hash(key) {
+      let total = 0;
+      let WEIRD_PRIME = 31;
+      for(let i = 0; i < Math.min(key.length, 100); i++) {
+        let char = key[i];
+        let value = char.charCodeAt(0) - 96;
+        total = (total * WEIRD_PRIME + value) % this.keyMap.length;        
+      }
+      return total;
+    }
+
+    set(key,value) {
+      let hashedKey =this._hash(key);   
+      if(this.keyMap[hashedKey] === undefined ) {
+        this.keyMap[hashedKey]= [[key,value]]
+      } else {
+        this.keyMap[hashedKey] = [...this.keyMap[hashedKey], [key,value]]
+      }            
+    }
+
+    get(key) {
+      let hashedKey =this._hash(key);
+      let res = undefined;
+      
+      if(!this.keyMap[hashedKey]) {
+        return undefined
+      } else {
+        this.keyMap[hashedKey].filter(el=>{        
+          if(el[0] === key) {
+            res = el[1];
+          }
+        });
+      }
+      return res;
+    }
+
+    keys() {
+      let res = [];
+      this.keyMap.forEach(el=>{
+        el.forEach(inEl=>{          
+          res = [...res, inEl[0]]
+        })        
+      })
+
+      return res;
+    }  
+
+    values() {
+      let res = [];
+      this.keyMap.forEach(el=>{
+        if(el) {
+          el.forEach(inEl=>{       
+            if(!res.includes(inEl[1]))    {
+              res = [...res, inEl[1]]
+            }
+            
+          })  
+        }
+              
+      })
+
+      return res;
+    }    
+  }
+
+  let hash = new HashTable();
+  // hash.set(1, '#1')
+  // hash.set(2, '#2')
+  // hash.set(3, '#3')  
+  // hash.set(4, '#4')  
+  // hash.set(5, '#5')    
+  // hash.set(6, '#6')    
+  // hash.set(7, '#7')   
+
+  hash.set('black', '#black');
+  hash.set('white', '#white');
+  hash.set('red', '#red');
+  hash.set('cyan', '#cyan');
+  hash.set('blue', '#blue');
+  hash.set('yellow', '#yellow');
+  hash.set('pink', '#pink');
+  hash.set('pink2', '#pink');
+  hash.set('pink3', '#pink');
+  console.log(hash.keyMap, 'keyMap');
+  console.log(hash.get('red'), 'getMethod');
+  console.log(hash.values());
+
+</script>
+</html>

@@ -245,8 +245,9 @@ git config --global user.email "your_email@example.com"
 - Git revert takes a specified commit, however, git revert does not move ref pointers to this commit. A revert operation will take the specified commit, inverse the changes from that commit, and create a new "revert commit". The ref pointers are then updated to point at the new revert commit making it the tip of the branch.
 
 1. Use ```git revert <commitID> or git revert HEAD~1  ```
-- this will revert the changes you done until commit ID
-- instead of removing the commitid from history, it tries to undo the changes that waas intrduced in the commit 
+- this will revert the changes that you made in the given commit id
+- instead of removing the commitid from history, it tries to undo the changes that was intrduced in the commit and add it as a commit
+- Safe way to revert changes
 
 
 ## Git log

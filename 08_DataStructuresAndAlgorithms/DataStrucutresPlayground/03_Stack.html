@@ -1,0 +1,93 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width">
+  <title>Stack DataStrucuture</title>
+</head>
+<body>
+
+</body>
+<script>
+  class Node {
+    constructor(value) {
+      this.value = value;
+      this.next = null;
+    }
+  }
+
+  class Stack {
+    constructor(value) {
+      this.first = null;
+      this.last = null;
+      this.size = 0;
+    }
+
+    push(val) { 
+      /*
+        #ORG
+        HELLO WORLD SHAKTISHHERE
+        #RES
+        SHAKTISHHERE WORLD HELLO
+      */
+
+      let newNode = new Node(val);
+
+      if(!this.first) {
+        this.first = newNode;
+        this.last = newNode;        
+      } else {
+        let temp = this.first;         
+        newNode.next = temp;
+        this.first = newNode;        
+      }
+      this.size++;
+      console.log(this.print(), 'print')
+      return this.size;
+    }
+    pop () {
+      /*
+        #ORG
+        SHAKTISHHERE WORLD HELLO
+        #RES
+        pop : WORLD SHAKTISHHERE
+        pop : SHAKTISHHERE
+        pop : NULL
+      */
+
+      if(!this.first) { return null}
+      let temp = this.first;      
+      if(this.size == 1) {
+        this.last = null;
+      } 
+      this.first = temp.next;    
+      this.size--
+      return temp.value;
+    }
+
+    print () {
+      if(this.size) {
+        let res = [];
+        let current = this.first;
+        res.push(this.first.value)
+        while(current.next) {
+          current = current.next;
+          res.push(current.value)
+        }
+        return res;
+      } 
+      return [];
+      
+    }
+  }
+
+  const stack = new Stack();
+  stack.push('hello');
+  stack.push('world');
+  stack.push('shaktishhere');
+  stack.pop();
+  
+
+</script>
+</html>
+

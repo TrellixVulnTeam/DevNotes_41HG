@@ -1,0 +1,224 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width">
+  <title>Doubly Linked List</title>
+</head>
+<body>
+
+</body>
+<script>
+  class Node {
+    constructor(val) {
+      this.val = val;
+      this.next = null;
+      this.prev = null;
+    }
+  }
+
+  class DoublyLinkedList{
+    constructor() {
+      this.head = null;
+      this.tail = null;
+      this.length = 0;
+    }
+
+    push(val) {
+      let newNode = new Node(val);
+      if(!this.head) {
+        this.head = newNode
+        this.tail = this.head
+      } else {
+        this.tail.next = newNode; 
+        newNode.prev = this.tail;
+        this.tail = newNode;         
+      }          
+      this.length++
+      return this;
+    }
+
+    pop() {
+      // REMOVES LAST ELEMENT
+      if(!this.head) { return undefined }
+
+      let poppedNode = this.tail;
+      if(this.length === 1 ) {
+        this.head = null;
+        this.tail = null;
+      } else if (this.length == 2 ) {
+        this.tail = this.head;        
+      } else {
+        this.tail = poppedNode.prev;
+        this.tail.next = null;   
+        poppedNode.prev = null;   
+      }
+      this.length--;   
+      return poppedNode                
+    }
+
+    shift() {
+      // REMOVES FIRST ELEMENT 
+      if(!this.head) {return undefined};
+      let headToBeRemoved = this.head;
+  
+      if(this.length == 1) {
+        this.head = null;
+        this.tail = null
+      }      
+      this.head = headToBeRemoved.next  
+      this.head.prev = null;                              
+      headToBeRemoved.next = null;      
+      this.length--;      
+
+      return headToBeRemoved;
+    }
+
+    unshift(val) {
+      // ADD A VALUE AT THE BEGINNING
+
+      let newNode = new Node(val);
+      let oldHead = this.head;
+      if(!this.head) {
+        this.head = newNode;
+        this.tail = newNode;
+      } else {
+        // this.head.prev = newNode;
+        // newNode.next = this.head;
+        // this.head = newNode;
+
+        console.log(oldHead, 'oldHead')
+        this.head.prev = newNode;
+        this.head = newNode;                     
+        this.head.next = oldHead;      
+      }
+      this.length++;  
+      return this;    
+    }
+
+    get(index) {
+      // GET ELEMENTS VALUE BY ITS POSITION
+      if(index < 0 || index >= this.length) {return null}
+      
+      let middle =  this.length / 2;
+      let cur = this.head
+      let counter = 0;
+
+      let tail = this.tail;
+      let counterReverse = this.length - 1;
+
+      if(index < middle  ) {
+        while(counter !== index) {
+          if(cur.next) { cur = cur.next }        
+          counter++;        
+        }
+        
+      } else {
+        while(counterReverse !== index) {
+          if(tail.prev) { tail = tail.prev }        
+          counterReverse--;        
+        }        
+      }
+      
+      return index < middle ? cur : tail;       
+
+      
+    }
+
+    set(index, val) {
+      // SET ELEMENTS VALUE BY ITS POSITION      
+      let item =  this.get(index);
+      console.log(item, 'item index')
+      if(item) {
+        item.val = val
+        return item;         
+      } 
+      return false      
+    }
+
+    insert(index, val) {      
+      // INSERT ELEMENT WITH PASS POSITION      
+      if(index < 0 || index > this.length) {return false}    
+
+      if(index === this.length - 1) {
+        return !!this.push(val);
+      } else if ( index === 0) {
+        return !!this.unshift(val)
+      } else {
+        let newItem = new Node(val); 
+        let item =  this.get(index - 1);
+        newItem.next = item.next
+        newItem.prev = item.prev
+        item.next = newItem; 
+        this.length++;
+        return true 
+      }
+    }
+
+    remove(index) {
+      // REMOVE ELEMENT BY ITS POSITION      
+      if(index < 0 || index >= this.length) {return false}    
+
+      if(index === this.length - 1) {
+        return this.pop();
+      } else if ( index === 0) {
+        return this.shift()
+      } else {
+        let removedNode =  this.get(index);
+        // Update correct nodes
+        removedNode.prev.next = removedNode.next;
+        removedNode.next.prev = removedNode.prev;
+        // Before returning null the node
+        removedNode.next = null;
+        removedNode.prev = null;
+        this.length--;
+        return removedNode 
+      }
+    }
+
+    search(val) {
+      // SEARCH ELEMENT BY ITS POSITION    
+      val = val.toString().trim();
+        
+      let cur = this.head;
+      while(cur.val !== val && cur.next) {        
+        cur = cur.next
+      }      
+
+      if(cur.val !== val) {
+        return null
+      } else {
+        return cur
+      }      
+    }
+
+    reverse(){
+      var node = this.head;
+      this.head = this.tail;
+      this.tail = node;
+      var next;
+      var prev = null;
+      for(var i = 0; i < this.length; i++){
+        next = node.next;
+        node.next = prev;
+        prev = node;
+        node = next;
+      }
+      return this;
+    }
+
+
+  }
+
+  let list = new DoublyLinkedList();
+  console.log( list.push(0) );
+  console.log( list.push(1) );
+  console.log( list.push(2) );
+  console.log( list.push(3) );
+  console.log( list.push(4) );
+  console.log( list.push(5) );
+  // console.log( list.unshift(0) );
+  console.log( list, 'list' );
+
+</script>
+</html>
