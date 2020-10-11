@@ -23,15 +23,23 @@
     - [BIG O Queues](#big-o-queues)
 - [Binary Search Tree (BST)](#binary-search-tree-bst)
     - [What is a Tree ?](#what-is-a-tree-)
-    - [Compare and contract trees and lists](#compare-and-contract-trees-and-lists)
+    - [Compare and contrast trees and lists](#compare-and-contrast-trees-and-lists)
     - [Tree terminology](#tree-terminology)
+    - [Usecases for a Tree ?](#usecases-for-a-tree-)
     - [Explain the differences btw trees and binary tree and binary search trees](#explain-the-differences-btw-trees-and-binary-tree-and-binary-search-trees)
       - [Tree](#tree)
       - [Binary Trees](#binary-trees)
       - [Binary Search Tree (BST)](#binary-search-tree-bst-1)
-    - [Usecases for a Tree ?](#usecases-for-a-tree-)
     - [Implement on a Tree data structure ?](#implement-on-a-tree-data-structure-)
-    - [BIG O of Tree](#big-o-of-tree)
+    - [BIG O of Binary Search Tree](#big-o-of-binary-search-tree)
+- [Tree Traversal](#tree-traversal)
+    - [What is a Tree Traversal ?](#what-is-a-tree-traversal-)
+      - [Breadth-First-Search intro](#breadth-first-search-intro)
+      - [Depth-First-Search intro](#depth-first-search-intro)
+    - [Breadth-First-Search](#breadth-first-search)
+    - [Usecases for a Tree Traversal ?](#usecases-for-a-tree-traversal-)
+    - [Implement on a Tree Traversal ?](#implement-on-a-tree-traversal-)
+    - [BIG O of Tree Traversal](#big-o-of-tree-traversal)
 - [Example](#example)
     - [What is a Queue ?](#what-is-a-queue--1)
     - [Usecases for a Queue ?](#usecases-for-a-queue--1)
@@ -569,18 +577,7 @@ we can impletement Queue in Array or Queue Class
 ```
 
 #### Building Queue Class
-```html
-<!DOCTYPE html>
-<html>
-<head>
-  <meta charset="utf-8">
-  <meta name="viewport" content="width=device-width">
-  <title>Queue Data Structure</title>
-</head>
-<body>
-
-</body>
-<script>
+```javascript
   class Node {
     constructor(value) {
       this.value = value;
@@ -662,10 +659,6 @@ we can impletement Queue in Array or Queue Class
   q.push(1);
   q.push(2);
   q.push(3);
-  
-
-</script>
-</html>
 
 ```
 
@@ -680,13 +673,13 @@ we can impletement Queue in Array or Queue Class
 ### What is a Tree ?
 A data strucutre that consist of nodes in a parent/child relationship 
 
-### Compare and contract trees and lists 
+### Compare and contrast trees and lists 
 Lists are linear
 - It's one thing and then next and then next... 
 
 Trees are nonlinear 
 - They can branch, it can have more than one path 
-- Singley linked list has one path, Doubley linked list you could work backwards or forwards but stil there is one line through our data structure, In trees we can take multiple paths 
+- Singley linked list has one path, Doubley linked list could work backwards or forward but stil there is one line through our data structure, In trees we can take multiple paths 
   
 ### Tree terminology 
 - Root : The top node in a tree
@@ -696,6 +689,16 @@ Trees are nonlinear
 - Leaf : A node with no children
 - Edge : The connection between one node and another (its the arrow/caret )
   
+### Usecases for a Tree ?
+Lots of different applications, used in 
+- HTML DOM 
+- Network Routing (Broadcast)
+- Abstract syntax tree 
+- Artificial Intelligence 
+  - Mini max tree (TIC TOC Game)
+- Folder Structures
+- JSON 
+ 
 
 ### Explain the differences btw trees and binary tree and binary search trees 
 #### Tree
@@ -714,7 +717,7 @@ Binary Tree is a specialized form of tree with two child (left child and right C
 
 - Every parent node has at most two children, they cannot have three childs at Root node  
 
-```javscript
+```javascript
          5
        /   \
       /     \
@@ -736,20 +739,195 @@ BST is a special type of Binary Tree that follows following condition:
     /  \    /  \
   20    30 70   80
 ```
-
-### Usecases for a Tree ?
-Lots of different applications, used in 
-- HTML DOM 
-- Network Routing (Broadcast)
-- Abstract syntax tree 
-- Artificial Intelligence 
-  - Mini max tree (TIC TOC Game)
-- Folder Structures
-- JSON 
-
-
 ### Implement on a Tree data structure ?
-### BIG O of Tree 
+```javascript
+  class Node {
+    constructor(value) {
+      this.value = value;
+      this.left = null;
+      this.right = null;
+    }
+  }
+
+  class BinarySearchTree {
+    constructor() {
+      this.root = null; 
+    }
+
+    findExplorePath(root, insertedValue, newNode) {
+      if(insertedValue < root.value  ) {
+        if(root.left) {
+          return this.findExplorePath(root.left, insertedValue, newNode )
+        } else {
+          return root.left = newNode
+        } 
+      } else {
+        if(root.right ) {
+          return this.findExplorePath(root.right, insertedValue, newNode )
+        } else {
+          return root.right = newNode
+        }               
+      }
+    }
+
+    insert(insertedValue) {
+      /* 
+        root : 5 
+        -------
+              5
+          4       10
+        3        6  15
+
+        insert : 20 
+
+        insert : 10 
+
+        check if root value is greater than insertedValue 
+          if it s greater than take right 
+          if its lesser than take left 
+        
+        Insertion is 10 so take right 
+          let newNode = new Node (value);
+          let current = this.root; 
+          check insertedValue is greater than root value amd take right or left 
+
+          let explorePath = findExplorePath(root, insertedValue);
+      */
+
+      let newNode = new Node (insertedValue)
+      if(!this.root)  {
+        this.root = newNode
+        return this; 
+      } else {
+        this.findExplorePath(this.root, insertedValue, newNode);
+        return this;
+      }
+    }
+
+    findHelper (root, value) {
+      if(value === root.value  ) {
+        return root
+      } else if (value < root.value) {
+        if(root.left) {
+          return this.findHelper(root.left,value)
+        } else {
+          return false
+        }        
+      } else if (value > root.value) {
+        if(root.right) {
+          return this.findHelper(root.right,value)
+        } else {
+          return false
+        }        
+      }
+    }
+
+    find(value) {
+      if(!this.root ) {
+        return null 
+      } else {
+        {
+        /* 
+                  5
+              4       10
+            3        6  15
+
+          Search for 10 
+          if root.value == value {
+            return 'found'
+          } else {
+            findHelper(root,value)            
+          }
+        */
+
+        }        
+        return this.findHelper(this.root, value);
+
+      }
+    } 
+  }
+
+  let tree = new BinarySearchTree();
+  tree.insert(10);
+  tree.insert(5);
+  tree.insert(13);
+  tree.insert(2);
+  tree.insert(7);
+  tree.insert(11);
+  tree.insert(16);
+  console.log( tree.find(100) );
+  console.log(tree, 'tree')
+
+//           10
+//     5              13
+// 2      7       11      16
+
+```
+
+### BIG O of Binary Search Tree 
+- Insertion : O(log n)
+- Searching : O(log n) 
+Not guaranteed!
+
+# Tree Traversal
+
+### What is a Tree Traversal ?
+Tree traversal is a process to visit all the nodes of a tree and may print their values too. Because, all nodes are connected via edges (links) we always start from the root (head) node.
+
+There are two ways of traversing a tree
+- Breadth First Search
+- Depth First Search
+
+#### Breadth-First-Search intro
+```javascript
+--------------> 10 
+-------> 6 ---------> 15
+---> 3       8  ---------> 20
+```
+
+[10,6,15,3,8,20]
+- Starting with the beginning and working across the tree
+
+#### Depth-First-Search intro
+Idea of DFS is that you're going dow like your primary direction end of the tree and the coming back up 
+
+There are three main orders for DFS
+- DFS - InOrder
+```javascript
+          10
+    6           15
+3       8             20
+
+[3, 6, 8, 10, 15, 20]
+```
+- DFS - PreOrder 
+```javascript
+          10
+    6           15
+3       8             20
+
+[10, 6, 3, 8, 15, 20]
+```
+- DFS - PostOrder 
+```javascript
+          10
+    6           15
+3       8             20
+
+[3, 8, 6, 20, 15, 10]
+```
+### Breadth-First-Search
+
+
+
+
+### Usecases for a Tree Traversal ?
+
+
+### Implement on a Tree Traversal ?
+
+
+### BIG O of Tree Traversal 
 
 
 # Example
