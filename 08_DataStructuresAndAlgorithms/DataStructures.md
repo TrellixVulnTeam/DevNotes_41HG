@@ -53,7 +53,13 @@
     - [What ?](#what-)
       - [Graph Terms](#graph-terms)
       - [Types of Graphs](#types-of-graphs)
+        - [Undirected Graph](#undirected-graph)
+        - [Directed Graph](#directed-graph)
+        - [Weighted Graph](#weighted-graph)
+        - [Unweighted Graph](#unweighted-graph)
       - [Types of Graph Representations](#types-of-graph-representations)
+        - [Adjaceny Matrix](#adjaceny-matrix)
+        - [Adjacency List](#adjacency-list)
     - [How ? Implementation](#how--implementation)
     - [Usecases for Graph ?](#usecases-for-graph-)
       - [Social Networks](#social-networks)
@@ -1030,15 +1036,15 @@ A graph data structure consists of a finite (and possibly mutable) set of vertic
 
 #### Types of Graphs 
 ![alt text](https://github.com/shaktish/DevNotes/blob/master/08_DataStructuresAndAlgorithms/images/undirectedGraph_directedGraph.jpg?raw=true "undirectedGraph_directedGraph")
+##### Undirected Graph
 
-Undirected Graph:
 In an undirected graph, nodes are connected by edges that are all bidirectional. For example if an edge connects node 1 and 2, we can traverse from node 1 to node 2, and from node 2 to 1.
 - A type of graph that contains unordered paris of vertices
 - Edges do not reporesent the direction of vertexes 
 - Undirected arcs represeen the edges 
 - Facebook uses undirected graph for their users 
 
-Directed Graph: 
+#####  Directed Graph
 In a directed graph, nodes are connected by directed edges – they only go in one direction. For example, if an edge connects node 1 and 2, but the arrow head points towards 2, we can only traverse from node 1 to node 2 – not in the opposite direction.
 - A type of graph that contains ordered pairs of vertices
 - Edges represent the direction of vertexes
@@ -1046,25 +1052,24 @@ In a directed graph, nodes are connected by directed edges – they only go in o
 
 ![alt text](https://github.com/shaktish/DevNotes/blob/master/08_DataStructuresAndAlgorithms/images/WeightedAndUnweighted.jpg?raw=true "WeightedAndUnweighted")
 
-Weighted Graph
+##### Weighted Graph
 A graph is unwieghted if its edges are not assigned any value
 
-Unweighted Graph
+##### Unweighted Graph
 A graph where each edge is assigned a numerical value 
 
 #### Types of Graph Representations
-Adjaceny Matrix
+##### Adjaceny Matrix
 ![alt text](https://github.com/shaktish/DevNotes/blob/master/08_DataStructuresAndAlgorithms/images/AdjacencyMatrix.jpg?raw=true "AdjacencyMatrix")
 - An adjacency matrix is a 2D array of V x V vertices (like a table). Each row and column represent a vertex.
 - If the value of any element a[i][j] is 1, it represents that there is an edge connecting vertex i and vertex j.
 
 
-Adjacency List
-![alt text](https://github.com/shaktish/DevNotes/blob/master/08_DataStructuresAndAlgorithms/images/AdjacencyList.jpg?raw=true "AdjacencyList")
-![alt text](https://github.com/shaktish/DevNotes/blob/master/08_DataStructuresAndAlgorithms/images/AdjacencyList_WithHashTable.jpg?raw=true "AdjacencyList_WithHashTable")
+#####  Adjacency List
+![alt text](https://github.com/shaktish/DevNotes/blob/master/08_DataStructuresAndAlgorithms/images/AdjacencyList.png?raw=true "AdjacencyList")
+![alt text](https://github.com/shaktish/DevNotes/blob/master/08_DataStructuresAndAlgorithms/images/AdjacencyList_WithHashTable.png?raw=true "AdjacencyList_WithHashTable")
 - To create an Adjacency list, an array of lists is used. The size of the array is equal to the number of nodes.
 - A single index, array[i] represents the list of nodes adjacent to the ith node.
-
 
 
 ### How ? Implementation 
