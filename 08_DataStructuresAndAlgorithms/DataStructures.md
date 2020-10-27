@@ -34,16 +34,21 @@
     - [BIG O of Binary Search Tree](#big-o-of-binary-search-tree)
 - [Tree Traversal](#tree-traversal)
     - [What is a Tree Traversal ?](#what-is-a-tree-traversal-)
-      - [Breadth-First-Search intro](#breadth-first-search-intro)
-      - [Depth-First-Search intro](#depth-first-search-intro)
-    - [Breadth-First-Search](#breadth-first-search)
-    - [Usecases for a Tree Traversal ?](#usecases-for-a-tree-traversal-)
+      - [Breadth-First-Search Brief](#breadth-first-search-brief)
+      - [Depth-First-Search Brief](#depth-first-search-brief)
+  - [Breadth First Search](#breadth-first-search)
     - [Implement on a Tree Traversal ?](#implement-on-a-tree-traversal-)
+    - [Usecases for a Tree Traversal ?](#usecases-for-a-tree-traversal-)
     - [BIG O of Tree Traversal](#big-o-of-tree-traversal)
+- [Heaps](#heaps)
+    - [What is Heaps ?](#what-is-heaps-)
+    - [Usecases for Heaps ?](#usecases-for-heaps-)
+    - [Implement on a Queue data structure ?](#implement-on-a-queue-data-structure-)
+    - [BIG O of Heaps](#big-o-of-heaps)
 - [Example](#example)
     - [What is a Queue ?](#what-is-a-queue--1)
     - [Usecases for a Queue ?](#usecases-for-a-queue--1)
-    - [Implement on a Queue data structure ?](#implement-on-a-queue-data-structure-)
+    - [Implement on a Queue data structure ?](#implement-on-a-queue-data-structure--1)
     - [BIG O of Queue](#big-o-of-queue)
 - [HashTable](#hashtable)
     - [What is a hashtable](#what-is-a-hashtable)
@@ -876,58 +881,77 @@ Tree traversal is a process to visit all the nodes of a tree and may print their
 
 There are two ways of traversing a tree
 - Breadth First Search
+  - BFS is implemented iteratively witha a Queue (FIFO)
+  - Uses 
+    - Check if a path exists between nodes, finding 'hops' or disatance out or 'levels' away 
+  - Goes Wide 
 - Depth First Search
+  - DFS uses Stack, either by the stack we create or use inbuilt one.
+  - Uses : 
+    - Ubuntu's DFS is backtracking, complete search, finding all paths.. DFS goes deep into a path, explores all of it and comes back outwards and then decides.  
+  - Goes Deep 
 
-#### Breadth-First-Search intro
+#### Breadth-First-Search Brief
 ```javascript
 --------------> 10 
 -------> 6 ---------> 15
 ---> 3       8  ---------> 20
 ```
-
-[10,6,15,3,8,20]
+- [10,6,15,3,8,20]
 - Starting with the beginning and working across the tree
 
-#### Depth-First-Search intro
-Idea of DFS is that you're going dow like your primary direction end of the tree and the coming back up 
+#### Depth-First-Search Brief
+Idea of DFS is that you're going down like your primary direction is end of the tree and the coming back up.
 
+Tree Example
+```javascript
+          10
+    6           15
+3       8             20
+```
 There are three main orders for DFS
-- DFS - InOrder
-```javascript
-          10
-    6           15
-3       8             20
-
-[3, 6, 8, 10, 15, 20]
-```
+- DFS - InOrder  
+  - Example : [3, 6, 8, 10, 15, 20]
 - DFS - PreOrder 
-```javascript
-          10
-    6           15
-3       8             20
-
-[10, 6, 3, 8, 15, 20]
-```
+  - Example : [10, 6, 3, 8, 15, 20]
 - DFS - PostOrder 
-```javascript
-          10
-    6           15
-3       8             20
-
-[3, 8, 6, 20, 15, 10]
-```
-### Breadth-First-Search
+  - Example : [3, 8, 6, 20, 15, 10]
 
 
+## Breadth First Search
+The Breadth First Search ( BFS ) is an algorithm for traversing or searching tree or graph data structures. It explores all the nodes at the present depth before moving on to the nodes at the next depth level.
+
+- We will read through horizontally (left to right)
+
+
+### Implement on a Tree Traversal ?
+- Create a queue (this can be an array) and a variable to store the values of nodes visited
+- Place the root node in the queue
+- Loop as long ad there is anything in the queue
+  - Dequeue a node from queue and push the value of the node into variable that store the nodes 
+  - if there is a left property on the node dequeued - add it to the queue
+  - if there is right property on the node dequeued - add it to the queue
+- Return the variable that stores tha values
 
 
 ### Usecases for a Tree Traversal ?
 
 
-### Implement on a Tree Traversal ?
-
-
 ### BIG O of Tree Traversal 
+
+
+# Heaps
+### What is Heaps ?
+
+
+### Usecases for Heaps ?
+
+
+### Implement on a Queue data structure ?
+
+
+### BIG O of Heaps 
+
 
 
 # Example
