@@ -42,6 +42,12 @@
     - [BIG O of Tree Traversal](#big-o-of-tree-traversal)
 - [Heaps](#heaps)
     - [What is Heap ?](#what-is-heap-)
+- [HashTable](#hashtable)
+    - [What is a hashtable](#what-is-a-hashtable)
+    - [Introductory Example](#introductory-example)
+    - [HashPart](#hashpart)
+      - [What makes a good hash?](#what-makes-a-good-hash)
+    - [Recap](#recap)
 - [Graph](#graph)
     - [Why ? Purpose](#why--purpose)
     - [What ?](#what-)
@@ -59,12 +65,6 @@
     - [Usecases for a Queue ?](#usecases-for-a-queue--1)
     - [Implement on a Queue data structure ?](#implement-on-a-queue-data-structure-)
     - [BIG O of Queue](#big-o-of-queue)
-- [HashTable](#hashtable)
-    - [What is a hashtable](#what-is-a-hashtable)
-    - [Introductory Example](#introductory-example)
-    - [HashPart](#hashpart)
-      - [What makes a good hash?](#what-makes-a-good-hash)
-    - [Recap](#recap)
 
 # DataStructures
 - A data structure is a data organization, management, and storage format that enables efficient access and modification
@@ -963,82 +963,6 @@ There are many types of heaps
 - B-Heap
 - and many more. 
 
-
-# Graph
-
-### Why ? Purpose 
-
-### What ?  
-A graph data structure consists of a finite (and possibly mutable) set of vertices (also called nodes or points), together with a set of unordered pairs of these vertices for an undirected graph or a set of ordered pairs for a directed graph.
-
-- A Graph is a collection of nodes amd connection btw nodes 
-
-#### Graph Terms
-![alt text](https://github.com/shaktish/DevNotes/blob/master/08_DataStructuresAndAlgorithms/images/graph_term_undirectedgraph.png?raw=true "graph_term_undirectedgraph")
-
-- Vertex : a node
-- Edge : connection between nodes
-- Weighted/Unweighted : values assigned to distances between vertices
-- Directed/Undirected : directions assigned to distanced between vertices 
-
-
-#### Types of Graphs 
-
-Undirected Graph:
-In an undirected graph, nodes are connected by edges that are all bidirectional. For example if an edge connects node 1 and 2, we can traverse from node 1 to node 2, and from node 2 to 1.
-- A type of graph that contains unordered paris of vertices
-- Edges do not reporesent the direction of vertexes 
-- Undirected arcs represeen the edges 
-- Facebook uses undirected graph for their users 
-
-Directed Graph: 
-In a directed graph, nodes are connected by directed edges – they only go in one direction. For example, if an edge connects node 1 and 2, but the arrow head points towards 2, we can only traverse from node 1 to node 2 – not in the opposite direction.
-- A type of graph that contains ordered pairs of vertices
-- Edges represent the direction of vertexes
-- An arrow represents the edges 
-
-Weighted Graph
-A graph is unwieghted if its edges are not assigned any value
-
-Unweighted Graph
-A graph where each edge is assigned a numerical value 
-
-#### Types of Graph Representations
-Adjacency List
-- To create an Adjacency list, an array of lists is used. The size of the array is equal to the number of nodes.
-- A single index, array[i] represents the list of nodes adjacent to the ith node.
-
-
-### How ? Implementation 
-
-### Usecases for Graph ?
-#### Social Networks
-- Social graphs draw edges between you and the people, places and things you interact with online.
-- This are entities such as Users, Pages, Places, Groups, Comments, Photos, Photo Albums, Stories, Videos, Notes, Events and so forth. Anything that has properties that store data is a vertice.
-#### Google Map
-- Google Maps and Routes APIs are classic Shortest Path APIs. This a graph problem that's very easy to solve with edge-weighted directed graphs (digraphs).
-- The idea of a Map API is to find the shortest path from one vertex to every other as in a single source shortest path variant, from your current location to every other destination you might be interested in going to on the map.
-
-#### Recommendation Engines
-- Yelps has been slowly phasing out their old Fusion API for a GraphQL API.
-
-
-### BIG O of Graph 
-
-
-# Example
-### What is a Queue ?
-
-
-### Usecases for a Queue ?
-
-
-### Implement on a Queue data structure ?
-
-
-### BIG O of Queue 
-
-
 # HashTable
 ### What is a hashtable
 - Hash tables are used to store a key-value pairs 
@@ -1084,3 +1008,92 @@ white --> 1
 - Hash tables store data in a large array, and work by hashing the keys
 - A good hash should be fast, distribute keys uniformly, and be deterministic 
 - Separate chaining and linear probing are two strategies used to deal with two keys that hash to the same index
+
+
+# Graph
+
+### Why ? Purpose 
+
+### What ?  
+A graph data structure consists of a finite (and possibly mutable) set of vertices (also called nodes or points), together with a set of unordered pairs of these vertices for an undirected graph or a set of ordered pairs for a directed graph.
+
+- A Graph is a collection of nodes amd connection btw nodes 
+
+#### Graph Terms
+![alt text](https://github.com/shaktish/DevNotes/blob/master/08_DataStructuresAndAlgorithms/images/graph_term_undirectedgraph.png?raw=true "graph_term_undirectedgraph")
+
+- Vertex : a node
+- Edge : connection between nodes
+- Weighted/Unweighted : values assigned to distances between vertices
+- Directed/Undirected : directions assigned to distanced between vertices 
+
+
+#### Types of Graphs 
+![alt text](https://github.com/shaktish/DevNotes/blob/master/08_DataStructuresAndAlgorithms/images/undirectedGraph_directedGraph.jpg?raw=true "undirectedGraph_directedGraph")
+
+Undirected Graph:
+In an undirected graph, nodes are connected by edges that are all bidirectional. For example if an edge connects node 1 and 2, we can traverse from node 1 to node 2, and from node 2 to 1.
+- A type of graph that contains unordered paris of vertices
+- Edges do not reporesent the direction of vertexes 
+- Undirected arcs represeen the edges 
+- Facebook uses undirected graph for their users 
+
+Directed Graph: 
+In a directed graph, nodes are connected by directed edges – they only go in one direction. For example, if an edge connects node 1 and 2, but the arrow head points towards 2, we can only traverse from node 1 to node 2 – not in the opposite direction.
+- A type of graph that contains ordered pairs of vertices
+- Edges represent the direction of vertexes
+- An arrow represents the edges 
+
+![alt text](https://github.com/shaktish/DevNotes/blob/master/08_DataStructuresAndAlgorithms/images/WeightedAndUnweighted.jpg?raw=true "WeightedAndUnweighted")
+
+Weighted Graph
+A graph is unwieghted if its edges are not assigned any value
+
+Unweighted Graph
+A graph where each edge is assigned a numerical value 
+
+#### Types of Graph Representations
+Adjaceny Matrix
+![alt text](https://github.com/shaktish/DevNotes/blob/master/08_DataStructuresAndAlgorithms/images/AdjacencyMatrix.jpg?raw=true "AdjacencyMatrix")
+- An adjacency matrix is a 2D array of V x V vertices (like a table). Each row and column represent a vertex.
+- If the value of any element a[i][j] is 1, it represents that there is an edge connecting vertex i and vertex j.
+
+
+Adjacency List
+![alt text](https://github.com/shaktish/DevNotes/blob/master/08_DataStructuresAndAlgorithms/images/AdjacencyList.jpg?raw=true "AdjacencyList")
+![alt text](https://github.com/shaktish/DevNotes/blob/master/08_DataStructuresAndAlgorithms/images/AdjacencyList_WithHashTable.jpg?raw=true "AdjacencyList_WithHashTable")
+- To create an Adjacency list, an array of lists is used. The size of the array is equal to the number of nodes.
+- A single index, array[i] represents the list of nodes adjacent to the ith node.
+
+
+
+### How ? Implementation 
+
+### Usecases for Graph ?
+#### Social Networks
+- Social graphs draw edges between you and the people, places and things you interact with online.
+- This are entities such as Users, Pages, Places, Groups, Comments, Photos, Photo Albums, Stories, Videos, Notes, Events and so forth. Anything that has properties that store data is a vertice.
+#### Google Map
+- Google Maps and Routes APIs are classic Shortest Path APIs. This a graph problem that's very easy to solve with edge-weighted directed graphs (digraphs).
+- The idea of a Map API is to find the shortest path from one vertex to every other as in a single source shortest path variant, from your current location to every other destination you might be interested in going to on the map.
+
+#### Recommendation Engines
+- Yelps has been slowly phasing out their old Fusion API for a GraphQL API.
+
+
+### BIG O of Graph 
+
+
+# Example
+### What is a Queue ?
+
+
+### Usecases for a Queue ?
+
+
+### Implement on a Queue data structure ?
+
+
+### BIG O of Queue 
+
+
