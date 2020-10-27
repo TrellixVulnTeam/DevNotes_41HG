@@ -42,7 +42,7 @@
     - [BIG O of Tree Traversal](#big-o-of-tree-traversal)
 - [Heaps](#heaps)
     - [What is Heap ?](#what-is-heap-)
-- [Example](#example)
+- [Graph](#graph)
     - [Why ? Purpose](#why--purpose)
     - [What ?](#what-)
       - [Graph Terms](#graph-terms)
@@ -54,7 +54,7 @@
       - [Google Map](#google-map)
       - [Recommendation Engines](#recommendation-engines)
     - [BIG O of Graph](#big-o-of-graph)
-- [Example](#example-1)
+- [Example](#example)
     - [What is a Queue ?](#what-is-a-queue--1)
     - [Usecases for a Queue ?](#usecases-for-a-queue--1)
     - [Implement on a Queue data structure ?](#implement-on-a-queue-data-structure-)
@@ -964,7 +964,7 @@ There are many types of heaps
 - and many more. 
 
 
-# Example
+# Graph
 
 ### Why ? Purpose 
 
