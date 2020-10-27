@@ -41,14 +41,23 @@
     - [Usecases for a Tree Traversal ?](#usecases-for-a-tree-traversal-)
     - [BIG O of Tree Traversal](#big-o-of-tree-traversal)
 - [Heaps](#heaps)
-    - [What is Heaps ?](#what-is-heaps-)
-    - [Usecases for Heaps ?](#usecases-for-heaps-)
-    - [Implement on a Queue data structure ?](#implement-on-a-queue-data-structure-)
-    - [BIG O of Heaps](#big-o-of-heaps)
+    - [What is Heap ?](#what-is-heap-)
 - [Example](#example)
+    - [Why ? Purpose](#why--purpose)
+    - [What ?](#what-)
+      - [Graph Terms](#graph-terms)
+      - [Types of Graphs](#types-of-graphs)
+      - [Types of Graph Representations](#types-of-graph-representations)
+    - [How ? Implementation](#how--implementation)
+    - [Usecases for Graph ?](#usecases-for-graph-)
+      - [Social Networks](#social-networks)
+      - [Google Map](#google-map)
+      - [Recommendation Engines](#recommendation-engines)
+    - [BIG O of Graph](#big-o-of-graph)
+- [Example](#example-1)
     - [What is a Queue ?](#what-is-a-queue--1)
     - [Usecases for a Queue ?](#usecases-for-a-queue--1)
-    - [Implement on a Queue data structure ?](#implement-on-a-queue-data-structure--1)
+    - [Implement on a Queue data structure ?](#implement-on-a-queue-data-structure-)
     - [BIG O of Queue](#big-o-of-queue)
 - [HashTable](#hashtable)
     - [What is a hashtable](#what-is-a-hashtable)
@@ -941,17 +950,80 @@ The Breadth First Search ( BFS ) is an algorithm for traversing or searching tre
 
 
 # Heaps
-### What is Heaps ?
+### What is Heap ?
+A Heap is a special Tree-based data structure in which the tree is a complete binary tree. Generally, Heaps can be of two types:
+
+Very Similar to a binary search tree, but with some different rules
+- In a MaxBinaryHeap, parent nodes are always larger than child nodes
+- In a MinBinaryHeap, parent nodes are always smaller than child node
+
+There are many types of heaps 
+- Heap
+- Binary Heap
+- B-Heap
+- and many more. 
 
 
-### Usecases for Heaps ?
+# Example
+
+### Why ? Purpose 
+
+### What ?  
+A graph data structure consists of a finite (and possibly mutable) set of vertices (also called nodes or points), together with a set of unordered pairs of these vertices for an undirected graph or a set of ordered pairs for a directed graph.
+
+- A Graph is a collection of nodes amd connection btw nodes 
+
+#### Graph Terms
+![alt text](https://github.com/shaktish/DevNotes/blob/master/08_DataStructuresAndAlgorithms/images/graph_term_undirectedgraph.png?raw=true "graph_term_undirectedgraph")
+
+- Vertex : a node
+- Edge : connection between nodes
+- Weighted/Unweighted : values assigned to distances between vertices
+- Directed/Undirected : directions assigned to distanced between vertices 
 
 
-### Implement on a Queue data structure ?
+#### Types of Graphs 
+
+Undirected Graph:
+In an undirected graph, nodes are connected by edges that are all bidirectional. For example if an edge connects node 1 and 2, we can traverse from node 1 to node 2, and from node 2 to 1.
+- A type of graph that contains unordered paris of vertices
+- Edges do not reporesent the direction of vertexes 
+- Undirected arcs represeen the edges 
+- Facebook uses undirected graph for their users 
+
+Directed Graph: 
+In a directed graph, nodes are connected by directed edges – they only go in one direction. For example, if an edge connects node 1 and 2, but the arrow head points towards 2, we can only traverse from node 1 to node 2 – not in the opposite direction.
+- A type of graph that contains ordered pairs of vertices
+- Edges represent the direction of vertexes
+- An arrow represents the edges 
+
+Weighted Graph
+A graph is unwieghted if its edges are not assigned any value
+
+Unweighted Graph
+A graph where each edge is assigned a numerical value 
+
+#### Types of Graph Representations
+Adjacency List
+- To create an Adjacency list, an array of lists is used. The size of the array is equal to the number of nodes.
+- A single index, array[i] represents the list of nodes adjacent to the ith node.
 
 
-### BIG O of Heaps 
+### How ? Implementation 
 
+### Usecases for Graph ?
+#### Social Networks
+- Social graphs draw edges between you and the people, places and things you interact with online.
+- This are entities such as Users, Pages, Places, Groups, Comments, Photos, Photo Albums, Stories, Videos, Notes, Events and so forth. Anything that has properties that store data is a vertice.
+#### Google Map
+- Google Maps and Routes APIs are classic Shortest Path APIs. This a graph problem that's very easy to solve with edge-weighted directed graphs (digraphs).
+- The idea of a Map API is to find the shortest path from one vertex to every other as in a single source shortest path variant, from your current location to every other destination you might be interested in going to on the map.
+
+#### Recommendation Engines
+- Yelps has been slowly phasing out their old Fusion API for a GraphQL API.
+
+
+### BIG O of Graph 
 
 
 # Example
