@@ -66,6 +66,10 @@
       - [Google Map](#google-map)
       - [Recommendation Engines](#recommendation-engines)
     - [BIG O of Graph](#big-o-of-graph)
+        - [Adjacency List](#adjacency-list-1)
+        - [Adjacency Matrix](#adjacency-matrix)
+  - [Graph Traversal](#graph-traversal)
+    - [Uses](#uses)
 - [Example](#example)
     - [What is a Queue ?](#what-is-a-queue--1)
     - [Usecases for a Queue ?](#usecases-for-a-queue--1)
@@ -984,8 +988,8 @@ There are many types of heaps
 ```javascript
 ['#000', '#fff', '#ccc'];
 ```
-- Not super readable! what do these colors correspon to?
-- It would be nice if instead of using indices to access colors, we could use more human readable keys
+- Not super readable! what do these colors correspond to?
+- It would be nice if instead of using indexes to access colors, we could use more human readable keys
 - pink : #ff69b4, colors['cyan'] is way better than colors[2]
 
 
@@ -1004,8 +1008,6 @@ white --> 1
 - Fast (i.e constant time)
 - Doesn't cluster outputs at specific indices but distributes uniformly 
 - Deterministic (same input yields same output)
-
-
 
 ### Recap
 - Hash tables are collections of key-value pairs
@@ -1037,7 +1039,6 @@ A graph data structure consists of a finite (and possibly mutable) set of vertic
 #### Types of Graphs 
 ![alt text](https://github.com/shaktish/DevNotes/blob/master/08_DataStructuresAndAlgorithms/images/undirectedGraph_directedGraph.jpg?raw=true "undirectedGraph_directedGraph")
 ##### Undirected Graph
-
 In an undirected graph, nodes are connected by edges that are all bidirectional. For example if an edge connects node 1 and 2, we can traverse from node 1 to node 2, and from node 2 to 1.
 - A type of graph that contains unordered paris of vertices
 - Edges do not reporesent the direction of vertexes 
@@ -1067,9 +1068,10 @@ A graph where each edge is assigned a numerical value
 
 #####  Adjacency List
 ![alt text](https://github.com/shaktish/DevNotes/blob/master/08_DataStructuresAndAlgorithms/images/AdjacencyList.png?raw=true "AdjacencyList")
-![alt text](https://github.com/shaktish/DevNotes/blob/master/08_DataStructuresAndAlgorithms/images/AdjacencyList_WithHashTable.png?raw=true "AdjacencyList_WithHashTable")
 - To create an Adjacency list, an array of lists is used. The size of the array is equal to the number of nodes.
 - A single index, array[i] represents the list of nodes adjacent to the ith node.
+
+![alt text](https://github.com/shaktish/DevNotes/blob/master/08_DataStructuresAndAlgorithms/images/AdjacencyList_WithHashTable.png?raw=true "AdjacencyList_WithHashTable")
 
 
 ### How ? Implementation 
@@ -1087,7 +1089,30 @@ A graph where each edge is assigned a numerical value
 
 
 ### BIG O of Graph 
+![alt text](https://github.com/shaktish/DevNotes/blob/master/08_DataStructuresAndAlgorithms/images/BigOGraph.png?raw=true "BigOGraph")
 
+##### Adjacency List 
+- Can take up less space (in sparse graphs)
+- Faster to iterate over all edges
+- Can be slower to lookup specific edge
+
+##### Adjacency Matrix
+- Takes up more space (in sparse graphs) 
+- Slower to iterate over all edges
+- Faster to lookup specific edge 
+
+![alt text](https://github.com/shaktish/DevNotes/blob/master/08_DataStructuresAndAlgorithms/images/sparseGraphVSdenseGraph.png?raw=true "sparseGraphVSdenseGraph")
+
+
+## Graph Traversal 
+### Uses
+- Peer to peer networking
+- Web crawlers
+- Finding closest, matches/recommendations
+- Shortest path problesm
+  - GPS Navigation
+  - Solving mazes
+  - AI (shortest path to win the game)
 
 # Example
 ### What is a Queue ?

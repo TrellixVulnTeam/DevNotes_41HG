@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width">
+  <title>Graph</title>
+</head>
+<body>
+
+</body>
+<script>
+  class Graph {
+    constructor() {
+      this.adjacencyList = {}
+    }
+
+    addVertex (vertex) {
+      if(!this.adjacencyList[vertex])  {
+        this.adjacencyList[vertex] = []
+      }      
+    }
+
+    removeVertex(vertex) {
+      if(this.adjacencyList[vertex]) {
+        for(let key in this.adjacencyList) {
+          let index = this.adjacencyList[key].indexOf(vertex)
+          if(index !== -1) {
+            this.adjacencyList[key].splice(index, 1)
+          }
+          
+        }
+        delete this.adjacencyList[vertex]
+        
+      }
+      if(!this.adjacencyList) return null;
+        if(!this.adjacencyList[vertex]) return null;
+        for(let i of this.adjacencyList[vertex]){
+            this.removeEdge(vertex,i);
+        }
+        delete this.adjacencyList[vertex];
+    }
+
+    addEdge(v1, v2) {
+      if(this.adjacencyList[v1] && this.adjacencyList[v2] ) {
+        this.adjacencyList[v1].push(v2);
+        this.adjacencyList[v2].push(v1);
+      }      
+    }
+
+    removeEdge(v1, v2) {
+      if(this.adjacencyList[v1] && this.adjacencyList[v2] ) {
+        let v1Index = this.adjacencyList[v1].indexOf(v2);
+        let v2Index = this.adjacencyList[v2].indexOf(v1);  
+
+        if(v1Index !== -1 && v2Index !== -1 )       {
+          this.adjacencyList[v1].splice(v1Index, 1);
+          this.adjacencyList[v2].splice(v2Index, 1);        
+        } else {
+          console.log('no vertex found')
+        }
+        
+      }      
+    }  
+  } 
+
+  const g = new Graph();
+  g.addVertex('Dallas');
+  g.addVertex('Tokyo');
+  g.addVertex('Aspen');
+  g.addVertex('LosAngeles');
+  g.addVertex('HongKong');
+  g.addEdge('Dallas', 'Tokyo');
+  g.addEdge('Dallas', 'Aspen');
+  g.addEdge('HongKong', 'Tokyo');
+  g.addEdge('HongKong', 'Dallas');
+  g.addEdge('LosAngeles', 'HongKong');
+  g.addEdge('LosAngeles', 'Aspen');
+  console.log(g.adjacencyList, 'g')
+  
+  // g.removeEdge('Chennai', 'Vellore');
+
+</script>
+</html>

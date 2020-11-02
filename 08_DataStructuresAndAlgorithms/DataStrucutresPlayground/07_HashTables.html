@@ -13,8 +13,9 @@
     constructor(size=11) {
       this.keyMap = new Array(size)
     }
-
+    
     _hash(key) {
+      // HASH FUNCTION 
       let total = 0;
       let WEIRD_PRIME = 31;
       for(let i = 0; i < Math.min(key.length, 100); i++) {
@@ -26,9 +27,9 @@
     }
 
     set(key,value) {
-      let hashedKey =this._hash(key);   
+      let hashedKey = this._hash(key);   
       if(this.keyMap[hashedKey] === undefined ) {
-        this.keyMap[hashedKey]= [[key,value]]
+        this.keyMap[hashedKey] = [[key,value]]
       } else {
         this.keyMap[hashedKey] = [...this.keyMap[hashedKey], [key,value]]
       }            
