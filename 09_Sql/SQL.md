@@ -6,10 +6,10 @@
       - [Relational Database](#relational-database)
       - [Non Relational Database (No SQL)](#non-relational-database-no-sql)
   - [Why Oracle Database ?](#why-oracle-database-)
-    - [What is a Realtional Database ?](#what-is-a-realtional-database-)
+    - [What is a Relational Database ?](#what-is-a-relational-database-)
       - [What is an Entity ?](#what-is-an-entity-)
       - [What is the Relationship ?](#what-is-the-relationship-)
-  - [Introducing Database Objects ?](#introducing-database-objects-)
+  - [Introducing Database Objects](#introducing-database-objects)
       - [SchemaObjects](#schemaobjects)
 
 
@@ -68,7 +68,7 @@ Cons
 See, DB-Engines Ranking
 https://db-engines.com/en/ranking
 
-### What is a Realtional Database ? 
+### What is a Relational Database ? 
 A relational database organizes data into tables which can be linked—or related—based on data common to each. This capability enables you to retrieve an entirely new table from data in one or more tables with a single query.
 
 ![alt text](https://github.com/shaktish/DevNotes/blob/master/09_Sql/images/relationalDatabase.png?raw=true "graph_term_undirectedgraph")
@@ -81,16 +81,14 @@ A relational database organizes data into tables which can be linked—or relate
 In the below figure, we use DEPARTMENT_ID to define relationshp
 ![alt text](https://github.com/shaktish/DevNotes/blob/master/09_Sql/images/relationalDatabase.png?raw=true "graph_term_undirectedgraph")
 
-## Introducing Database Objects ?
+## Introducing Database Objects
 Oracle Database has many database objects categoriezed under two subjects which are Scheme objects and Nonshcema objects.
 
 #### SchemaObjects 
 A schema is a collection of logical structures of data or objects. 
 
-Table 
-- A table is the base unit of the database to store data formatted with columsn and rows
-View 
-- A view is a virutal table that provides access to a subset of columns or some restricted rows from one or more tables 
+- Table : A table is the base unit of the database to store data formatted with columsn and rows
+- View  : A view is a virutal table that provides access to a subset of columns or some restricted rows from one or more tables 
   - Works like Alias 
   - This is just sql query
 ```SQL
@@ -103,18 +101,12 @@ View
   // Alias created       
   SELECT * FROM high_salaries
 ```
-Constraint 
-- Constraints are the rules for restricting invalid data entry into tables 
-Index 
-- Indexes are used for improving speed of data retrieval from tables 
-Sequence 
-- Sequences are the database objects which generate unique integers 
-Synonym 
-- A synonym is an alternative names (alias) fro the database objects 
-Materialzied View 
-- A materialized view has a real table filled by an SQL query unlike the views. The real table is truncated and refilled with a specificied time frequency.
-Functions and Procedures 
-- Functions return some value, but procedures return nothing 
+- Constraint : Constraints are the rules for restricting invalid data entry into tables 
+- Index  : Indexes are used for improving speed of data retrieval from tables 
+- Sequence : Sequences are the database objects which generate unique integers 
+- Synonym : A synonym is an alternative names (alias) fro the database objects 
+- Materialzied View : A materialized view has a real table filled by an SQL query unlike the views. The real table is truncated and refilled with a specificied time frequency.
+- Functions and Procedures : Functions return some value, but procedures return nothing 
 
 
   
