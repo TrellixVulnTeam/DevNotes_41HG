@@ -4,34 +4,34 @@
 - [BigO Complecity Chart](#bigo-complecity-chart)
   - [O(1) - Constant Time](#o1---constant-time)
   - [O(log n) - Logarithmic time](#olog-n---logarithmic-time)
-    - [O(n) - Linear time](#on---linear-time)
-    - [O(n log n) - Linearithmic Time](#on-log-n---linearithmic-time)
-    - [O(n^2) - Quadratic time](#on2---quadratic-time)
-    - [O(2^n) - Exponential time](#o2n---exponential-time)
-    - [O(n!) - Factorial time](#on---factorial-time)
-    - [Reference](#reference)
-  - [Approaches](#approaches)
-    - [BigO Rules of thumb](#bigo-rules-of-thumb)
-    - [Space complexity](#space-complexity)
+  - [O(n) - Linear time](#on---linear-time)
+  - [O(n log n) - Linearithmic Time](#on-log-n---linearithmic-time)
+  - [O(n^2) - Quadratic time](#on2---quadratic-time)
+  - [O(2^n) - Exponential time](#o2n---exponential-time)
+  - [O(n!) - Factorial time](#on---factorial-time)
+  - [Reference](#reference)
+- [Approaches](#approaches)
+  - [BigO Rules of thumb](#bigo-rules-of-thumb)
+  - [Space complexity](#space-complexity)
     - [Logs of N](#logs-of-n)
-  - [Analyzing Object and Array Performance](#analyzing-object-and-array-performance)
-    - [Objects](#objects)
-      - [When to use Objects](#when-to-use-objects)
-      - [Crud](#crud)
-      - [Object Methods](#object-methods)
-    - [Array](#array)
-      - [When to use Arrays](#when-to-use-arrays)
-      - [Crud](#crud-1)
-      - [Array Methods](#array-methods)
+- [Analyzing Object and Array Performance](#analyzing-object-and-array-performance)
+  - [Objects](#objects)
+    - [When to use Objects](#when-to-use-objects)
+    - [Crud](#crud)
+    - [Object Methods](#object-methods)
+  - [Array](#array)
+    - [When to use Arrays](#when-to-use-arrays)
+    - [Crud](#crud-1)
+    - [Array Methods](#array-methods)
 - [ProblemSolvingApproach](#problemsolvingapproach)
-    - [What is an algorithm ?](#what-is-an-algorithm-)
-    - [Why do i need this?](#why-do-i-need-this)
-    - [How do i improve ?](#how-do-i-improve-)
-  - [ProblemSolving Strategy](#problemsolving-strategy)
-    - [Understanding the problem](#understanding-the-problem)
-      - [Example Problem](#example-problem)
+  - [What is an algorithm ?](#what-is-an-algorithm-)
+  - [Why do i need this?](#why-do-i-need-this)
+  - [How do i improve ?](#how-do-i-improve-)
+- [ProblemSolving Strategy](#problemsolving-strategy)
+  - [Understanding the problem](#understanding-the-problem)
+    - [Example Problem](#example-problem)
     - [Explore Concrete Examples](#explore-concrete-examples)
-      - [Example Problem](#example-problem-1)
+    - [Example Problem](#example-problem-1)
     - [Break it down](#break-it-down)
     - [Solve the problem, if you can't solve a simpler Problem](#solve-the-problem-if-you-cant-solve-a-simpler-problem)
     - [Look back and refactor](#look-back-and-refactor)
@@ -39,8 +39,8 @@
   - [Frequency Counter](#frequency-counter)
     - [Example1](#example1)
     - [Refactored version](#refactored-version)
-      - [Example2](#example2)
-      - [Example3](#example3)
+    - [Example2](#example2)
+    - [Example3](#example3)
   - [Multiple Pointers](#multiple-pointers)
     - [Example](#example)
   - [CountUniqueValues](#countuniquevalues)
@@ -174,7 +174,7 @@ console.log(indexOf(directory, 'Adrian'));  // => 0
 console.log(indexOf(directory, 'Zoe')); 
 ```
 
-### O(n) - Linear time
+## O(n) - Linear time
 Linear time complexity O(n) means that as the input grows, the algorithms take proportionally longer to complete.
 
 - called Linear Algorithm
@@ -199,7 +199,7 @@ function findMax(n) {
 The complexity of the linear_algo function is linear in the above example since the number of iterations of the for-loop will be equal to the size of the input items array. For instance, if there are 4 items in the items list, the for-loop will be executed 4 times, and so on.
   
   
-### O(n log n) - Linearithmic Time
+## O(n log n) - Linearithmic Time
 Linearithmic time complexity it’s slightly slower than a linear algorithm. However, it’s still much better than a quadratic algorithm
 - called Log Linear  
 - Efficient sorting algorithms like merge sort, quicksort and others.
@@ -255,7 +255,7 @@ function merge(array1 = [], array2 = []) {
 
 ```
   
-### O(n^2) - Quadratic time
+## O(n^2) - Quadratic time
 A function with a quadratic time complexity has a growth rate of n2. If the input is size 2, it will do four operations. If the input is size 8, it will take 64, and so on.
 
 - called as Quadratic Complexity
@@ -305,7 +305,7 @@ function sort(n) {
 ```
 In the script above, you can see that we have an outer loop that iterates through all the items in the input list and then a nested inner loop, which again iterates through all the items in the input list. The total number of steps performed is n * n, where n is the number of items in the input array.
 
-### O(2^n) - Exponential time
+## O(2^n) - Exponential time
 Exponential (base 2) running time means that the calculations performed by an algorithm double every time as the input grows.
 
 - called Exponential
@@ -313,7 +313,7 @@ Exponential (base 2) running time means that the calculations performed by an al
   - Power Set: finding all the subsets on a set.
   - Fibonacci.
 
-### O(n!) - Factorial time
+## O(n!) - Factorial time
 Factorial is the multiplication of all positive integer numbers less than itself. For instance:
 
 - called as Factorial
@@ -325,16 +325,16 @@ Factorial is the multiplication of all positive integer numbers less than itself
 ```
 
 
-### Reference
+## Reference
 - https://adrianmejia.com/most-popular-algorithms-time-complexity-every-programmer-should-know-free-online-tutorial-course/
 - https://stackabuse.com/big-o-notation-and-algorithm-analysis-with-python-examples/
 - https://stackoverflow.com/questions/2307283/what-does-olog-n-mean-exactly#:~:text=Logarithmic%20running%20time%20(%20O(log,an%20O(log%20n)%20time
 
-## Approaches
+# Approaches
 1. First Approach, Using performance.now() and check how long a function run but this isn't a recommended way. 
 2. Second Approach, we can define it by counting operations in a function. 
 
-### BigO Rules of thumb
+## BigO Rules of thumb
 1. Constants don't matter
 - O(2n)     => O(n)
 - O(500)    => O(1)
@@ -344,7 +344,7 @@ Factorial is the multiplication of all positive integer numbers less than itself
 - O(1000n+50) => O(n)
 - O(n2+5n+8)  => O(n2)
 
-### Space complexity 
+## Space complexity 
 Rules of thumb
 - Most primitives booleans, numbers, undefined null are constant space
 - Strings require O(n) space (where n is the string length)
@@ -359,34 +359,34 @@ Used in
 - Effecient sorting
 - Recursion 
 
-## Analyzing Object and Array Performance
+# Analyzing Object and Array Performance
 
-### Objects
-#### When to use Objects
+## Objects
+### When to use Objects
 - When you don't need order
 - When you need fast access/insert and removal 
 
-#### Crud
+### Crud
 Insertion   O(1)
 Removal     O(1)
 Searching   O(n)
 Access      O(1)
 
-#### Object Methods
+### Object Methods
 Object.keys     O(n)
 Object.values   O(n)
 Object.entries  O(n)
 Object.hasOwnProperty O(n)
 
 
-### Array
-#### When to use Arrays
+## Array
+### When to use Arrays
 - when you need order
 - when you need fast access / insertion and remove 
 
 SingleLinkList and Double Link lists also mantains order like Array
 
-#### Crud
+### Crud
 - Insertion   depends
 - Removal     depends
 - Searching   O(n)
@@ -394,7 +394,7 @@ SingleLinkList and Double Link lists also mantains order like Array
 
 Insertion, when you add a value to the end of array, it's O(1) but if u add it first it's O(n) coz the indexed has to be changed for all other values 
 
-#### Array Methods
+### Array Methods
 - push        O(1)
 - pop         O(1)
 - shift       O(n)
@@ -411,7 +411,7 @@ Insertion, when you add a value to the end of array, it's O(1) but if u add it f
 # ProblemSolvingApproach
 Basic approach to solving a problem
 
-### What is an algorithm ?
+## What is an algorithm ?
 A process or set of step to accomplish a certain task
 
 Examples
@@ -420,23 +420,23 @@ Examples
 - search result algorithms
 - calculate first 100 prime numbers 
 
-### Why do i need this?
+## Why do i need this?
 - Almost everythin you do in programming involces some kind of algorithm
 - It's the foundation for being a successful problem solving and developer 
 
-### How do i improve ?
+## How do i improve ?
 1. First, Devise a plan for solving problems
     - plan, strategy
 2. Second, Master common problem solving patterns     
 
-## ProblemSolving Strategy
+# ProblemSolving Strategy
 1. Understand the Problem
 2. Explore Concrete Examples
 3. Break it Down
 4. Solve/Simplify
 5. Look back and Refactor
 
-### Understanding the problem 
+## Understanding the problem 
 Question to ask 
 
 1. Can i restate the problem in my own words ?
@@ -446,7 +446,7 @@ Question to ask
     - In other words, do i have enough information to solve the problem ?
 5. How should i label the important pieces of data that are a part of the problem ?
 
-#### Example Problem 
+### Example Problem 
 Write a function which takes two number and return their sum 
 
 1. Can i restate the problem in my own words ?
@@ -471,7 +471,7 @@ Coming up with exmaples can help you understand the problem better. Examples als
 - Explore Examples with Invalid Inputs
 
 
-#### Example Problem 
+### Example Problem 
 Write a function which takes in a string and returns counts of each character in the string
 
 Understand the problem
@@ -648,9 +648,8 @@ function sameRefactored (arr1, arr2) {
   return true
 }
 ```
-#### Example2
+### Example2
 Given two strings, write a function to determine if the second stirng is an anagram of the first. An anagram is a word, phrase or name formed by rearranging the letters of another such a cinema formed from iceman.
-
 
 ```javascript
     function validAnagram(word1, word2) {  
@@ -712,7 +711,7 @@ Given two strings, write a function to determine if the second stirng is an anag
     }
 
 ``` 
-#### Example3
+### Example3
 ```javascript
 // Find duplicates in an array 
     // example : [1,2,3,1] = false 
@@ -741,7 +740,6 @@ Given two strings, write a function to determine if the second stirng is an anag
 
 ## Multiple Pointers
 Creating pointers or values that corresponds to an index or position and move towards the beginning, end or middle based on a certain condition
-
 - Very efficent for solving problems with minimal space complexity
 - Example, [-4,-3,-2,-1,0,1,2,5] here we use two pointers
 - from first index and to last index
@@ -775,7 +773,6 @@ console.log(findSumZero([-4,-3,-2,-1,0,1,2,6,15,18,55,60]));
 ```
 ## CountUniqueValues
 Implement a function called countUniqueValues which accepts a sorted array, and counts the unqiue values in the array. There can be negative numbers in the the array, but it will always be sorted. 
-
 
 
 ```javascript
@@ -832,11 +829,10 @@ console.log(countUniqueValues([-2,-1,-1,0,1]), '// 4');
 ```
 
 ## Sliding Window
-This pattern involves creating a window which can either be an array or number from one position to another
+- This pattern involves creating a window which can either be an array or number from one position to another
+- Depending on a certani condition, the window either increases or closes (and a new window is created)
 
-Depending on a certani condition, the window either increases or closes (and a new window is created)
-
-Very useful for keeping track of a subset of data in an array/string etc.
+- Very useful for keeping track of a subset of data in an array/string etc.
 
 ### My try
 ```javascript
