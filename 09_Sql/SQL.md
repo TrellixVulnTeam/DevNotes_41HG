@@ -1,5 +1,6 @@
 ## Table of contents 
 - [Run Oracla via docker](#run-oracla-via-docker)
+- [SQL Statements Used](#sql-statements-used)
 - [Database Concepts](#database-concepts)
   - [What is a Database ?](#what-is-a-database-)
     - [What are the Database Management Systems? (DBMS)](#what-are-the-database-management-systems-dbms)
@@ -9,7 +10,7 @@
     - [What is a Relational Database ?](#what-is-a-relational-database-)
       - [What is an Entity ?](#what-is-an-entity-)
       - [What is the Relationship ?](#what-is-the-relationship-)
-  - [Introducing Database Objects](#introducing-database-objects)
+- [Introducing Database Objects](#introducing-database-objects)
       - [SchemaObjects](#schemaobjects)
       - [What is a Schema](#what-is-a-schema)
       - [What is HR Schema](#what-is-hr-schema)
@@ -17,7 +18,7 @@
     - [What is SQL](#what-is-sql)
     - [Where we use SQL?](#where-we-use-sql)
     - [How do we run an SQL query?](#how-do-we-run-an-sql-query)
-  - [Retriving Data](#retriving-data)
+- [Retriving Data](#retriving-data)
     - [Orcale Datatypes](#orcale-datatypes)
     - [What is a NULL value ?](#what-is-a-null-value-)
     - [DESCRIBE Command](#describe-command)
@@ -30,7 +31,7 @@
     - [Distinct & Unique Operator](#distinct--unique-operator)
     - [Concatenation Opeartors](#concatenation-opeartors)
     - [Arthmetic Expressions](#arthmetic-expressions)
-  - [Restricting Data](#restricting-data)
+- [Restricting Data](#restricting-data)
     - [Using the WHERE clause](#using-the-where-clause)
       - [BETWEEN, AND Opeartors](#between-and-opeartors)
       - [Using the IN operator](#using-the-in-operator)
@@ -39,14 +40,14 @@
       - [Logical Operators](#logical-operators)
       - [Rules of Precedence](#rules-of-precedence)
         - [Note](#note)
-  - [Sorting Data](#sorting-data)
+- [Sorting Data](#sorting-data)
     - [The ORDER BY Clause](#the-order-by-clause)
     - [ASC DESC Operators](#asc-desc-operators)
     - [NULLS FIRST AND NULLS LAST](#nulls-first-and-nulls-last)
     - [ROWNUM AND ROWID](#rownum-and-rowid)
     - [Oracle Fetch Clause](#oracle-fetch-clause)
-  - [Substitution Variable](#substitution-variable)
-  - [Single Row Functions](#single-row-functions)
+- [Substitution Variable](#substitution-variable)
+- [Single Row Functions](#single-row-functions)
     - [What is a Function](#what-is-a-function)
     - [Single-Row Functions](#single-row-functions-1)
     - [Character functions](#character-functions)
@@ -60,7 +61,25 @@
       - [Implicit Data type Conversion](#implicit-data-type-conversion)
       - [Explicit Data type Conversion](#explicit-data-type-conversion)
         - [TO_CHAR](#to_char)
-      - [Multiple-Row Functions](#multiple-row-functions)
+        - [TO_NUMBER](#to_number)
+        - [TO_DATE](#to_date)
+    - [NULL related (NVL, NVL2, NULLIF, COALESCE)](#null-related-nvl-nvl2-nullif-coalesce)
+      - [NVL Function](#nvl-function)
+      - [NVL2 Function](#nvl2-function)
+      - [NULLIF Function](#nullif-function)
+      - [COALESCE](#coalesce)
+- [Multiple row functions](#multiple-row-functions)
+    - [Group Functions](#group-functions)
+    - [Grouping Data ( GROUP BY Clause)](#grouping-data--group-by-clause)
+    - [Having Clause](#having-clause)
+    - [Nested Group Functions](#nested-group-functions)
+- [Joining Multiple Tables](#joining-multiple-tables)
+    - [Creating a JOIN](#creating-a-join)
+    - [Natural Join](#natural-join)
+    - [Join with the USING Clause](#join-with-the-using-clause)
+    - [Handling Ambiguous Column Names](#handling-ambiguous-column-names)
+    - [Inner Join](#inner-join)
+    - [Multiple Join Operations](#multiple-join-operations)
   - [Others](#others)
 
 
@@ -90,6 +109,30 @@ docker restart <container_id>
 ```
 Ref
 https://gist.github.com/SanthoshBabuMR/d5f22e3677815074dc8656f544a319b1
+
+# SQL Statements Used 
+- DML : Data Manipulation Language
+  - SELECT
+  - INSERT
+  - UPDATE
+  - DELETE
+  - MERGE
+- DDL : Data Defintion Language
+  - CREATE
+  - ALERT
+  - DROP
+  - RENAME
+  - TRUNCATE
+    - This removes all records in a table 
+- DCL : Data Control Language
+  - Controls Privilege, Access database, Create Connection  
+    - GRANT     
+    - REVOICE
+- TCL : Transaction Control Language
+  - Saving or Cancelling the the changes
+    - COMMIT
+    - ROLLBACK
+    - SAVEPOINT
 
 # Database Concepts
 ## What is a Database ?
@@ -145,7 +188,7 @@ A relational database organizes data into tables which can be linked—or relate
 In the below figure, we use DEPARTMENT_ID to define relationshp
 ![alt text](https://github.com/shaktish/DevNotes/blob/master/09_Sql/images/relationalDatabase.png?raw=true "graph_term_undirectedgraph")
 
-## Introducing Database Objects
+# Introducing Database Objects
 Oracle Database has many database objects categoriezed under two subjects which are Scheme objects and Nonshcema objects.
 
 #### SchemaObjects 
@@ -201,7 +244,7 @@ Abbreviation of Human Resources. A schema that can practice on it.
 - Tools like SQL plus, Toad Etc, We will use SQL developer as it was developed by Oracle 
 
 
-## Retriving Data 
+# Retriving Data 
 ### Orcale Datatypes 
 - VARCHAR2(SIZE) : Variable-length character data
   - When u enter 20characters, it will take only 20-chars space in db
@@ -361,7 +404,7 @@ There is a table called DUAL.
   - Sys date return the current date and time of the system
 - Arithmetic opeartions with the NULL values return NULL
 
-## Restricting Data
+# Restricting Data
 We ll explore how to restrict data by various methods  
 
 ### Using the WHERE clause
@@ -443,7 +486,7 @@ Order : Meaning
 - You should use parentheses to avoid logical order confusion or change the order specifically 
   - ``` WHERE (job_id = 'IT_PROG' OR job_id = 'ST_CLERK') AND salary > 5000;```
 
-## Sorting Data
+# Sorting Data
 We ll know how to sort the data 
 
 ### The ORDER BY Clause
@@ -511,11 +554,11 @@ WITH TIES
 ```SQL
 SELECT first_name, last_name, salary FROM HR.employees ORDER BY salary DESC OFFSET 1 ROW FETCH FIRST 10 ROWS WITH TIES;
 ```
-## Substitution Variable 
+# Substitution Variable 
 - A substiution variable can be thought as a user variable
 - The substitution variables are placeholders in an SQL script wher you want to substitute some values at runtime 
 
-## Single Row Functions 
+# Single Row Functions 
 ### What is a Function
 - Functions are created for manipulating the data and returning a value
 - Functions must be created before calling them. Otherwise, you will have the following error:
@@ -543,7 +586,7 @@ SELECT first_name, last_name, salary FROM HR.employees ORDER BY salary DESC OFFS
     - Used to convert one data type to another
   - General
     - These functions take in any data but they are mainly used to handle the NULL values  
-  
+
 
 ### Character functions 
 - Takes in character data as input and return character or numeric data as output.
@@ -709,15 +752,301 @@ There are 3 functions for explicit data type conversion which are
     - nls : national language support
 - TO_CHAR functions is case-senstive 
 - Example 
+  - Displays hire date in YEAR
   - ``` SELECT first_name, last_name, TO_CHAR(hire_date, 'YYYY') from HR.EMPLOYEES where TO_CHAR(employee_id) = '100'; ```
-  - 
+- Number format models are used with the TO_CHAR function to display the numeric vlaues in different formats 
+- Number Format Models : Meaning
+  - 9 : Sepcifies the number of digits
+  - 0 : specifies leading or trailing zeros
+  - $ : Adds dollar sign
+  - L : Displays local currecny symbol
+  - . : Displays a decimal point
+  - , : Displays comma as indicator 
+- Example
+  - Change Salary into readably currency format
+  - ``` SELECT salary as Original, TO_CHAR(salary, 'L999,999') as Modified FROM HR.employees  ```
+
+##### TO_NUMBER
+- It is use to convert a text to a number 
+- Syntax
+  - TO_NUMBER(char, [,'format_model'])
+- Same Number Format Models applies to number
+- Example
+  - ``` SELECT TO_NUMBER('$6,152.21', '$99,999.99') AS FORMATTED_NUMBER from dual ```
+##### TO_DATE
+- Converts the characters to a DATE date type in the specifed format model
+- Syntax
+  - TO_DATE(char,[,'format_model'])
+  - Example
+    - ``` SELECT first_name, last_name FROM HR.EMPLOYEES where HIRE_DATE > TO_DATE('Jun 12,2005', 'Mon DD, YYYY') ```
+
+### NULL related (NVL, NVL2, NULLIF, COALESCE)
+There are four NULL functions
+- NVL
+- NVL2
+- NULLIF
+- COALESCE
+  
+#### NVL Function 
+- The NVL function allows us to replace a null value with a meaningful alternative.
+- Syntax
+  - NVL(Expression1, Expression2)
+  - If expressions 1 is null, then NVL() functions returns expression2 
+- Data type can be characters, numers or dates
+- Data types must match with each other(number-number, date-date, character-character)
+- The NVL functions is extermely useful in arithmetic opeartions to avoid calculation errors 
+- Example
+  - ``` SELECT JOB_ID, FIRST_NAME, LAST_NAME, COMMISSION_PCT, NVL(COMMISSION_PCT,0) AS NLV_COMM_PCT FROM HR.EMPLOYEES where JOB_ID in ('SA_REP', 'IT_PROG'); ```
+
+#### NVL2 Function 
+- The NVL2 function allows us replace a value when a null vlaue is encountered as well as when a non-null value is encountered
+- Syntax
+  - NVL2(Expression1, Expression2, Expression3)
+- If the Expression1 is not null, then it return the Expression2. if the Expression1 is NULL, then then Expression3 is returned
+- And the Expression 1 doest not have be the same data type in Expression2 and Expressioin
+- Example
+  - ``` SELECT JOB_ID, FIRST_NAME, COMMISSION_PCT, NVL2(COMMISSION_PCT,'has', 'has not') from HR.EMPLOYEES where JOB_ID IN ('SA_REP', 'IT_PROG'); ```
 
 
+#### NULLIF Function 
+- Syntax
+  - ``` NULLIF(Expression1, Expression2) ```;
+- Compares Expression1 and Expression2, if they are equal returns NULL but if they are not equal returns Expression1
+- The Expression1 and Expression2 must be in same datatype
+- Example
+  - ``` SELECT FIRST_NAME, LAST_NAME, LENGTH(FIRST_NAME) AS LEN1, NULLIF(LENGTH(FIRST_NAME), LENGTH(LAST_NAME)) from HR.Employees; ```
 
-#### Multiple-Row Functions
-- Multiple row also called group functions gets more than one row as input and return 1 result as output for that group of rows  
+#### COALESCE
+- Improved version of NVL function
+- The COALESCE function accepts a list of arguments and returns the first one that evaluates to a non-null value 
+- Syntax
+  - ``` COALESCE(Expression1, Expression2, ..., ExpressioN)
+- It aceepts at least two ore more parameters 
+- If all the specified expresssions are NULL, then the function returns NULL
+- All of the expression must be in the same data type
+- Example
+  - ``` SELECT coalesce(null, null, null, null, 1,2,3, null) from dual; ```
+  - ``` SELECT location_id, street_address, postal_code, city, state_province, coalesce(state_province, city) as STATE_PROV FROM HR.locations; ```
+
+# Multiple row functions
+Multiple row also called group functions gets more than one row as input and return 1 result as output for that group of rows 
+
+### Group Functions 
+- Reporting Aggregated Data using the Group Functions
+- Group functions are also called Multiple Row Functions or Aggregate Functions 
+
+Real world Scenarios
+- How many employees do we have ?
+  - ``` SELECT COUNT(*) from HR.EMPLOYEES ```
+- who earn the maximum salary among the IT programmers ?
+  - ``` select MAX(salary) FROM HR.employees WHERE JOB_ID = 'IT_PROG'; ```
+- what is the average salary we pay to our employees ?
+  - ``` select AVG(salary) FROM HR.employees WHERE JOB_ID = 'IT_PROG'; ```
+- How many employees earn more than 10,000 salary ?
+  - ``` SELECT COUNT(*) from HR.employees where salary > 10000; ```
+
+These kind of information can be handled by group functions 
+
+- Syntax 
+  - ``` SELECT group_function([DISTINCT|ALL] column_name), ... FROM table [WHERE condition]; ```
+- Group functions opeartoe on multiple rows and return one result for each group 
+- Group functions are usally used after the SELECT keyword
+- Multiple group functions can be used in a single SELECT statement
+- Group functions ignore the NULL values! but you can use the NVL, NVL2, COALESCE, DECODE functions or CASE expressions to handle the NULL values 
+- The DISTINCT and ALL (default) keywords are used with the gorup function to consider duplicate values 
+- Most commonly used functions
+  - AVG : Returns the average value
+  - COUNT : Returns the number of rows returned by a query
+  - MAX : Returns the maximum value of the exoression or a column
+  - MIN : Returns the minimum value of the expression or a column
+  - SUM : Returns the sum of the expression or column values 
+  - LISTAGG : Transforms and orders data from mulitple rows into a single list of values separted by a specified delimiter. 
+- Notes
+  - Groupby Function Syntax
+    - AVG([DISTNICT|ALL] expression)
+    - ``` SELECT AVG(SALARY), AVG(ALL salary), AVG(DISTINCT salary) from HR.employees; ```
+  - Group functions must be used with Group By CLAUSE else you cant add a column
+    - the following query will fail as it don't have a groupby clause and has a column 
+    - ``` select FIRST_NAME, MAX(salary) FROM HR.employees WHERE JOB_ID = 'IT_PROG'; ```
+    - the following query will work 
+      - ``` select MAX(salary) FROM HR.employees WHERE JOB_ID = 'IT_PROG'; ```
+  - Handling NULL, use Null functions, the following query uses NVL to handle null value 
+    - ``` select AVG(commission_pct),  AVG(NVL(commission_pct, 0)) from HR.employees; ``` 
+  - COUNT Function  
+    - '*' if we use astreik it counts including the NULL values 
+    - ``` SELECT COUNT(*), COUNT(manager_id),  COUNT(DISTINCT manager_id), COUNT(ALL manager_id) from HR.employees; ```
+
+### Grouping Data ( GROUP BY Clause)
+- Creates groups of values using the group functions 
+- Syntax
+  - ``` SELECT expression1, expression2, ..., aggregate_function(aggregate_expression) FROM table [WHERE condition] GROUP BY expression1, expression2, ..., [ORDER BY order_expression]```
+- We can use more than one expression -or column- in a GROUP BY caluse
+- The SELECT clause cannot have any other individual columns than what is used with the GROUP BY clause
+- We don't need to use all the colums used with the GROUP BY clause in SELECT statement
+- In the SELECT statements, we can use the group functions with different columns than the GROUP BY has. 
+  - GROUP BY clause groups teh rows not the columns 
+- We can use as many gorup functions as we want
+- Column aliases cannot be used with the GROUP BY clause
+- The ORDER BY clause cannot have any other individual columns than the GROUP BY clause has. 
+- We can use the WHERE clause to restrict the resulting data
+- Example
+  - The following query groups by department
+  - ``` select job_id, max(salary) from HR.employees GROUP BY job_id ORDER BY AVG(salary) desc;  ```
+- Note 
+  - The SELECT clause cannot have any differnt columns than what is used in the GROUP BY clause 
+- ORDER BY Clause Order Precedence 
+  - Order : Clause : Function
+    - 1 : from : choose and join tables to get base data.
+    - 2 : where : filters the base data
+    - 3 : group by : Aggregates the base data
+    - 4 : having : Filters the base data
+    - 5 : select : Returns the final data 
+    - 6 : Order by : Sorts the final data 
+
+### Having Clause
+- HAVING clause filters grouped data. 
+- The group functions cannt be used in the WHERE clause
+- Following query fails 
+  - ``` SELECT job_id, AVG(salary) from HR.EMPLOYEES WHERE AVG(salary) > 5000 GROUP BY job_id; ```
+- We can use the HAVING clause to filter data after it has been grouped 
+- The WHERE clause filters rows wheras the HAVING clause filters grouped data. 
+- Example
+  - ``` SELECT job_id, AVG(salary) from HR.EMPLOYEES GROUP BY job_id HAVING AVG(salary) > 10000 ; ``` 
 
 
+### Nested Group Functions 
+- Group functions can be nested 
+- The output of the inner function is the input opf ther outer function
+- We have to use the GROUP BY clause when using nested group functions 
+- Group functions can be nested to a depth of two.
+  - Maximum nested group functions limit is TWO
+  - Groupfunction1(Groupfunction2())
+  - Select MAX(AVG(salary)) from HR.emplyees GROUP BY department_id;
+
+
+# Joining Multiple Tables 
+What is a Join ?
+- A join is a concept that allows us to retrieve data from two or more tables in a single query
+- In SQL, we often need to write queries to get data from two or more tables.Anything but the simplest of queries will usally need data from two or more tables, and to get data from multiple tables, we need to use the joins 
+- There are couple of Join types
+  - Natural Join
+  - Inner Join
+  - Outer Join
+    - LEFT Outer Join
+    - Right Outer Join
+    - FULL Outer Join
+  - Equijoin
+  - Non-Equijoin
+  - Self Join
+  - Cross Join 
+
+### Creating a JOIN
+- Syntax
+  - ``` SELECT columns FROM table1 JOIN_TYPE table2 ON table1.column_name = table2.column_name; ```
+- Following query get firstname and department name from employee and department table using department_id 
+  - ``` SELECT first_name, email, department_name FROM HR.EMPLOYEES JOIN HR.departments USING (department_id); ```
+
+### Natural Join 
+- Lets understand few terms with the following query
+  - ``` Select * from source_table NATURAL JOIN target_table ```
+  - Source Table
+  - target table 
+- Natural Join joins two tables based on common columns that have the same name and same data type. 
+- The rows are matched with each other from two tables that have equal values in the common columns 
+- If common columns have the same name but differnt type of data, it will result in an error 
+- The WHERE clause can be used to restrict data 
+- Syntax
+  - ``` SELECT columns from table1 NATURAL JOIN table2 ```
+- Example
+  - ``` SELECT * FROM HR.employees NATURAL JOIN HR.departments; ```
+
+### Join with the USING Clause
+- When joining two tables, if ther are more than one common columns that have the same names, we can use the USING lause to specify which oclumns needs to be selected as teh join column in the join opeartion. 
+- The USING clause is used for matching a specific column or columns when join two tables
+- Joining with the USING clause is considered as 'Equijoin'
+- Example
+  - In 2 tables, If there are 5 eqaul columns Natural join perfroms join opeartion using all these five columns 
+  - If you to join by a specific column we can do this with USING clause
+  - ``` SELECT * FROM HR.EMPLOYEES JOIN HR.DEPARTMENTS USING (department_id) ```
+  - To write more columns add comma and write the columns
+  - ``` SELECT * FROM HR.EMPLOYEES JOIN HR.DEPARTMENTS USING (department_id, manager_id) ```
+
+### Handling Ambiguous Column Names 
+- Table aliases are used for handling column ambiguity when joining tow or more tables 
+- We can explain to the SQL engine which table's column will be used by writing the table aliases
+- Table aliases increase code readability and query performance
+- We cannot give aliases to columns that we use with the USING clause or NATURAL JOIN
+- ``` SELECT first_name,last_name, department_name, e.manager_id from HR.EMPLOYEES e JOIN HR.departments d USING (department_id) ```;
+
+### Inner Join 
+- Returns all the rows from both the participating tables that satisfy the join ocndition or the expression of the ON/USING clause
+  - In the inner Joins, unmatched rows do not appear in the result set
+- Syntax
+  - ``` SELECT columns FROM table1 [INNER] JOIN table2 ON (join_condition) / USING(column_name); ```
+- With the ON clause, we can write one or more conditions even if they have different names. Only the rows that satisfy these join conditions are included in the result set.
+  - ``` SELECT e.first_name, e.last_name, d.manager_id, d.department_name FROM HR.employees e JOIN HR.departments d ON (e.department_id = d.department_id AND e.manager_id = d.manager_id); ```
+- What is the differnce btw ON and USING clause in SQL ?
+  - both of them allows us to join unlimited columns 
+  - the difference is 
+  - USING clause requires the join columns to have the same name 
+  - ON clause works even if  join columns have different name 
+
+### Multiple Join Operations 
+- We can join more than two tables 
+- We can use the USING, ON clause, or NATRUAL JOIN while joining multiple tables 
+- Example
+  - Following query joins employees, departments using JOIN, USING clause
+  ``` SQL
+    select first_name, last_name, 
+    department_name, city, state_province
+    from HR.employees 
+    JOIN HR.departments
+    USING(department_id)
+    JOIN HR.locations
+    USING (location_id); 
+  ```
+- Another Example, 
+  - Following query join employes, department, location, countries
+```sql
+select first_name, last_name, department_name, city, state_province,  COUNTRY_NAME
+from HR.employees e
+JOIN HR.departments d
+ON(d.department_id = e.department_id )
+JOIN HR.locations l
+USING (location_id)
+JOIN(HR.countries) c
+ON(c.country_id = l.country_id)
+```
+### Restricting JOINS
+- We can restrict joins using the WHERE clause or the AND operator
+- Following JOIN is restricted using WHERE clause 
+``` SQL
+select first_name, last_name, department_name, city, state_province,  COUNTRY_NAME
+from HR.employees e
+JOIN HR.departments d
+ON(d.department_id = e.department_id )
+JOIN HR.locations l
+USING (location_id)
+JOIN(HR.countries) c
+ON(c.country_id = l.country_id)
+WHERE d.department_id = 100;
+```
+- Following JOIN is restricted using AND operator 
+``` SQL
+select first_name, last_name, department_name, city, state_province,  COUNTRY_NAME
+from HR.employees e
+JOIN HR.departments d
+ON(d.department_id = e.department_id )
+JOIN HR.locations l
+USING (location_id)
+JOIN(HR.countries) c
+ON(c.country_id = l.country_id)
+AND d.department_id = 100;
+```
+
+### Self Join 
+- Joining a table with itself is called 'Self Join'
+- A self-join is used for comparing rows in the same table or quering hierarchical data. 
 
 
 ## Others
@@ -725,3 +1054,4 @@ Desktop manager
   - Citrix Workspace Reciever
     - Repair 
 
+T

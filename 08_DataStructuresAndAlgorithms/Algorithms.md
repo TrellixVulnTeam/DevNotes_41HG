@@ -1,15 +1,16 @@
 ## Table of contents 
+- [Algorithms vs Datastructures](#algorithms-vs-datastructures)
 - [What is BigO](#what-is-bigo)
-  - [BigO Complecity Chart](#bigo-complecity-chart)
-    - [O(1) - Constant Time](#o1---constant-time)
+- [BigO Complecity Chart](#bigo-complecity-chart)
+  - [O(1) - Constant Time](#o1---constant-time)
+  - [O(log n) - Logarithmic time](#olog-n---logarithmic-time)
     - [O(n) - Linear time](#on---linear-time)
-    - [O(log n) - Logarithmic time](#olog-n---logarithmic-time)
     - [O(n log n) - Linearithmic Time](#on-log-n---linearithmic-time)
     - [O(n^2) - Quadratic time](#on2---quadratic-time)
     - [O(2^n) - Exponential time](#o2n---exponential-time)
     - [O(n!) - Factorial time](#on---factorial-time)
     - [Reference](#reference)
-    - [Approaches](#approaches)
+  - [Approaches](#approaches)
     - [BigO Rules of thumb](#bigo-rules-of-thumb)
     - [Space complexity](#space-complexity)
     - [Logs of N](#logs-of-n)
@@ -85,6 +86,19 @@
     - [Radix Sort](#radix-sort)
       - [How does it work](#how-does-it-work)
 
+# Algorithms vs Datastructures
+- Data Strucutre
+  - Data Structure is about organising and managing data effectively such that we can perform specific operation efficiently
+- Algorithm
+  - Algorithm is a step-by-step procedure to be followed to reach the desired output.
+
+- Examples01
+  - Data Structure is a water bucket.
+  - Algorithms are a way to use water of bucket for some meaningful purpose.
+  - Data structures :- linked list , queue , stack , tree , heaps e.t.c. the buckets of representing data.
+  - Algorithms :- kruskals , prims , sorting , djkstra , Huffman e.t.c. to use data from these buckets to do some meaningful tasks.
+
+
 # What is BigO
 Simplified analysis of an algorithm's efficiency
 - BigO is a way to formalize fuzzy counting
@@ -97,13 +111,24 @@ How can we determine which one is the best ? That's what big O is about. It's ab
 - Space/Size
 - Readbilty 
 
-## BigO Complecity Chart
+# BigO Complecity Chart
+![alt text](https://github.com/shaktish/DevNotes/blob/master/08_DataStructuresAndAlgorithms/images/BigO.jpg?raw=true "BigO")
 
-### O(1) - Constant Time
-The complexity of an algorithm is said to be constant if the steps required to complete the execution of an algorithm remain constant, irrespective of the number of inputs. The constant complexity is denoted by O(c) where c can be any constant number.
+- O(1) : Constant Time
+- O(log n) : Logarithmic Time
+- O(n) : Linear Time
+- O(n log n) : Linearthmic Time
+- O(n^2) - Quadratic time
+- O(2^n) - Exponential time
+- O(n!) - Factorial time
 
-- called Constant Complexity 
-- Given the page that a business's name is on and the business name, find the phone number.
+![alt text](https://github.com/shaktish/DevNotes/blob/master/08_DataStructuresAndAlgorithms/images/bigO2.png?raw=true "BigO")
+
+
+## O(1) - Constant Time
+O(1) means that the algorithm takes the same number of steps to execute regardless of how much data is passed in.
+
+- Whether we access the 1st or 2nd or millionth item it doesn’t matter… We can access it directly by using the index operator array[i].
 
 ```javascript
 function isEvenOrOdd(n) {
@@ -114,41 +139,18 @@ console.log(isEvenOrOdd(10)); // => Even
 console.log(isEvenOrOdd(10001)); // => Odd
 ```
 
+## O(log n) - Logarithmic time
+Logarithmic time complexities usually apply to algorithms that divide problems in half every time.
 
-### O(n) - Linear time
-Linear time complexity O(n) means that as the input grows, the algorithms take proportionally longer to complete.
-
-- called Linear Algorithm
-- Find all people whose phone numbers contain the digit "5".
-- Linear Search.
-
-```javascript
-function findMax(n) {
-  let max;
-  let counter = 0;
-
-  for (let i = 0; i < n.length; i++) {
-    counter++;
-    if(max === undefined || max < n[i]) {
-      max = n[i];
-    }
-  }
-
-  console.log(`n: ${n.length}, counter: ${counter}`);
-  return max;
-}
-```
-The complexity of the linear_algo function is linear in the above example since the number of iterations of the for-loop will be equal to the size of the input items array. For instance, if there are 4 items in the items list, the for-loop will be executed 4 times, and so on.
-  
-
-### O(log n) - Logarithmic time
-Logarithmic time complexities usually apply to algorithms that divide problems in half every time. For instance, let’s say that we want to look for a book in a dictionary. As you know, this book has every word sorted alphabetically. If you are looking for a word, then there are at least two ways to do it:
-
-- called Logarithmic Alogirthm
-- used in Finding element on sorted array with binary search
-- Given a person's name, find the phone number by picking a random point about halfway through the part of the book you haven't searched yet, then checking to see whether the person's name is at that point. Then repeat the process about halfway through the part of the book where the person's name lies. (This is a binary search for a person's name.)
+- Example 1 
+  - used in Finding element on sorted array with binary search
+- Example 2
+  - 1) Open the dictionary in the middle and check the first word.
+  - 2) If our word is alphabetically more significant, look in the right half, else look in the left half.
+  - 3) Divide the remainder in half again, and repeat steps 2 and 3 until we find our word.
 
 ```javascript
+// Find indexOf a word in a Sorted array 
 function indexOf(array, element, offset = 0) {
   // split array in half
   const half = parseInt(array.length / 2);
@@ -172,13 +174,36 @@ console.log(indexOf(directory, 'Adrian'));  // => 0
 console.log(indexOf(directory, 'Zoe')); 
 ```
 
+### O(n) - Linear time
+Linear time complexity O(n) means that as the input grows, the algorithms take proportionally longer to complete.
+
+- called Linear Algorithm
+- Linear Search.
+
+```javascript
+function findMax(n) {
+  let max;
+  let counter = 0;
+
+  for (let i = 0; i < n.length; i++) {
+    counter++;
+    if(max === undefined || max < n[i]) {
+      max = n[i];
+    }
+  }
+
+  console.log(`n: ${n.length}, counter: ${counter}`);
+  return max;
+}
+```
+The complexity of the linear_algo function is linear in the above example since the number of iterations of the for-loop will be equal to the size of the input items array. For instance, if there are 4 items in the items list, the for-loop will be executed 4 times, and so on.
+  
   
 ### O(n log n) - Linearithmic Time
-Linearithmic time complexity it’s slightly slower than a linear algorithm. However, it’s still much better than a quadratic algorithm (you will see a graph at the very end of the post)
-
-  - called Log Linear  
-  - Efficient sorting algorithms like merge sort, quicksort and others.
-  - There was a mix-up at the printer's office, and our phone book had all its pages inserted in a random order. Fix the ordering so that it's correct by looking at the first name on each page and then putting that page in the appropriate spot in a new, empty phone book.
+Linearithmic time complexity it’s slightly slower than a linear algorithm. However, it’s still much better than a quadratic algorithm
+- called Log Linear  
+- Efficient sorting algorithms like merge sort, quicksort and others.
+- There was a mix-up at the printer's office, and our phone book had all its pages inserted in a random order. Fix the ordering so that it's correct by looking at the first name on each page and then putting that page in the appropriate spot in a new, empty phone book.
 
 ```javascript
 /**
@@ -280,7 +305,6 @@ function sort(n) {
 ```
 In the script above, you can see that we have an outer loop that iterates through all the items in the input list and then a nested inner loop, which again iterates through all the items in the input list. The total number of steps performed is n * n, where n is the number of items in the input array.
 
-
 ### O(2^n) - Exponential time
 Exponential (base 2) running time means that the calculations performed by an algorithm double every time as the input grows.
 
@@ -306,13 +330,9 @@ Factorial is the multiplication of all positive integer numbers less than itself
 - https://stackabuse.com/big-o-notation-and-algorithm-analysis-with-python-examples/
 - https://stackoverflow.com/questions/2307283/what-does-olog-n-mean-exactly#:~:text=Logarithmic%20running%20time%20(%20O(log,an%20O(log%20n)%20time
 
-### Approaches
+## Approaches
 1. First Approach, Using performance.now() and check how long a function run but this isn't a recommended way. 
 2. Second Approach, we can define it by counting operations in a function. 
-
-- O(1) Constant Time 
-- O(n) 
-- O(n2) Quadratic way
 
 ### BigO Rules of thumb
 1. Constants don't matter
@@ -326,7 +346,7 @@ Factorial is the multiplication of all positive integer numbers less than itself
 
 ### Space complexity 
 Rules of thumb
-- Most primitives booleans, nu-mbers, undefined null are constant space
+- Most primitives booleans, numbers, undefined null are constant space
 - Strings require O(n) space (where n is the string length)
 - Reference types are generally O(n) where n is the length (for arrays) or the number of keys (for objects)
 
@@ -409,14 +429,12 @@ Examples
     - plan, strategy
 2. Second, Master common problem solving patterns     
 
-
 ## ProblemSolving Strategy
 1. Understand the Problem
 2. Explore Concrete Examples
 3. Break it Down
 4. Solve/Simplify
 5. Look back and Refactor
-
 
 ### Understanding the problem 
 Question to ask 
@@ -549,11 +567,8 @@ Question to ask urself !
 - can you think of other ways to refactor ?
 - how have other people solved this problem ?
 
-
-
-
 # Problem Solving Pattern
-Specific Blueprints and lil strategies to keep in your pocket
+Specific Blueprints and strategies to keep in your pocket
 
 Some patterns
 - Frequency Counter
@@ -565,11 +580,10 @@ Some patterns
 - Backtracking
 - Manymore !
 
-
 ## Frequency Counter
 This pattern uses object or set to collect values/frequencies of values 
 
-The can often avoid the need for nested loops or O(n^2) opeartions with arrays/strings
+This can often avoid the need for nested loops or O(n^2) opeartions with arrays/strings
 
 ### Example1
 Write a function called same, which accepts two arrays, the function should return true if every value in the array has it's corresponding value squared in the second array. The frequency of values must be the same.
