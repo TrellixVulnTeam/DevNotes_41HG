@@ -9,7 +9,7 @@
 - [Java Syntax](#java-syntax)
 - [Java Variables](#java-variables)
   - [Declaring (Creating) Variables](#declaring-creating-variables)
-  - [Exmaple](#exmaple)
+  - [Example](#example)
 - [Data types](#data-types)
   - [Non-Primitive Data Types](#non-primitive-data-types)
     - [Arrays](#arrays)
@@ -96,7 +96,7 @@ char myLetter = 'D';
 boolean myBool = true;
 String myText = "Hello";
 ```
-## Exmaple
+## Example
 
 ```JAVA
 // # Creataing a number
@@ -115,29 +115,28 @@ System.out.println(number);
 # Data types
 
 There are two categories
-- Primitive data 
-  - Numeric
-    - Integer
-      - byte
-      - int
-      - short
-      - long
-    - Floating point
-      - double
-      - float
-  - Non-numeric 
-    - Character
-    - Boolean 
-- Non-Primitive Data Types / Reference types
-  - String,
-  - Arrays,
-  - Classes,
+1. Primitive data 
+- Numeric
+ - Integer
+   - byte
+   - int
+   - short
+   - long
+ - Floating point
+   - double
+   - float
+- Non-numeric 
+ - Character
+ - Boolean 
+2. Non-Primitive Data Types / Reference types
+- String,
+- Arrays,
+- Classes,
 
 A primitive data type specifies the size and type of variable values, and it has no additional methods.
 - There are eight primitive data types in Java:
 
 ![alt text](https://github.com/shaktish/DevNotes/blob/master/10_Java/images/java-primitive-datatype.jpg?raw=true "java-primitive-datatype")
-
 
 
 ## Non-Primitive Data Types
