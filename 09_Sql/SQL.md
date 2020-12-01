@@ -69,18 +69,56 @@
       - [NULLIF Function](#nullif-function)
       - [COALESCE](#coalesce)
 - [Multiple row functions](#multiple-row-functions)
-    - [Group Functions](#group-functions)
-    - [Grouping Data ( GROUP BY Clause)](#grouping-data--group-by-clause)
-    - [Having Clause](#having-clause)
-    - [Nested Group Functions](#nested-group-functions)
+  - [Group Functions](#group-functions)
+  - [Grouping Data ( GROUP BY Clause)](#grouping-data--group-by-clause)
+  - [Having Clause](#having-clause)
+  - [Nested Group Functions](#nested-group-functions)
 - [Joining Multiple Tables](#joining-multiple-tables)
-    - [Creating a JOIN](#creating-a-join)
-    - [Natural Join](#natural-join)
-    - [Join with the USING Clause](#join-with-the-using-clause)
-    - [Handling Ambiguous Column Names](#handling-ambiguous-column-names)
-    - [Inner Join](#inner-join)
-    - [Multiple Join Operations](#multiple-join-operations)
-  - [Others](#others)
+  - [Creating a JOIN](#creating-a-join)
+  - [Natural Join](#natural-join)
+  - [Join with the USING Clause](#join-with-the-using-clause)
+  - [Handling Ambiguous Column Names](#handling-ambiguous-column-names)
+  - [Inner Join](#inner-join)
+  - [Multiple Join Operations](#multiple-join-operations)
+  - [Restricting JOINS](#restricting-joins)
+  - [Self Join](#self-join)
+  - [Joining Unequal Tables](#joining-unequal-tables)
+  - [Outer Joins](#outer-joins)
+    - [Left Outer Join](#left-outer-join)
+    - [Right Outer Join](#right-outer-join)
+    - [FULL OUTER JOIN](#full-outer-join)
+    - [CROSS JOIN (Cartesian Product)](#cross-join-cartesian-product)
+- [Using Subqueries](#using-subqueries)
+  - [How does subquery work ?](#how-does-subquery-work-)
+  - [Single-row Subqueries](#single-row-subqueries)
+    - [Group Functions with Single-Row Subqueries](#group-functions-with-single-row-subqueries)
+  - [Multiple-row Subqueries](#multiple-row-subqueries)
+    - [Using IN operators with Subqueries](#using-in-operators-with-subqueries)
+    - [Using ANY operators with Subqueries](#using-any-operators-with-subqueries)
+    - [Using ALL operators with Subqueries](#using-all-operators-with-subqueries)
+  - [Multiple Column Subqueries](#multiple-column-subqueries)
+- [Using SET Operators](#using-set-operators)
+- [DATA MANIPULATION LANGUAGE (DML)](#data-manipulation-language-dml)
+  - [INSERT Statement](#insert-statement)
+  - [UPDATE Statement](#update-statement)
+  - [Delete Statement](#delete-statement)
+- [Transaction Control Statements](#transaction-control-statements)
+  - [COMMIT and ROLLBACK Statements](#commit-and-rollback-statements)
+  - [SAVEPOINT statement](#savepoint-statement)
+  - [FOR UPDATE statement](#for-update-statement)
+- [Data Definition Language (DDL) statements](#data-definition-language-ddl-statements)
+  - [Naming Rules](#naming-rules)
+  - [CREATE TABLE statement](#create-table-statement)
+    - [CREATE TABLE](#create-table)
+    - [CREATE TABLE using a Subquery](#create-table-using-a-subquery)
+  - [ALTER TABLE](#alter-table)
+    - [ALTER TABLE 'ADD COLUMN' statement](#alter-table-add-column-statement)
+    - [ALTER TABLE 'MODIFY COLUMN' statement](#alter-table-modify-column-statement)
+    - [ALTER TABLE 'DROP COLUMN' statement](#alter-table-drop-column-statement)
+    - [ALTER TABLE 'DROP TABLE' statement](#alter-table-drop-table-statement)
+    - [TRUNCATE Statement](#truncate-statement)
+    - [COMMENT Statement](#comment-statement)
+    - [RENAME STATEMENT](#rename-statement)
 
 
 # Run Oracla via docker
@@ -831,7 +869,7 @@ There are four NULL functions
 # Multiple row functions
 Multiple row also called group functions gets more than one row as input and return 1 result as output for that group of rows 
 
-### Group Functions 
+## Group Functions 
 - Reporting Aggregated Data using the Group Functions
 - Group functions are also called Multiple Row Functions or Aggregate Functions 
 
@@ -876,7 +914,7 @@ These kind of information can be handled by group functions
     - '*' if we use astreik it counts including the NULL values 
     - ``` SELECT COUNT(*), COUNT(manager_id),  COUNT(DISTINCT manager_id), COUNT(ALL manager_id) from HR.employees; ```
 
-### Grouping Data ( GROUP BY Clause)
+## Grouping Data ( GROUP BY Clause)
 - Creates groups of values using the group functions 
 - Syntax
   - ``` SELECT expression1, expression2, ..., aggregate_function(aggregate_expression) FROM table [WHERE condition] GROUP BY expression1, expression2, ..., [ORDER BY order_expression]```
@@ -903,7 +941,7 @@ These kind of information can be handled by group functions
     - 5 : select : Returns the final data 
     - 6 : Order by : Sorts the final data 
 
-### Having Clause
+## Having Clause
 - HAVING clause filters grouped data. 
 - The group functions cannt be used in the WHERE clause
 - Following query fails 
@@ -914,7 +952,7 @@ These kind of information can be handled by group functions
   - ``` SELECT job_id, AVG(salary) from HR.EMPLOYEES GROUP BY job_id HAVING AVG(salary) > 10000 ; ``` 
 
 
-### Nested Group Functions 
+## Nested Group Functions 
 - Group functions can be nested 
 - The output of the inner function is the input opf ther outer function
 - We have to use the GROUP BY clause when using nested group functions 
@@ -940,13 +978,13 @@ What is a Join ?
   - Self Join
   - Cross Join 
 
-### Creating a JOIN
+## Creating a JOIN
 - Syntax
   - ``` SELECT columns FROM table1 JOIN_TYPE table2 ON table1.column_name = table2.column_name; ```
 - Following query get firstname and department name from employee and department table using department_id 
   - ``` SELECT first_name, email, department_name FROM HR.EMPLOYEES JOIN HR.departments USING (department_id); ```
 
-### Natural Join 
+## Natural Join 
 - Lets understand few terms with the following query
   - ``` Select * from source_table NATURAL JOIN target_table ```
   - Source Table
@@ -960,8 +998,8 @@ What is a Join ?
 - Example
   - ``` SELECT * FROM HR.employees NATURAL JOIN HR.departments; ```
 
-### Join with the USING Clause
-- When joining two tables, if ther are more than one common columns that have the same names, we can use the USING lause to specify which oclumns needs to be selected as teh join column in the join opeartion. 
+## Join with the USING Clause
+- When joining two tables, if ther are more than one common columns that have the same names, we can use the USING lause to specify which columns needs to be selected as teh join column in the join opeartion. 
 - The USING clause is used for matching a specific column or columns when join two tables
 - Joining with the USING clause is considered as 'Equijoin'
 - Example
@@ -971,27 +1009,34 @@ What is a Join ?
   - To write more columns add comma and write the columns
   - ``` SELECT * FROM HR.EMPLOYEES JOIN HR.DEPARTMENTS USING (department_id, manager_id) ```
 
-### Handling Ambiguous Column Names 
+## Handling Ambiguous Column Names 
 - Table aliases are used for handling column ambiguity when joining tow or more tables 
 - We can explain to the SQL engine which table's column will be used by writing the table aliases
 - Table aliases increase code readability and query performance
 - We cannot give aliases to columns that we use with the USING clause or NATURAL JOIN
 - ``` SELECT first_name,last_name, department_name, e.manager_id from HR.EMPLOYEES e JOIN HR.departments d USING (department_id) ```;
 
-### Inner Join 
-- Returns all the rows from both the participating tables that satisfy the join ocndition or the expression of the ON/USING clause
+## Inner Join 
+- Returns all the rows from both the participating tables that satisfy the join condition or the expression of the ON/USING clause
   - In the inner Joins, unmatched rows do not appear in the result set
 - Syntax
   - ``` SELECT columns FROM table1 [INNER] JOIN table2 ON (join_condition) / USING(column_name); ```
 - With the ON clause, we can write one or more conditions even if they have different names. Only the rows that satisfy these join conditions are included in the result set.
-  - ``` SELECT e.first_name, e.last_name, d.manager_id, d.department_name FROM HR.employees e JOIN HR.departments d ON (e.department_id = d.department_id AND e.manager_id = d.manager_id); ```
+ ``` sql
+SELECT 
+e.first_name, e.last_name, d.manager_id, d.department_name 
+FROM HR.employees e 
+JOIN HR.departments d 
+ON (e.department_id = d.department_id 
+AND e.manager_id = d.manager_id); 
+ ```
 - What is the differnce btw ON and USING clause in SQL ?
   - both of them allows us to join unlimited columns 
   - the difference is 
   - USING clause requires the join columns to have the same name 
   - ON clause works even if  join columns have different name 
 
-### Multiple Join Operations 
+## Multiple Join Operations 
 - We can join more than two tables 
 - We can use the USING, ON clause, or NATRUAL JOIN while joining multiple tables 
 - Example
@@ -1017,7 +1062,7 @@ USING (location_id)
 JOIN(HR.countries) c
 ON(c.country_id = l.country_id)
 ```
-### Restricting JOINS
+## Restricting JOINS
 - We can restrict joins using the WHERE clause or the AND operator
 - Following JOIN is restricted using WHERE clause 
 ``` SQL
@@ -1044,14 +1089,483 @@ ON(c.country_id = l.country_id)
 AND d.department_id = 100;
 ```
 
-### Self Join 
+## Self Join 
 - Joining a table with itself is called 'Self Join'
 - A self-join is used for comparing rows in the same table or quering hierarchical data. 
+``` sql
+select worker.first_name as Worker_Name, manager.first_name as Manger_Name
+from HR.EMPLOYEES worker
+JOIN HR.EMPLOYEES manager
+ON manager.MANAGER_ID = worker.employee_Id
+```
+## Joining Unequal Tables
+- If two table doesn't match with columns, we can join these tablees with using BETWEN ... and, comparasion operators (<,>, <=  >=) 
+``` sql
+select e.first_name, e.last_name, e.salary, j.min_salary, j.max_salary  from HR.employees e
+JOIN HR.JOBS j
+ON e.salary between j.min_salary and j.max_salary
+```
+## Outer Joins
+- The outer joins return the matching rows from the joined tables, plus unmatched rows from one or both tables 
+- There are 3 types of Outer Joins 
+  - Left Inner Join
+  - Full Outer Join
+  - Right Outer Join
+
+### Left Outer Join 
+- LEFT OUTER JOIN = LEFT JOIN
+- The LEFT OUTER JOIN returns all the matching rows of both tables and the unmatched rows of the left table. For the unmatchedrows, the columns values of the other table are show as NULLS
+- How JOIN works in SQL 
+  - It compares left column to right column one by one 
+- The below query 
+  - uses Left Outer Join, it returns values including NULL
+  - with inner join, only matched value are returned   
+```sql 
+-- select e.first_name, e.last_name, d.department_name from HR.employees e 
+select COUNT(*) 
+from HR.employees e
+LEFT OUTER JOIN HR. departments d
+-- USING(department_id)
+ON (e.department_id = d.department_id)
+```
+
+### Right Outer Join 
+- RIGHT OUTER JOIN = RIGHT JOIN
+- The RIGHT OUTER JOIN returns all the matching rows of both tables and the unmatched rows of the RIGHT table. For the unmatchedrows, the columns values of the other table are show as NULLS
+  
+### FULL OUTER JOIN
+- FULL OUTER JOIN = FULL JOIN
+- Retrieves all of the rows from both tables. If a match is found, then it displays the matching rows, if not it displays NULL values 
+``` SQL
+-- select e.first_name, e.last_name, d.department_name from HR.employees e 
+select COUNT(*) 
+from HR.employees e
+FULL OUTER JOIN HR. departments d
+-- USING(department_id)
+ON (e.department_id = d.department_id)
+```
+### CROSS JOIN (Cartesian Product)
+- In cartesian product each row of one table is joined with every row of another table. For exmaple; if department table has 10 rows and employees table has 20 rows, cartesian product of these tables will have 200 rows
+- Cross join generates a huge numbers of data and generally this data is useless 
+- You can use it CROSS JOIN to: - generate data for testing purposes - combine all properties - you need all possible combination of e.g blood groups (A,B,..) with Rh-/+, etc..
 
 
-## Others
-Desktop manager 
-  - Citrix Workspace Reciever
-    - Repair 
+# Using Subqueries
+- Scenario
+  - Suppose that we want to find the employees who earn more than Michael ?
+  - What do we need for that ?
+  - Select first, lastname from HR.employees where id = 
+  - First find Michael's salary
+  - Second keep his salary as a subquery/conditio and search in table 
+- Static Solution (not preferred)
+```SQL
+select salary from HR.employees 
+where employee_id = 201;
 
-T
+select first_name, last_name 
+from HR.employees 
+where salary > 13000
+```
+## How does subquery work ?
+- Inner query is named as Subquery and outer query is named main query
+- Subquery is executed before the main query and result is used by the main query
+- Subqueries are neclosed with parentheses
+- Subqueries can be used within SELECT, WHERE, HAVING and FROM clause 
+- There are three type of subqueries
+  - Single-row 
+  - Multiple-row
+  - Multiple-column-row
+- Dynamic Solution
+  - Question : find the employees who earn more than Michael 
+```SQL
+select first_name, last_name 
+from HR.employees 
+where salary > (select salary from HR.employees where employee_id = 201)
+```
+
+## Single-row Subqueries
+- Returns only one row from the inner query.
+- Used with single-row comparison opeartors like ( =, >, <, >=, <=, <> )
+- We can use more than one subquery in one main query 
+```SQL
+select first_name, last_name, salary
+from HR.employees 
+where  department_id = (SELECT department_id from HR.employees where employee_id = 201) 
+AND salary < (SELECT salary from HR.employees where employee_id = 201)
+```
+
+### Group Functions with Single-Row Subqueries
+- We can use group functions in a subquery 
+```SQL
+select first_name, last_name, hire_date
+from HR.employees 
+where  hire_date = (select MIN(hire_date) from HR.employees) 
+```
+- If a single-row subquery returns multiple-row generates error.
+- If a subquery returns NULL, main query also returns NULL
+
+## Multiple-row Subqueries
+- Returns more than one row from the inner query.
+- Used with multiple-row comparsion operators. (IN, ANY, ALL)
+  - IN operator
+    - Equal to any element in the list
+  - ANY Operator
+    - At least one of the elment should match
+  - ALL Operator
+    - All of the elements should match
+- Multiple-row subqueries can be used within FROM,WHERE and HAVING clause 
+
+### Using IN operators with Subqueries
+- IN oeprator in multiple-row subqueries is used to reutrn vlaues which match with the elements of the inner query 
+- Scenario
+  - What is the minimum salary in departments and who earns minimum salary ? 
+```SQL
+select first_name, last_name, salary
+from HR.employees 
+where  salary IN (Select MIN(salary) 
+from HR.employees 
+group by department_id) 
+```
+### Using ANY operators with Subqueries
+- ANY opeartor in multiple-row subqueries is used to return values which provides the condition with at least in one elements of the inner query.
+- ANY opeartor is used with comparison opeartors like (=, >, <, >=, <=, <>)
+- < ALL means less than maximum
+- = ALL means equal to one of the element (same as IN)
+- > ALL means more than the minimum
+- Following query, uses ANY operator with subquery to return salaries lesser than Sales Manager
+```SQL
+select first_name, last_name, salary
+from HR.employees 
+where  salary < ANY (Select salary
+from HR.employees 
+WHERE job_id = 'SA_MAN')
+```
+### Using ALL operators with Subqueries
+- ALL operator in multiple-row subqueries is used to reutrn values which provide the condition with all elements of the inner query
+- ANY opeartor is used with comparison opeartors like (=, >, <, >=, <=, <>)
+- < ALL means less than minimum
+- = ALL means nothing if there are more than one records
+- > ALL means more than the maximum
+```SQL
+SELECT first_name, last_name, salary
+FROM HR.employees 
+WHERE  salary > ALL 
+(SELECT salary from HR.employees 
+WHERE job_id = 'SA_MAN')
+```
+
+## Multiple Column Subqueries
+- Multiple column subqueries return more than one column in a row
+- Can be used with FROM,WHERE,HAVING clause
+- Multiple column subqueries are useful in wrting more than one inner query in one inner query 
+- Multiple column subquerie are used with IN operator
+```SQL
+SELECT first_name, last_name, salary, department_id
+FROM HR.employees 
+WHERE (department_id, salary) in 
+(SELECT department_id, MIN(salary) from HR.employees group by department_id)
+```
+
+# Using SET Operators 
+- SET operators combine the reuslt of more than one query and return as one result 
+- Queries that SET operators used are called compound queries
+- SET Operators have equal precedence and Oracle server executes from left to right. So we need to use parentheses to change execution order explicitly 
+- The expressions and column names in queries match in number 
+- Data types of each column in both query must match with the corresponding order 
+- We an use ORDER by clause only at the end of the compound query. By default output is sorted in ascending order
+- Except UNION ALL operator, duplicate rows are eliminated automatically 
+- Types of SET operators
+  - UNION : Returns rows of both queries with eliminating duplicated rows
+  - UNION ALL : Returns rows of both queries including duplicate rows 
+  - INTERSECT : Returns rows which exists in both queries 
+  - MINUS : Return rows which exist in first but not exist in the second one 
+  
+# DATA MANIPULATION LANGUAGE (DML)
+- DML Statement means to add, update, delete some data from the database which means when we add a new row to a table, opr modify the exisiting one or remove any row from a table is called as a DML statement
+- A collection of DML statements is called as Transaction
+- Transaction starts with the first execution of a DML statement and finishe with a commit, rollback opeartion or a system failure
+- Transaction is for data security 
+  - (For example, money transfer in a bank)
+
+## INSERT Statement 
+- Adding anew row/rows to a table is called insert statement
+- Syntax
+```SQL
+INSERT INTO table [(column [, column...])] 
+VALUES (value[,value...]);
+```
+- We can insert a new row with specific data
+- Example
+```SQL
+INSERT INTO jobs(job_id, job_title,min_salary, max_salary)
+VALUES ('GR_LDR', 'Group Leader', 8500, 17000);
+```
+- We can insert a new row without using column values
+```SQL
+INSERT INTO jobs 
+VALUES ('GR_LDR', 'Group Leader', 8500, 17000);
+```
+- We can add a new row without writing column names and without writing the full values
+```SQL
+INSERT INTO JOBS
+VALUES ('PRJ_CRD2', 'Project Cordinator', null, null);
+```
+- We can add a new row with omitting some column names
+```SQL
+INSERT INTO JOBS (job_id, job_title)
+values ('PRJ_CRD3','Project Coordinator3');
+```
+- We can add a new row  with using special values like sysdate or specific dates. 
+```SQL
+-- To create a table from HR schema
+-- CREATE TABLE job_history AS SELECT * FROM hr.job_history;
+insert INTO job_history (employee_id, start_date, end_date, job_id, department_id)
+values (9, to_date('12/11/18', 'DD/MM/YY'), sysdate, 'SPC_FR', 9);
+```
+- We can copy a table into another table
+```SQL
+INSERT INTO EMPLOYEE_COPY SELECT * FROM HR.employees;
+```
+- We can also copy specific values from a table into another table
+```SQL
+INSERT INTO EMPLOYEE_COPY SELECT * FROM HR.employees WHERE job_id LIKE 'IT_PROG';
+```
+- We can insert values by using multiple tables
+```SQL
+INSERT INTO EMPLOYEE_ADDRESSES 
+SELECT employee_id, first_name, last_name, street_address || ', ' || city ||  ', ' ||state_province 
+from HR.employees 
+JOIN HR.departments USING (department_id)
+JOIN HR.locations USING (location_id);
+
+-- DELETE COLUMNS IN A TABLE 
+-- DELETE FROM EMPLOYEE_ADDRESSES
+```
+
+## UPDATE Statement
+- Modifies existing values from a table is called update statement
+- Syntax
+```SQL
+  UPDATE table
+  SET column = value [, column = value, ...]
+  [WHERE condition];
+```
+- We can update a column of whole table 
+- Example
+```SQL
+-- Update column in table 
+UPDATE employees_copy 
+SET salary = 5000
+
+-- Update specific salary using where condition 
+UPDATE employees_copy 
+SET salary = 50000 
+where employee_id = 100;
+
+-- Update multiple columns
+UPDATE employees_copy 
+SET salary = 60000, last_name = 'Khan' 
+where employee_id = 100;
+```
+- We can update some columns of a table with a subquery 
+```SQL
+-- select * from hr.employees where job_id = 'IT_PROG';
+
+update employees_copy
+SET (salary, COMMISSION_PCT) = 
+(select MAX(salary), MAX(COMMISSION_PCT) from HR.employees)
+where job_id = 'IT_PROG';
+
+-- select * from employees_copy where job_id = 'IT_PROG';
+```
+
+## Delete Statement
+- Remove existing rows from a table is called delete statement
+```SQL
+DELETE from Table
+[where condition]
+```
+- Example
+  - We can delete whole rows in a table 
+```SQL
+DELETE FROM employees_copy;
+```
+- We can delete rows based on a subquery
+```SQL
+DELETE [FROM] employees_copy 
+where department_id in 
+(select department_id 
+from departments 
+where department_name LIKE SA%)
+```
+
+# Transaction Control Statements
+- Oracle datbase is a transactional database
+- Transaction is for data security, We can see any changes before making changes permanent. Until that time other users will see the old data. 
+- Transaction starts with the first execution of a DML statement and finishes tiwth a commit, rollback opeartion, system failure, DDL or DCL statements
+- When we execute a DML opeartion, the affected rows are loced and anyone else cannot update or delete these rows 
+- There are 3 transactional control statements 
+  - Commit
+  - Rollback
+  - Savepoint
+
+## COMMIT and ROLLBACK Statements
+- Rollback : Undos all changes on data and restores data to its previous state
+```SQL 
+rollback
+```
+- Commit : Saves the changes into the database and makes changes permanent and ends the transaction 
+  - After commtting you cannot rollback
+```SQL 
+commit
+```
+- Before commit or rollback operations, we can see the changes but anyone else cannot see
+- After a DDL or DCL statements, commit will be automatically executed 
+
+## SAVEPOINT statement 
+- Saves the state of the transaction and we can rollback to that state
+- We can use as many savepoint as we want
+- After rollback to an eralier savepoints the next ones are deleted but laters stay
+- For example, we create 4 savepoints (a,b,c,d) and rollback to c, D will be deleted
+```SQL
+-- create a savepoint as A
+SAVEPOINT A
+
+-- rolls back to savepoint A
+ROLLBACK A
+```
+- Using rollback without savepoint will delete all savepoints 
+
+## FOR UPDATE statement 
+- Locks all the rows returning from the query
+- This lock is released with commit or rollback statements
+- If a row we want to lock with FOR UPDATE is already locked select statement wait until this lock releases 
+- To perform quick execution we write NOWAIT keyword. In this time control of locked rows passes from the other to me 
+```SQL
+select * from HR.employees where job_id ='IT_PROG' FOR UPDATE NOWAIT;
+```
+
+# Data Definition Language (DDL) statements
+- DDL statements are used to define database structure
+- With DDL we can 
+- CREATE : To create objects in the database
+- ALTER : Alter the structure of the database
+- DROP : Delete objects from the database
+- TRUNCATE : Remove all recrods from a table, including all spaces allocated for the records are removed
+- COMMENT : Add comments to the data dictonary 
+- RENAME : Rename a Table
+
+## Naming Rules
+Table names and column names must provide the rules below
+- It should start with a letter
+-  Can contain only A-Z,a-z,0-9,_,$ and # characters
+-  Can be 30 characters maximum
+-  Cannot give a name that has given to another object of the same user 
+-  Cannot be Oracle's reserved words
+   -  like, select, where dba_objects etc
+
+## CREATE TABLE statement
+- Create table statement adds a new table into the database 
+- We should have the create table privilege 
+- Syntax
+```SQL 
+CREATE TABLE table_name 
+(column_name datatype [DEFAULT expr]);
+```
+- DESC[RIBE] coomand returns the strucute of a table
+  - ``` desc tableName ```
+- DEFAULT option gives default value when NULL values is inserted
+
+
+### CREATE TABLE
+``` SQL
+CREATE TABLE my_employees
+(
+  employee_id NUMBER(3),
+  first_name VARCHAR2(50),
+  last_name VARCHAR2(50),
+  hire_date DATE DEFAULT sysdate
+)
+```
+### CREATE TABLE using a Subquery
+- We can create a table with getting a subqueries data
+```SQL
+CREATE TABLE table_name
+[(column,column)]
+AS subquery;
+```
+- To copy the table with data
+  - ``` CREATE TABLE employees_copy as SELECT * FROM  employees; ```
+- To copy the table without data
+  - ``` CREATE TABLE employees_copy as SELECT * FROM  employees WHERE 1=2;  ```
+- We can define column names while creating table from subqueries
+  - ``` CREATE TABLE employees_copy(first_name, last_name ) as select first_name, last_name from HR.employees;```
+- We can give different column names while creating table
+- Nu,ber pf specified columns must match with subquery 
+  
+## ALTER TABLE 
+- Alter table statement changes the structure of a table 
+- With alter table statement, we can 
+- Add a new column
+- Modify an existing column
+- Drop a column
+- Rename a column
+- Define a default value to a column
+
+### ALTER TABLE 'ADD COLUMN' statement
+- We can add one or more than one columns to a table 
+  - Syntax
+    - ``` ALTER TABLE table_name ADD (column_name datatype) ```
+- We can add single column to a table 
+  - Example
+  - ``` ALTER TABLE my_employees ADD birth_date DATE ```
+- We can add multiple columns to a table and we can give DEFAULT value to a column
+  - ``` ALTER TABLE my_employees add (age NUMBER DEFAULT 28, hobbies VARCHAR2(50)) ```
+### ALTER TABLE 'MODIFY COLUMN' statement
+- We can change a column's data type, size or default value 
+- Syntax
+  - ``` ALTER TABLE table_name MODIFY (column_name datatype); ```
+- We can modify single column of a table 
+  - ``` ALTER TABLE my_employees2 MODIFY first_name VARCHAR2(200); ```
+- We can modify multiple columns of a table and we can give DEFAULT value to a column 
+  - - ``` ALTER TABLE my_employees2 MODIFY first_name VARCHAR2(200), password VARCHAR2(20) DEFAULT 'abc123'; ```
+
+
+### ALTER TABLE 'DROP COLUMN' statement
+- We can drop columns of a table that we no logner need
+  - ``` ALTER TABLE table_name DROP column col_name); ```
+- We can drop single column of a table;
+  - ``` ALTER TABLE my_employees2 drop column age; ```
+- Drop multiple columns at a time
+  - ``` alter table my_employees2 DROP (col_name1, col_name2); ```
+- Dropping column cannot be recovered
+
+
+### ALTER TABLE 'DROP TABLE' statement
+- Drop table statement removes the table with all the data form the database
+- ``` DROP TABLE table_name ```
+- Restoring this table from the recycle bin (flashback) is difficult and you may not have privilege to restore it 
+
+
+### TRUNCATE Statement
+- Empties whole table in one step, which means delete removed data row by row, but truncate removes them all in one step immediately and commits 
+- ``` TRUNCATE TABLE table_namel ```
+- Truncate statement is a DDL statement, SO delted data with truncate cannot easily be undone(FLASHBACK). Because truncate doe not genrate any undo information or log data.
+
+### COMMENT Statement
+- We can add comment to a table's column
+  - ``` COMMENT ON COLUMN employees.job_ID IS 'Abbreviated job title'; ```
+- We cab add comment to a table list
+  - ``` COMMENT ON TABLE employees IS 'Copy of employee table'; ```
+- We can't directly drop a comment instead comment with something empty 
+  - ``` COMMENT ON TABLE employees IS ''; ```
+- We can query these comments form user_tab_comments or user_col_comments 
+  - ``` SELECT * FROM user_col_comments ```
+
+### RENAME STATEMENT
+- TO rename a table's column 
+  - ``` ALTER TABLE employees_copy RENAME COLUMN PASSWORD TO PASS ``` ;
+- To change name of a table 
+  - ``` RENAME EMPLOYEES_COPY TO EMPLOYEES_COPY2 ; ```
+  - ``` ALTER TABLE EMPLOYEES_COPY RENAME TO EMPLOYEES COPY2; ```
+- we must be a table owner or have required privilege to rename a table 
