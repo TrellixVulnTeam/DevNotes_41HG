@@ -136,7 +136,7 @@ There are two categories
 A primitive data type specifies the size and type of variable values, and it has no additional methods.
 - There are eight primitive data types in Java:
 
-![alt text](https://github.com/shaktish/DevNotes/blob/master/10_java/images/java-primitive-datatype.jpg?raw=true "java-primitive-datatype")
+![alt text](https://github.com/shaktish/DevNotes/blob/master/10_Java/images/java-primitive-datatype.jpg?raw=true "java-primitive-datatype")
 
 
 
