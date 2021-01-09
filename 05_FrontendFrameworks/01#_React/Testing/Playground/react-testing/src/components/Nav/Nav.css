@@ -1,0 +1,9 @@
+.nav-wrapper{
+  display: flex;
+}
+
+.nav-wrapper p {
+  margin: 15px;
+  border : solid 1px #ccc;
+  padding:10px 12px;
+}

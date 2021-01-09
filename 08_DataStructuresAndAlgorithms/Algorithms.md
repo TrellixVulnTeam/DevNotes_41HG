@@ -66,9 +66,11 @@
   - [Elementory Sorting Algorithms](#elementory-sorting-algorithms)
     - [Bubble Sort](#bubble-sort)
       - [Pseudocode](#pseudocode)
+    - [Approach2](#approach2)
       - [Notes](#notes)
     - [Selection Sort](#selection-sort)
       - [Pseudocode](#pseudocode-1)
+      - [Approach2](#approach2-1)
       - [Notes](#notes-1)
     - [Insertion Sort](#insertion-sort)
       - [Pseudocode](#pseudocode-2)
@@ -1174,7 +1176,32 @@ function bubbleSort(arr) {
    
 console.log(bubbleSort([37,45,29,8]));
 ```
+### Approach2 
+```javascript
+var numList = [6,5,3,1];
+console.group(numList.length, 'numList len')
 
+function bubbleSort(arr) {
+  
+  for(let i = 0; i < arr.length; i++) {
+    let noSwap = true;
+    for(let j = 0; j < arr.length-1; j++  ) {                  
+      if(arr[j] > arr[j+1]) {                
+        let temp = arr[j];        
+        arr[j] = arr[j+1];
+        arr[j+1] = temp;   
+        noSwap = false;        
+      } 
+//       console.log(arr[i], 'i', arr[j+1], 'j')     
+    }    
+    if(noSwap) { break; }
+    console.log(arr,' arr')
+  }  
+  
+  return arr;
+}
+console.log(bubbleSort(numList), 'res');
+```
 #### Notes
 - Time complexity of bubble sort is n(n^2)
 - Bubble sort can be best used for nearly sorted collection
@@ -1240,6 +1267,27 @@ function selectionSort (arr) {
 }
 
 console.log(selectionSort([2,34,22,10,19,17]));
+```
+
+#### Approach2
+```javascript
+var numList = [4,5,6,78,151,154,45,1,2];
+
+function selectionSort(arr) {  
+  for(let i = 0; i < arr.length; i++) {
+    let min = i;
+    for(let j = i+1; j < arr.length; j++) {            
+      if(arr[j] < arr[min]) {  
+          min = j;                       
+      } 
+    }    
+    let temp = arr[i]        
+    arr[i] = arr[min]
+    arr[min] = temp;        
+  }        
+  return arr;
+}
+console.log(selectionSort(numList), 'res');
 ```
 #### Notes
 

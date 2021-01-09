@@ -34,12 +34,11 @@
     - [BIG O of Binary Search Tree](#big-o-of-binary-search-tree)
 - [Tree Traversal](#tree-traversal)
     - [What is a Tree Traversal ?](#what-is-a-tree-traversal-)
-      - [Breadth-First-Search Brief](#breadth-first-search-brief)
+  - [Breadth-First-Search](#breadth-first-search)
       - [Depth-First-Search Brief](#depth-first-search-brief)
-  - [Breadth First Search](#breadth-first-search)
-    - [Implement on a Tree Traversal ?](#implement-on-a-tree-traversal-)
-    - [Usecases for a Tree Traversal ?](#usecases-for-a-tree-traversal-)
-    - [BIG O of Tree Traversal](#big-o-of-tree-traversal)
+  - [Breadth First Search](#breadth-first-search-1)
+    - [Implement BFS](#implement-bfs)
+  - [DFS Implementation](#dfs-implementation)
 - [Heaps](#heaps)
     - [What is Heap ?](#what-is-heap-)
 - [HashTable](#hashtable)
@@ -70,11 +69,9 @@
         - [Adjacency Matrix](#adjacency-matrix)
   - [Graph Traversal](#graph-traversal)
     - [Uses](#uses)
-- [Example](#example)
-    - [What is a Queue ?](#what-is-a-queue--1)
-    - [Usecases for a Queue ?](#usecases-for-a-queue--1)
-    - [Implement on a Queue data structure ?](#implement-on-a-queue-data-structure-)
-    - [BIG O of Queue](#big-o-of-queue)
+- [Dynamic Programming](#dynamic-programming)
+  - [Memoization - Caching](#memoization---caching)
+    - [Implementation](#implementation)
 
 # DataStructures
 - A data structure is a data organization, management, and storage format that enables efficient access and modification
@@ -910,7 +907,7 @@ There are two ways of traversing a tree
     - Ubuntu's DFS is backtracking, complete search, finding all paths.. DFS goes deep into a path, explores all of it and comes back outwards and then decides.  
   - Goes Deep 
 
-#### Breadth-First-Search Brief
+## Breadth-First-Search 
 ```javascript
 --------------> 10 
 -------> 6 ---------> 15
@@ -943,7 +940,7 @@ The Breadth First Search ( BFS ) is an algorithm for traversing or searching tre
 - We will read through horizontally (left to right)
 
 
-### Implement on a Tree Traversal ?
+### Implement BFS
 - Create a queue (this can be an array) and a variable to store the values of nodes visited
 - Place the root node in the queue
 - Loop as long ad there is anything in the queue
@@ -952,12 +949,75 @@ The Breadth First Search ( BFS ) is an algorithm for traversing or searching tre
   - if there is right property on the node dequeued - add it to the queue
 - Return the variable that stores tha values
 
+```javascript
+BreadthFirstSearch(){
+    let currentNode = this.root;
+    let list = [];
+    let queue = [];
+    queue.push(currentNode);
 
-### Usecases for a Tree Traversal ?
+    while(queue.length > 0){
+      currentNode = queue.shift();
+      list.push(currentNode.value);
+      if(currentNode.left) {
+        queue.push(currentNode.left);
+      }
+      if(currentNode.right) {
+        queue.push(currentNode.right);
+      }
+    }
+    return list;
+  }
+```
+
+## DFS Implementation
+```javascript
+DFTPreOrder(currentNode, list) {
+    return traversePreOrder(this.root, []);
+}
+DFTPostOrder(){
+  return traversePostOrder(this.root, []); 
+}
+DFTInOrder(){
+  return traverseInOrder(this.root, []);
+} 
 
 
-### BIG O of Tree Traversal 
+function traversePreOrder(node, list){
+  list.push(node.value);
+  if(node.left) {
+    traversePreOrder(node.left, list);
+  }
+  if(node.right) {
+    traversePreOrder(node.right, list);
+  }
+  return list;
+}
 
+function traverseInOrder(node, list){
+  if(node.left) {
+    traverseInOrder(node.left, list);
+  }
+  list.push(node.value);
+  if(node.right) {
+    traverseInOrder(node.right, list);
+  }
+  return list;
+}
+
+function traversePostOrder(node, list){
+  if(node.left) {
+    traversePostOrder(node.left, list);
+  }
+  if(node.right) {
+    traversePostOrder(node.right, list);
+  }
+  list.push(node.value);
+  return list;
+}
+
+
+```
 
 # Heaps
 ### What is Heap ?
@@ -1114,6 +1174,40 @@ A graph where each edge is assigned a numerical value
   - Solving mazes
   - AI (shortest path to win the game)
 
+# Dynamic Programming
+Dynamic Programming also known as dynamic optimization, a technique used for solving complex operations by dividing them into various smaller problems, and solving each of them only once.
+
+## Memoization - Caching
+- Memoization is a programming technique which attempts to increase a function's performance by caching its previously computed results. Because JavaScript objects behave like associative arrays, they are ideal candidates to act as caches.
+- Each time a memoized function is called, its parameters are used to index the cache. If the data is present, then it can be returned, without executing the entire function.  However, if the data is not cached, then the function is executed, and the result is added to the cache.
+
+### Implementation 
+```javascript
+// let cache = {};  
+function addTo10(){    
+  let cache = {};
+  return function (n) {
+     if(cache[n]) {
+        return cache[n]
+     } else {
+        console.log('long time');
+        cache[n] = n + 10;
+        return cache[n];
+     } 
+  }; 
+}
+
+let memoized = addTo10();
+
+
+console.log(memoized(20));
+console.log(memoized(10));
+console.log(memoized(10));
+console.log(memoized(10));
+```
+
+<!-- 
+
 # Example
 ### What is a Queue ?
 
@@ -1126,4 +1220,4 @@ A graph where each edge is assigned a numerical value
 
 ### BIG O of Queue 
 
-
+ -->
