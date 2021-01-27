@@ -1,4 +1,42 @@
 
+# Testing 
+## Unit Tests
+- Tests individual functions or classes.
+- if I had a sum function I'm going to just test that one function to make sure that it does what it does
+- Maybe if it accepts parameter A and B I want to make sure that A and B get added with that function.
+- They are the cheapest to implement the easiest to implement and 90 percent of your time you're gonna be working on writing unit tests.
+
+##  Integration tests
+- This is testing how different pieces of code work together so it can be testing of whether the database
+- Tt could be how a function works with another function and how this connection between them works
+
+## Automation Tests
+- This usually involves testing real life scenarios on the browser by controlling the browser and making sure that the expected behavior on the web is correct.
+- Now you can have humans doing this where they go through and click through everything on your Web site and make sure everything works or you can programmatically have robots or code that you write that runs through these tests for you as we go down into this order.
+- They become more and more expensive to implement.
+
+## Tesing Libraries
+- Jasmine
+- Jest
+- Mocha 
+
+Flow
+
+1. Testing Libary 
+- This is the scaffolding giving us the ability to use some function calls and some new methods for us
+2. Assertion libarary
+- It's essentially a tool to allow you to test that the variables contain the expected value.
+- They use something called BDD or behavioral driven development.
+- An assertion library does is says expect that this object that just contains a equals one and then it chains all these words together to test our assumption.
+- ``` expect([1,2].to.be.an('array').taht.does.not.iclude(3)) ```
+3. Test Runner 
+- The next thing we need for our tests is something called a test runner and a test runner is something that allows us to run our tests.
+
+
+
+
+
+
 ## Installing Test dependecies
 - jest
 - react-test-renderer
