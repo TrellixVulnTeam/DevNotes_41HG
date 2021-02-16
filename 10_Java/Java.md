@@ -1,4 +1,5 @@
 
+
 - [Java](#java)
   - [Installation](#installation)
     - [Check if already installed](#check-if-already-installed)
@@ -27,7 +28,7 @@
 - It is owned by Oracle, and more than 3 billion devices run Java.
 - Developed by James gosling
 - How did Java Name came
-  - James gosling was look at a oak tree then he names it as Oak, at last he drank his fav coffee tat is Java. So he kept that name and also the logo has coffe logo
+  - James gosling was looking at a oak tree then he named it as Oak, at last he drank his fav coffee that is Java. So he kept that name and also the logo has coffe logo
   - Oak
   - Green
   - Java coffe 
@@ -92,7 +93,7 @@ Variables are containers for storing data values. In Java, there are different t
 
 ## Declaring (Creating) Variables
 - Syntax
-  - ``` type variable = value; ```
+  - ``` type variableName = value; ```
 - Example
 ```JAVA 
 int myNum = 5;
