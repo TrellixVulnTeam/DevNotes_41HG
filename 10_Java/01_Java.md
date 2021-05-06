@@ -21,6 +21,9 @@
   - [Non-Access Modifiers](#non-access-modifiers)
   - [Final](#final)
   - [Static](#static)
+- [Java Methods](#java-methods)
+  - [Java Method Overlaping](#java-method-overlaping)
+    - [Why method overlapping](#why-method-overlapping)
 
 
 # Java
@@ -72,11 +75,11 @@ Jave program has .java extension
 - Every line of code that runs in Java must be inside a class. In our example, we named the class Main. A class should always start with an uppercase first letter.
 - The name of the java file must match the class name.
 
-```JAVA
+```java
 package com.codewithshaktish
  
 public class Main {
-  public state voide main (string[]args) {
+  public static void main (string[]args) {
     // write your code 
   }
 }
@@ -184,10 +187,6 @@ for(int i =0; i < names.length; i++) {
   - ``` System.out.println(greeting.toUpperCase()); ```
 
 
-
- 
-
-
 # Java Operators
 - Operators are used to perform operations on variables and values.
 - Java divides the operators into the following groups:
@@ -252,3 +251,47 @@ If you don't want the ability to override existing attribute values, declare att
 
 ## Static
 A static method means that it can be accessed without creating an object of the class, unlike public:
+
+
+# Java Methods
+## Java Method Overlaping 
+- Method overloading is a feature that allows us to have more than one method with same name. so long as we use differnt parameters
+- It is the ability to create multiple methods of the same name with differnet implementations
+- Calls to an overloaded method will runa specific implementation of that method
+- Its bad practive to write three methods with different names to handle a function
+```java
+public static int sumTwoNumbers (int a, int b) {
+  return a + b;
+}
+
+public static int sumThreeNumbers (int a, int b, int c) {
+  return a + b + c;
+}
+```
+- Method overloading exmaple
+- With method overloading we endup with 3 methosd but all sharing the same method name. Easier to remember
+```java
+public static int sum (int a, int b) {
+  return a + b;
+}
+
+public static int sum (int a, int b, int c) {
+  return a + b + c;
+}
+```
+- The printIn method is a great example of method overloading in the java language.
+- There are actually 10 methods with the name printIn.
+- We can prtin an integer, double, string and so on.. 
+``` java
+public static voide main (String [] args) {
+  System.out.printIn("Hello!");
+  System.out.printIn(5);
+  System.out.printIn(10.75);
+}
+```
+
+### Why method overlapping
+- It improved code readability and re-usablilty
+- It is easier to remember one method names instead of remembering multiple names.
+- Achieves consistency in maing. One name ofr methods that are commonly used for example println.
+- Overloaded methods give programmers the flexivility to call a similar method with different types of data. 
