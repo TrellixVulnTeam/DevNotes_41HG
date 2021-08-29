@@ -1,0 +1,34 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans 
+	xmlns="http://www.springframework.org/schema/beans" 
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" 
+	xmlns:context="http://www.springframework.org/schema/context" 
+	xmlns:p="http://www.springframework.org/schema/p"
+	xmlns:c="http://www.springframework.org/schema/c"  
+	xsi:schemaLocation="http://www.springframework.org/schema/beans
+    http://www.springframework.org/schema/beans/spring-beans.xsd
+    http://www.springframework.org/schema/context
+    http://www.springframework.org/schema/context/spring-context.xsd">
+    
+  <!--  <bean name="item" class="com.shaktish.spring.springcore.constructorInjection.Item"  
+    p:id="54"   p:itemName="RealMe" p:price="300" p:quantity="2"
+    />-->
+    
+   <!--<bean name="item" class="com.shaktish.spring.springcore.constructorInjection.Item"  
+    c:id="54" c:itemName="RealMe" c:price="300" c:quantity="2"
+    />-->
+    
+    <bean name="item" class="com.shaktish.spring.springcore.constructorInjection.Item">				
+		<constructor-arg value="54"/>
+		<constructor-arg value="realMe"/>
+		<constructor-arg value="300"/>
+		<constructor-arg value="2"/>	
+	</bean>	
+
+	<bean name="shoppingCart" class="com.shaktish.spring.springcore.constructorInjection.ShoppingCart">				
+		<constructor-arg>
+			<ref bean="item" />
+		</constructor-arg>		
+	</bean>	
+		
+</beans>
