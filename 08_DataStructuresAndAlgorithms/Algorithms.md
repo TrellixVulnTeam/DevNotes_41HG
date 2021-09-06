@@ -127,14 +127,18 @@ https://www.youtube.com/watch?v=cNRrJkXJ8T4
 - O(n log n) : Linearthmic Time
   - MergeSort 
 - O(n^2) - Quadratic time || O(n2) || O(nSquare)
-  - Finding Duplicates in an Array 
-  - Ex : 7 * 7 = 49 = n(2)
-- O(2^n) - Exponential time || n(n2) or n(n3)
-  - x+y+z = 10, find combinations of 10 in an array 
-  - Three for-loops (nested) 
-- O(n!) - Factorial time
+  - O (nSquare)
+    - Finding Duplicates in an Array 
+    - Ex : 7 * 7 = 49 = n(2)
+  - O(n^3) || O(nCube)
+    - x+y+z = 10, find combinations of 10 in an array 
+    - Three for-loops (nested) 
+- O(2^n) - Exponential time || O(2power^n)
   - Finding all subsets, find {1,2,3}
   - Eg : {1}, {2}, {3}, {1,2}, {1,2,3}... 
+- O(n!) - Factorial time  
+  - Combination problems : Eg find abc combination
+  - abc, acb, bac, bca, cab, cba 
 
 
 ## O(1) - Constant Time
