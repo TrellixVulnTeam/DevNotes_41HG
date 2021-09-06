@@ -1,10 +1,26 @@
 
 
 - [Init](#init)
-- [Core](#core)
 - [What is Java](#what-is-java)
+  - [Origin](#origin)
+- [Java Features](#java-features)
+  - [Simple](#simple)
+  - [Object Oriented](#object-oriented)
+  - [Robust](#robust)
+  - [Platform Independent](#platform-independent)
+  - [Secure](#secure)
+  - [Multi Threading](#multi-threading)
+  - [Architectural Neutral](#architectural-neutral)
+  - [Portable](#portable)
+  - [High Performance](#high-performance)
+  - [Distributed](#distributed)
 - [Java Environmental Setup](#java-environmental-setup)
+  - [Installing JDK](#installing-jdk)
+    - [Checking if Java is installed](#checking-if-java-is-installed)
 - [Java Internals](#java-internals)
+  - [Java Virtual Machine (JVM)](#java-virtual-machine-jvm)
+  - [Java Runtime Environment (JRE)](#java-runtime-environment-jre)
+  - [Java development kit (JDK)](#java-development-kit-jdk)
 - [Java Working](#java-working)
 - [Modifiers in Java](#modifiers-in-java)
 - [Datatypes in java](#datatypes-in-java)
@@ -27,11 +43,6 @@
 - [Exception](#exception)
 - [Serialization](#serialization)
 - [Generics](#generics)
-- [Java](#java)
-  - [Installation](#installation)
-    - [Check if already installed](#check-if-already-installed)
-- [Java insides ?](#java-insides-)
-  - [How java code gets executed](#how-java-code-gets-executed)
   - [Java Editions](#java-editions)
   - [Three main things in Java](#three-main-things-in-java)
 - [Java Syntax](#java-syntax)
@@ -65,17 +76,141 @@ let doc = [
     name : "Simplilearn",
     link :  "https://www.youtube.com/watch?v=Ae-r8hsbPUo",
   },
+  {
+    name : "studytonight",
+    link : "https://www.studytonight.com/java/overview-of-java.php"
+  }
 ]
 ```
-# Core 
-
 # What is Java
+Java is a programming language, that enforces an object-oriented programming model 
+
+- Java is a platform-independent language because it has runtime environment i.e JRE and API. Here platform means a hardware or software environment in which anapplication runs. 
+- Java codes are compiled into byte code or machine-independent code. This byte code is run on JVM (Java Virtual Machine).
+- Java can be used to create complete applications that may run on a single compluter or can be distributed among servers and clients in a network 
+
+
+## Origin 
+- First released by Sun Microsystem  in 1995.
+- It is owned by Oracle, and more than 3 billion devices run Java.
+- Created by a team lead by James gosling
+- How did Java Name came
+  - James gosling was looking at a oak tree then he named it as Oak, at last he drank his fav coffee that is Java. So he kept that name and also the logo has coffe logo
+  - Oak
+  - Green
+  - Java coffe 
+
+# Java Features
+The prime reason behind creation of Java was to bring portability and security feature into a computer language.
+
+## Simple
+Java is easy to learn and its syntax is quite simple, clean and easy to understand
+
+## Object Oriented
+In java, everything is an object which has some data and behaviour. Java can be easily extended as it is based on Object Model. Following are some basic concept of OOP's.
+- Object
+- Class
+- Inheritance
+- Polymorphism
+- Abstraction
+- Encapsulation
+
+## Robust
+Java makes an effort to eliminate error prone codes by emphasizing mainly on compile time error checking and runtime checking
+
+But the main areas which Java improved were Memory Management and mishandled Exceptions by introducing automatic Garbage Collector and Exception Handling.
+
+## Platform Independent
+Unlike other programming languages such as C, C++ etc which are compiled into platform specific machines. Java is guaranteed to be write-once, run-anywhere language.
+
+On compilation Java program is compiled into bytecode. This bytecode is platform independent and can be run on any machine, plus this bytecode format also provide security. Any machine with Java Runtime Environment can run Java Programs.
+
+![alt text](https://github.com/shaktish/DevNotes/blob/master/10_Java/images/javaCore/01-platformIndependent.png?raw=true "01-platformIndependent")
+
+## Secure 
+Java program always runs in Java runtime environment with almost null interaction with system OS, hence it is more secure.
+
+##  Multi Threading
+Java multithreading feature makes it possible to write program that can do many tasks simultaneously. Benefit of multithreading is that it utilizes same memory and other resources to execute multiple threads at the same time, like While typing, grammatical errors are checked along.
+
+## Architectural Neutral
+Compiler generates bytecodes, which have nothing to do with a particular computer architecture, hence a Java program is easy to intrepret on any machine.
+
+## Portable
+Java Byte code can be carried to any platform. No implementation dependent features. Everything related to storage is predefined, example: size of primitive data types
+
+## High Performance
+Java is an interpreted language, so it will never be as fast as a compiled language like C or C++. But, Java enables high performance with the use of just-in-time compiler.
+
+## Distributed
+
+Java is also a distributed language. Programs can be designed to run on computer networks. Java has a special class library for communicating using TCP/IP protocols. Creating network connections is very much easy in Java as compared to C/C++.
 
 # Java Environmental Setup 
+We need JDK (Java development kit) and a IDE (Integrated Development Environment)
+- JDK is a software that is used to create JAVA Programs 
+- IDE is a Code Editor 
+
+## Installing JDK
+- After downloading and installing  JDK based on ur OS
+- You have to set permanent path of JDK in your system via environment variable 
+  - MyComputer -> Properties -> Advanced System settings -> Environment Variables 
+  - System Variables -> Find Path Variable -> Add the path 
+  - "C:\Program Files\Amazon Corretto\jdk11.0.10_9\bin"
+- Basically it tells OS that you have executables within this category 
+- Install a IDE, either IntelliJ or Eclipse 
+
+### Checking if Java is installed
+- By entering the blow command in cmd
+  - ``` java -version ```
+- If installed, you will get the following log
+  - ``` Java HotSpot(TM) 64-Bit Server VM 18.9 (build 11.0.1+13-LTS, mixed mode) ```
 
 # Java Internals 
+## Java Virtual Machine (JVM)
+- Java Virutal Machine is the virtual machine that runs the Jave bytecodes
+- The JVM does not understand Java source code, thats why you complie your .java files to obtain .class files that contain the bytecodes understood by the JVM.
+  - JavaCode (.java) -> JavacCompiler -> ByteCode(.class) -> JVM 
+  - JVM - OS[windows, ubuntu, mac]
+- The same bytecodes give the same results makes Java Platform Independent language (Write once, run anywhere)
+
+## Java Runtime Environment (JRE)
+JRE provides the libraries, the Java Virtual Machine and other components to run applets and application written in the Java programming langauge
+
+The JRE does nto contain tools and utilities such as compliers or debuggers for developing applets and application 
+
+JRE Has
+- JVM
+- Set of libraries like rt.jar 
+- other files 
+
+## Java development kit (JDK)
+JDK is a superset of the JRE and contains everything that is the JRE, plus tools such as the compliers and debuggers necessary for developing applets and applications 
+
+- JDK = JRE + Development Tools
+- JDK = (JVM + Set of libraries + Other Additional files) + Development Tools 
+
+JDK has
+- JRE
+- Development tools for expample javac, java etc 
+
+Notes
+- To run the class file you need JRE but if you are developer you would need JDK 
 
 # Java Working 
+
+Complie-time-Environment
+- Java Source(.java) -> Java Complier-> Java ByteCode.class -> Run-time Environment (OS -Windows, Linux, Mac)
+ 
+![alt text](https://github.com/shaktish/DevNotes/blob/master/10_Java/images/javaCore/02-javaWorking-complier.png?raw=true "02-javaWorking-compiler")
+
+Run-time-Environment
+- class loader Bytecode verifier <-> Java Class Libraries
+        /                 \
+- Java Interperter    - Just in time Complier >
+
+![alt text](https://github.com/shaktish/DevNotes/blob/master/10_Java/images/javaCore/02-javaWorking-complier-runtime.png?raw=true "02-javaWorking-compiler-runtime")
+
 
 # Modifiers in Java
 
@@ -119,38 +254,6 @@ let doc = [
 
 # Generics
 
-
-
-# Java
-- Java is a popular programming language, created in 1995.
-- It is owned by Oracle, and more than 3 billion devices run Java.
-- Developed by James gosling
-- How did Java Name came
-  - James gosling was looking at a oak tree then he named it as Oak, at last he drank his fav coffee that is Java. So he kept that name and also the logo has coffe logo
-  - Oak
-  - Green
-  - Java coffe 
-
-## Installation
-We need 
-- JDK (Java development kit)
-  - It's the software that is used to create JAVA Programs 
-- IDE (Integrated Development Environment)
-  - We are going to use INTELLIJ
-
-### Check if already installed
-- By entering the blow command in cmd
-  - ``` java -version ```
-- If installed, you will get the following log
-  - ``` Java HotSpot(TM) 64-Bit Server VM 18.9 (build 11.0.1+13-LTS, mixed mode) ```
-
-
-# Java insides ?
-Jave program has .java extension 
-
-## How java code gets executed 
-- To make java programs Platform independent,  Java uses it's complier to complie .java file to .class file
-- with .class file you can use it other platforms 
 
 ## Java Editions
 - SE (STANDARD EDITION) - developers 

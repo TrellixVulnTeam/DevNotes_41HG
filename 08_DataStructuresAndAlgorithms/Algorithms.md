@@ -5,7 +5,7 @@
   - [O(1) - Constant Time](#o1---constant-time)
   - [O(log n) - Logarithmic time](#olog-n---logarithmic-time)
   - [O(n) - Linear time](#on---linear-time)
-  - [O(n log n) - Linearithmic Time](#on-log-n---linearithmic-time)
+  - [O(n log n) - Linearthmic Time](#on-log-n---linearthmic-time)
   - [O(n^2) - Quadratic time](#on2---quadratic-time)
   - [O(2^n) - Exponential time](#o2n---exponential-time)
   - [O(n!) - Factorial time](#on---factorial-time)
@@ -114,23 +114,33 @@ How can we determine which one is the best ? That's what big O is about. It's ab
 - Readbilty 
 
 # BigO Complecity Chart
+https://www.youtube.com/watch?v=cNRrJkXJ8T4 
+
 ![alt text](https://github.com/shaktish/DevNotes/blob/master/08_DataStructuresAndAlgorithms/images/BigO.jpg?raw=true "BigO")
 
 - O(1) : Constant Time
+  - Opeartes happens once
 - O(log n) : Logarithmic Time
+  - Cut the input in half, used in Binary Search
 - O(n) : Linear Time
+  - Linear Search
 - O(n log n) : Linearthmic Time
-- O(n^2) - Quadratic time
-- O(2^n) - Exponential time
+  - MergeSort 
+- O(n^2) - Quadratic time || O(n2) || O(nSquare)
+  - Finding Duplicates in an Array 
+  - Ex : 7 * 7 = 49 = n(2)
+- O(2^n) - Exponential time || n(n2) or n(n3)
+  - x+y+z = 10, find combinations of 10 in an array 
+  - Three for-loops (nested) 
 - O(n!) - Factorial time
-
-![alt text](https://github.com/shaktish/DevNotes/blob/master/08_DataStructuresAndAlgorithms/images/bigO2.png?raw=true "BigO")
+  - Finding all subsets, find {1,2,3}
+  - Eg : {1}, {2}, {3}, {1,2}, {1,2,3}... 
 
 
 ## O(1) - Constant Time
 O(1) means that the algorithm takes the same number of steps to execute regardless of how much data is passed in.
 
-- Whether we access the 1st or 2nd or millionth item it doesn’t matter… We can access it directly by using the index operator array[i].
+- Whether we access the 1st or 2nd or millionth item it doesn’t matter. We can access it directly by using the index operator array[i].
 
 ```javascript
 function isEvenOrOdd(n) {
@@ -144,6 +154,7 @@ console.log(isEvenOrOdd(10001)); // => Odd
 ## O(log n) - Logarithmic time
 Logarithmic time complexities usually apply to algorithms that divide problems in half every time.
 
+Inputs are cut in half 
 - Example 1 
   - used in Finding element on sorted array with binary search
 - Example 2
@@ -179,7 +190,7 @@ console.log(indexOf(directory, 'Zoe'));
 ## O(n) - Linear time
 Linear time complexity O(n) means that as the input grows, the algorithms take proportionally longer to complete.
 
-- called Linear Algorithm
+- called Linear Algorith m
 - Linear Search.
 
 ```javascript
@@ -201,7 +212,7 @@ function findMax(n) {
 The complexity of the linear_algo function is linear in the above example since the number of iterations of the for-loop will be equal to the size of the input items array. For instance, if there are 4 items in the items list, the for-loop will be executed 4 times, and so on.
   
   
-## O(n log n) - Linearithmic Time
+## O(n log n) - Linearthmic Time
 Linearithmic time complexity it’s slightly slower than a linear algorithm. However, it’s still much better than a quadratic algorithm
 - called Log Linear  
 - Efficient sorting algorithms like merge sort, quicksort and others.
