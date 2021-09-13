@@ -87,7 +87,7 @@
       - [Notes](#notes-4)
     - [Radix Sort](#radix-sort)
       - [How does it work](#how-does-it-work)
-- [Recrusion Work Examples](#recrusion-work-examples)
+- [Recrusion Examples V2](#recrusion-examples-v2)
 
 # Algorithms vs Datastructures
 - Data Strucutre
@@ -1593,10 +1593,10 @@ let 9 = [593]
   ```
 
 
-# Recrusion Work Examples
+# Recrusion Examples V2
 Reversing a String
 ```javascript
-function reverseStr (words, reversedArr) {  
+function reverseStr (words) {  
   if(words === "")   {
     return ""
   }  
@@ -1605,7 +1605,7 @@ function reverseStr (words, reversedArr) {
 let input = 'the simple engineer';
 
 console.log('input',input);
-console.log('ouput', reverseStr(input, []));
+console.log('ouput', reverseStr(input));
 ```
 Find if a word is Palindrome
 ```javascript
