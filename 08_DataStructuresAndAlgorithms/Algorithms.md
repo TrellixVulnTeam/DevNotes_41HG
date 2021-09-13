@@ -87,6 +87,7 @@
       - [Notes](#notes-4)
     - [Radix Sort](#radix-sort)
       - [How does it work](#how-does-it-work)
+- [Recrusion Work Examples](#recrusion-work-examples)
 
 # Algorithms vs Datastructures
 - Data Strucutre
@@ -119,11 +120,11 @@ https://www.youtube.com/watch?v=cNRrJkXJ8T4
 ![alt text](https://github.com/shaktish/DevNotes/blob/master/08_DataStructuresAndAlgorithms/images/BigO.jpg?raw=true "BigO")
 
 - O(1) : Constant Time
-  - Opeartes happens once
+  - Operations happens once
 - O(log n) : Logarithmic Time
   - Cut the input in half, used in Binary Search
 - O(n) : Linear Time
-  - Linear Search
+  - Linear Search, iterates all elements in an array.
 - O(n log n) : Linearthmic Time
   - MergeSort 
 - O(n^2) - Quadratic time || O(n2) || O(nSquare)
@@ -1592,6 +1593,48 @@ let 9 = [593]
   ```
 
 
+# Recrusion Work Examples
+Reversing a String
+```javascript
+function reverseStr (words, reversedArr) {  
+  if(words === "")   {
+    return ""
+  }  
+  return reverseStr(words.substring(1)) + words.charAt(0);
+}
+let input = 'the simple engineer';
 
+console.log('input',input);
+console.log('ouput', reverseStr(input, []));
+```
+Find if a word is Palindrome
+```javascript
+function isPalindrome(word) {
+  if(word.length === 0 || word.length === 1) {
+    return true;
+  }
+  
+  if(word[0] === word[word.length-1]) {
+    return isPalindrome(word.substring(1, word.length -1))
+  }
+  
+  return false;  
+}
+let input = "racecar2";
+console.log('input', input);
+console.log('output',isPalindrome(input));
+```
 
-
+Convert Integer to Decimal
+```javascript
+function integerToDecimal(integer, result) {
+  if(integer === 0) {
+    return result;
+  }  
+  return integerToDecimal( Math.floor(integer/ 2), result = integer % 2 + result) ;
+  
+}
+let input = 233;
+console.log('input', input);
+console.log('output',integerToDecimal(input, ""));
+```
