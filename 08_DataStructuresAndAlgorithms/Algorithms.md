@@ -1108,7 +1108,46 @@ function binarySearch(arr, elem) {
     }
     return -1;
 }
+
+// BinarySearch Recrusive, my version with explanation 
+    function binarySearch (arr, input, offset = 0) {
+      let half = parseInt(arr.length / 2); 
+      let current = arr[half];
+      if(!input || (current !== input && half === 0)) {
+          // Note ::
+          // return - 1
+          // if input is 0 or negative numbers
+          // if input is not in the array, 
+              // - the function will recrusively divide the arr until it reaches to one element... 
+              // - with one element in the arr, if we divide it by 2, [1]/2 = 0, now we can check if the input is matched or not 
+          return -1;
+      } else if(current === input) {
+          // Note ::
+          // offset is used to keep track of the index (of right side) when we split the array
+          // eg : arr=[1,2,3,4,5,6,7,8,9,10], find input=7, expected index is 6 
+          //  - let half = parseInt(arr.length/2), returns 5,
+          //  - let current = arr[half], here we are accessing the middle point of the array. 
+          //  - now we check if the given input is greater than the current, it is in our case. (7 > 5)
+          //  - we slice the array from index 5 to arr.length-1 and call the recrusive function, 
+          //  - here we add the offset that is arr.length/2 to the offset, 10/2 = 5, we add the 5 to the offset 
+          return half + offset;
+      } else if (input > current) {                
+          return binarySearch(arr.slice(half), input, offset + half);
+      } else {
+          return binarySearch(arr.slice(0, half), input, offset);
+      }  
+  }
+  
+
+  let list = [1,2,3,4,5,6,7,8,9,10];
+  let input = 27;
+  list = ["Agra", "Banglore", "Chennai", "Delhi", "Erode"]
+  input = "Erode";
+  console.log("find", input, "in the given list");
+  console.log(list, "list");        
+  console.log(binarySearch(list, input));     
 ```
+
 
 ## KMP Substring Search
 - Incomplete
