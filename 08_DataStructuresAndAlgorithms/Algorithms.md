@@ -1,5 +1,6 @@
 ## Table of contents 
 - [Algorithms vs Datastructures](#algorithms-vs-datastructures)
+- [Algorithm](#algorithm)
 - [What is BigO](#what-is-bigo)
 - [BigO Complecity Chart](#bigo-complecity-chart)
   - [O(1) - Constant Time](#o1---constant-time)
@@ -65,15 +66,10 @@
 - [Sorting Algorithms](#sorting-algorithms)
   - [Elementory Sorting Algorithms](#elementory-sorting-algorithms)
     - [Bubble Sort](#bubble-sort)
-      - [Pseudocode](#pseudocode)
-    - [Approach2](#approach2)
       - [Notes](#notes)
     - [Selection Sort](#selection-sort)
-      - [Pseudocode](#pseudocode-1)
-      - [Approach2](#approach2-1)
       - [Notes](#notes-1)
     - [Insertion Sort](#insertion-sort)
-      - [Pseudocode](#pseudocode-2)
       - [Notes](#notes-2)
     - [Merge Sort](#merge-sort)
       - [Visualization](#visualization)
@@ -90,7 +86,7 @@
 - [Recrusion Examples V2](#recrusion-examples-v2)
 
 # Algorithms vs Datastructures
-- Data Strucutre
+- Data Structure
   - Data Structure is about organising and managing data effectively such that we can perform specific operation efficiently
 - Algorithm
   - Algorithm is a step-by-step procedure to be followed to reach the desired output.
@@ -100,6 +96,21 @@
   - Algorithms are a way to use water of bucket for some meaningful purpose.
   - Data structures :- linked list , queue , stack , tree , heaps e.t.c. the buckets of representing data.
   - Algorithms :- kruskals , prims , sorting , djkstra , Huffman e.t.c. to use data from these buckets to do some meaningful tasks.
+
+# Algorithm
+- Clearly defined problem statement, input and output
+- The steps in the algorithm need to be in a very specific order
+- The steps also need to be distinct
+- The alogorithm should produce a result 
+- The algorithm should complete in a infinite amount of time 
+
+Correctness
+- A algorithm should take a input to a given a problem and produce a ouput.
+- Algorithm -> input --> Problem --> Output 
+
+Efficiency 
+- Also known as Time complexity 
+- 
 
 
 # What is BigO
@@ -1146,6 +1157,28 @@ function binarySearch(arr, elem) {
   console.log("find", input, "in the given list");
   console.log(list, "list");        
   console.log(binarySearch(list, input));     
+
+// Iterative Version
+  let arr = [1,2,3,4,5];
+  let value = 6;
+  function binarySearch(list, target) {
+    let start = 0;
+    let end = list.length - 1;
+    
+    while(start <= end) {
+      let mid = Math.floor((start+end) / 2); 
+      if(list[mid] === target)     {
+        return mid
+      } else if (list[mid] > target) {
+        end = mid - 1;
+      } else {
+        start = start + 1
+      }
+    }
+    return -1
+  }
+
+  console.log(binarySearch(arr, value));
 ```
 
 
@@ -1199,70 +1232,46 @@ Example
 4. now we repeat the process, the thing is the for every iteration we should minus the last value (that is sorted )
 
 
-#### Pseudocode
-- Start looping from with a var called i the end of the array towards the beginning
-- Start an inner loop with a var called j from the beginning until i-1
-- if arr[j] is greater than arr[j+1] swap those two values
-- return the sorted array 
-
 ```javascript
-function bubbleSort(arr) {
-  let noSwap;
- 
-  for(let i = arr.length; i > 0 ; i--) {    
-    noSwap = true;
-    for(let j = 0; j < i ; j++ ) {
-        console.log(arr, arr[j], arr[j+1])
-        if(arr[j] > arr[j+1]) {
-          let temp = arr[j];
-          arr[j] = arr[j+1];
-          arr[j+1] = temp;
-          swap = false  
-        }
-    
-      }
-      console.log('break')
-      if(noSwap) {
-          break;
-      }
-    }   
-  return arr
+function bubbleSort (arr) {
+    // Note :: Bubble Sort works by repeatedly swapping the adjacent elements if they are in wrong order.
+    // Note, we are (arr.length -1) excluding last element from the array, as in the first iteration the biggest value will be set to the last element  
+    for (let i = 0; i < arr.length - 1; i++) {                
+        let swapped = false;
+        // Note :: arr.length - i - 1
+        // - If array length is 5, for first iteration i is 0, additionally we have to substract 1 as for each iteration, the numbers will be sorted on right.
+        // - l = length, i = outerLoopIndex, 1 = substract
+        // - Labels             :  l - i - 1 
+        // - First Iteration    :  5 - 0 - 1 = 4,    
+        // - Second Iteration   :  4 - 1 - 1 = 3,            
+        // - Third Iteration    :  3 - 2 - 1 = 2,        
+        // Note :: Swapped = false;   
+        // If no two elements were swapped by inner loop, then break, Coz the array is already sorted
+        for(let j = 0; j < arr.length - i - 1; j++) {     
+            // Note :: Swapping                                       
+            if(arr[j] > arr[j+1]) {
+                let temp = arr[j];
+                arr[j] = arr[j+1];
+                arr[j+1] = temp;   
+                swapped = true;                          
+            }                                                             
+        }     
+        
+        if(swapped === false){break}
+    }
+    return arr;
 }
-   
-console.log(bubbleSort([37,45,29,8]));
-```
-### Approach2 
-```javascript
-var numList = [6,5,3,1];
-console.group(numList.length, 'numList len')
 
-function bubbleSort(arr) {
-  
-  for(let i = 0; i < arr.length; i++) {
-    let noSwap = true;
-    for(let j = 0; j < arr.length-1; j++  ) {                  
-      if(arr[j] > arr[j+1]) {                
-        let temp = arr[j];        
-        arr[j] = arr[j+1];
-        arr[j+1] = temp;   
-        noSwap = false;        
-      } 
-//       console.log(arr[i], 'i', arr[j+1], 'j')     
-    }    
-    if(noSwap) { break; }
-    console.log(arr,' arr')
-  }  
-  
-  return arr;
-}
-console.log(bubbleSort(numList), 'res');
+let input = [5,4,3,2,1];
+console.log("input", input);        
+console.log("result", bubbleSort(input));
 ```
 #### Notes
 - Time complexity of bubble sort is n(n^2)
 - Bubble sort can be best used for nearly sorted collection
 
 ### Selection Sort
-Similar to bubble sort, but instead of first placing large values into sorted position, it places small values into sorted position
+Similar to bubble sort, but instead of first placing large values into sorted position, it places small values into sorted position (at the beginning)
 
 Example 
 ```javascript
@@ -1285,80 +1294,43 @@ Example
 // ignore the sorted value on every iteration 
 ```
 
-#### Pseudocode
-- Store the first element as smallest vlaue you've seen so far.
-- Compare this item to the next item in the array until you find a smaller number
-- if a smaller number is found, designate that smaller number to be the new minimum and continue until the end of the array.
-- If the minimum is not the value (index) you initially began with swap the two values
-- Repeat this with the next element until the arrray is sorted 
-
 ```javascript
+// Selection sort -> The selection sort algorithm sorts an array by repeatedly 
+// finding the minimum element (considering ascending order) from unsorted part and putting it at the beginning.      
 function selectionSort (arr) {
-  
-  for(let i = 0; i < arr.length; i++) {
-    let minVal = i;
-    for(let j = i+1; j < arr.length; j++) {   
-      // console.log(i, j);
-      if(arr[j]  < arr[minVal] ) {
-        minVal = j;
-      }      
-    }   
-    console.log(i, minVal)
-     if(i !== minVal) {
-        console.log('**********')
-        console.log(arr, 'swapping to : ')
-        let tempVal = arr[i]      
-        arr[i] = arr[minVal]
-        arr[minVal] = tempVal
+    for(let i = 0; i < arr.length; i++) {
+        //Note:: we ll start frm first value, so we set minValue as first index 
+        let minVal = i;
+        // in inner-loop, we iterate by i+1 as we need to compare if first element and its next element is lesser  
+        for(let j = i+1; j < arr.length; j++) {                   
+            // for each Iteration, if arr[i+1] is lesser than i, we set the min value arr[i+1]                                        
+            if(arr[j]  < arr[minVal] ) {
+                minVal = j;
+            }      
+        }              
+        // for Each iteration, we check if the min val and index are equal, if not we change the value 
+        // eg : [10,2,3], firstIteration : [2,10,3], secondIteration : [2,3,10]                     
+        if(i !== minVal) {                    
+            let tempVal = arr[i]      
+            arr[i] = arr[minVal]
+            arr[minVal] = tempVal                    
+        }                                      
+    }
 
-        console.log(arr)
-        console.log('**********')
-      }      
-      console.log('BREAK')
-      
-  }
+    return arr
+}        
 
-  return arr
-}
-
-console.log(selectionSort([2,34,22,10,19,17]));
+let input = [2,34,22,10,19,17];
+console.log("input", input);        
+console.log("result", selectionSort(input));
 ```
 
-#### Approach2
-```javascript
-var numList = [4,5,6,78,151,154,45,1,2];
-
-function selectionSort(arr) {  
-  for(let i = 0; i < arr.length; i++) {
-    let min = i;
-    for(let j = i+1; j < arr.length; j++) {            
-      if(arr[j] < arr[min]) {  
-          min = j;                       
-      } 
-    }    
-    let temp = arr[i]        
-    arr[i] = arr[min]
-    arr[min] = temp;        
-  }        
-  return arr;
-}
-console.log(selectionSort(numList), 'res');
-```
 #### Notes
-
 - Time complexity of bubble sort is n(n^2)
 - Selection sort reduces no of swaps
 
 ### Insertion Sort
-Builds up the sort by gradually creating a larger left half which always sorted 
-
-
-#### Pseudocode 
-- Start by picking the second element in the array 
-- Now compare the second elmeent with the one before it and swap if necessary 
-- Continue to the next element and if it is in the incorrect order, iterate through the sorted portion (i.e the left side) to place the element in the correct place 
-- Repeat until the array is sorted 
-
+Builds up the sort by gradually creating a larger left half which is always sorted 
 
 ```javascript
 function insertionSort(arr) {

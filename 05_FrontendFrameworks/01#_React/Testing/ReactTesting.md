@@ -1,4 +1,16 @@
 
+- [Testing](#testing)
+  - [Unit Tests](#unit-tests)
+  - [Integration tests](#integration-tests)
+  - [Automation Tests](#automation-tests)
+  - [Tesing Libraries](#tesing-libraries)
+  - [Installing Test dependecies](#installing-test-dependecies)
+  - [Getting Started](#getting-started)
+  - [Component Testing](#component-testing)
+    - [Refactoring Component Unit Testing](#refactoring-component-unit-testing)
+  - [React Optimization](#react-optimization)
+  - [Mock](#mock)
+
 # Testing 
 ## Unit Tests
 - Tests individual functions or classes.
@@ -139,9 +151,6 @@ it('should have a logo', () => {
 ```
 
 
-
-
-
 ## React Optimization
 What is wrong in the application ?
 - Performance related - Speed 
@@ -154,4 +163,24 @@ What is wrong in the application ?
   - At some places state are updated incorrectly that is straighlty mutated 
 - Convert Components tat recives props to render make them functional component 
 - using regular function and  binding them in construcutor can also slow things down instead we can use arrow functions 
-- 
+
+
+## Mock
+What is a mock function ?
+- Fake function that runs instead of a real function 
+  - Can run alternate code, or jsut act as a placeholder
+- Jest replaces real functions with mock 
+
+Why Mock
+Mocks server three purposes
+- Keep real function from running
+  - prevent side-effects like network calls
+- Spy on a function to see when it's called 
+- Provide return values
+  - setup Test conditions 
+
+Method for Mocking methods in Jest
+- Reset properties on React module to replace methods with mocks 
+- This means: no destructring on imports in non-test code 
+  - React.useState() will work 
+  - import {useState} from react; and using it will not work 

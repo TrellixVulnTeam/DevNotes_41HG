@@ -1,12 +1,13 @@
 ### Table of Contents 
-1. [Variables](#variables)
-2. [Create a Variable: const](#create-a-variable-const)
-3. [Create a Variable: let](#create-a-variable-let)
-4. [Undefined](#undefined)
-5. [Mathematical Assignment Operators](#mathematical-assignment-operators)
-6. [String Interpolation](#string-interpolation-01)
-7. [String Interpolation II](#string-interpolation-02)
-8. [Review Variables](#review-variables)
+- [Introduction to Javascript](#introduction-to-javascript)
+  - [Variables](#variables)
+  - [Create a Variable: const](#create-a-variable-const)
+  - [Create a Variable: let](#create-a-variable-let)
+  - [Undefined](#undefined)
+  - [Mathematical Assignment Operators](#mathematical-assignment-operators)
+  - [String Interpolation 01](#string-interpolation-01)
+  - [String Interpolation 02](#string-interpolation-02)
+  - [Review Variables](#review-variables)
 
 # Introduction to Javascript
 
@@ -110,7 +111,7 @@ console.log('I own a pet ' + myPet + '.');
 
 ## String Interpolation 02
 In the newest version of JavaScript (ES6) we can insert variables into strings with ease, by doing two things:
-- tead of using quotes around the string, use backticks (this key is usually located on the top of your keyboard, left of the 1 key).
+- Instead of using quotes around the string, use backticks (this key is usually located on the top of your keyboard, left of the 1 key).
 - Wrap your variable with ${myVariable}, followed by a sentence. No +s necessary.
 
 ES6 string interpolation is easier than the method you used last exercise. With ES6 interpolation we can insert variables directly into our text.
