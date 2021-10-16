@@ -5,8 +5,10 @@
   - [Modern Javascript Today](#modern-javascript-today)
     - [ES5](#es5)
     - [ES6](#es6)
-- [Functions](#functions)
-  - [Function Anatomy](#function-anatomy)
+- [Javascript Fundamentals](#javascript-fundamentals)
+  - [Strict Mode](#strict-mode)
+  - [Functions](#functions)
+    - [Function Anatomy](#function-anatomy)
 
 # Javascript
 Javascript is a High-level, Object oriented, Multi-paradigm programming language 
@@ -110,8 +112,40 @@ Backwards Compatibility
 - No support in older browsers
 - Can use most features in production with transpiling and polyfilling 
 
-# Functions 
-Function Declartions 
+# Javascript Fundamentals 
+
+## Strict Mode 
+JavaScript's strict mode, introduced in ECMAScript 5, is a way to opt in to a restricted variant of JavaScript
+
+To invoke strict mode for an entire script, put the exact statement "use strict"; (or 'use strict';) before any other statements.
+
+```javascript 
+// Whole-script strict mode syntax
+'use strict';
+```
+
+Strict mode makes several changes to normal JavaScript semantics:
+- Eliminates some JavaScript silent errors by changing them to throw errors.
+
+Example 
+- Strict mode makes it impossible to accidentally create global variables. 
+- Strict mode reserves private, undefined words 
+```javascript 
+'use strict';      
+// Assuming no global variable mistypeVariable exists
+// this line throws a ReferenceError                                        
+mistypeVariable = 17;  
+
+// Assignment to a non-writable global
+var undefined = 5; // throws a TypeError
+var Infinity = 5; // throws a TypeError
+```
+
+
+## Functions 
+Function is simple piece of code that we can reuse over and over again.
+
+Function Declarations 
 ```javascript
 function calcAge (birthYear)  {
   return 2037 - birthYear
@@ -130,5 +164,6 @@ Arrow functions
 const calcAge = (birthYear) => return 2037 - birthYear
 ```
 
-## Function Anatomy 
-![alt text](https://github.com/shaktish/DevNotes/blob/master/01_Javascript/images/functionAnatomy.png?raw=true "FunctionAnatomy")
+### Function Anatomy 
+![alt text](https://github.com/shaktish/DevNotes/blob/master/01_Javascript/images/functionAnatomy.PNG?raw=true "FunctionAnatomy")
+

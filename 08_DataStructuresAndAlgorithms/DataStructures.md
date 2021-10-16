@@ -148,7 +148,7 @@ Objectivies
 
 ### Define what a singly Linked List is 
 - A data structure that contains a head, tail and length property
-- Linked lists consists of nodes and each node has a value and a pointer to antoher node or null 
+- Linked lists consists of nodes and each node has a value and a pointer to another node or null 
 
 ### Compare with Arrays 
 Lists 
